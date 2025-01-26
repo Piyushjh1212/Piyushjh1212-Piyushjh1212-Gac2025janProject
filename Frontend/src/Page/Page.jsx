@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function Page() {
   return (
-    <div>Page</div>
+    <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+        </Routes>
+    </Router>
   )
 }
