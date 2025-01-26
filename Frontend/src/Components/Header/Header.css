@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick to the top */
+  background: var(--website-main-color); /* Matching the footer's gradient */
+  color: #c9d1d9;
+  padding: 15px 30px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional: adds a subtle shadow under the header */
+  z-index: 10; /* Ensures header stays on top of other content */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation Links */
+.nav-links {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links ul li a:hover {
+  color: #58a6ff;
+  transform: scale(1.1);
+}
