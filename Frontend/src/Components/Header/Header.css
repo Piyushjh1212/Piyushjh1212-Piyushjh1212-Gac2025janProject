@@ -49,3 +49,47 @@ header {
   color: #58a6ff;
   transform: scale(1.1);
 }
+
+
+ /* Login and Register buttons */ 
+
+ .profile-container{
+  display: flex;
+  gap: 40px;
+ }
+
+ .login-btn{
+  background: white;
+  display: flex;
+  align-items: center;
+  color: black;
+  border-radius: 75px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 3px;
+  transition: background 0.3s;
+}
+
+ .login-btn:hover{
+  background: #58a6ff;
+  color: white;
+ }
+
+ /* progile  image  */
+ .profile-img{
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile view */
+.menu-toggle{
+  display: none;
+}
+
+
+/* Responsive media queries are used to make the header responsive */
+
+

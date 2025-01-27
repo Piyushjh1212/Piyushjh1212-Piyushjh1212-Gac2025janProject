@@ -1,0 +1,195 @@
+
+  
+  /* Main Page Container */
+  .login_page {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Wrapper for Signup */
+  .loginwrapper {
+    display: flex;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+  }
+  
+  /* Image section */
+  .login_img img {
+    max-width: 500px;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  /* Signup Container */
+  .Login_container {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Heading Style */
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: red;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    width: 100%;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #6D5BBA;
+    box-shadow: 0 0 5px rgba(109, 91, 186, 0.3);
+  }
+  
+  /* Submit Button */
+  button {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  button:hover {
+    background-color: var(--main-Hover-color);
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Social Login Buttons */
+  .social-login {
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .social-buttons {
+    display: flex;
+  }
+  
+  .social-buttons button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .social-buttons button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .google-btn {
+    background-color: #db4437;
+    color: white;
+  }
+  
+  .facebook-btn {
+    background-color: #3b5998;
+    color: white;
+  }
+  
+  .twitter-btn {
+    background-color: #1da1f2;
+    color: white;
+  }
+  
+  .social-buttons .social-icon {
+    margin-right: 10px;
+  }
+  
+  /* Sign Up Option */
+  .signup-option {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .signup-option a {
+    color: #6D5BBA;
+  }
+  
+  .signup-option a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsiveness */
+  @media screen and (max-width: 768px) {
+    .loginwrapper {
+      flex-direction: column;
+      width: 90%;
+      box-shadow: none;
+    }
+  
+    .Login_container {
+      padding: 1.5rem;
+      align-items: center;
+    }
+  
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+  
+    .social-buttons button {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      padding: 0.8rem;
+    }
+  }
+  

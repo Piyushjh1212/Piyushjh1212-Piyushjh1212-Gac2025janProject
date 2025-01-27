@@ -39,10 +39,11 @@ export default function Header() {
         <div className="profile-container">
           <div className="profile-icon">
             <img
-              src="assets/profile.webp"
+              src="Assets/profile.webp"
               alt="Profile"
               width={50}
               height={50}
+              className="profile-img"
             />
           </div>
           <Link to="/login">
