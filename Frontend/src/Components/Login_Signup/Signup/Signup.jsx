@@ -48,7 +48,6 @@ export default function Signup() {
 
     // Log the userData to check its values before sending
     console.log("User Data:", userData);
-    
 
     fetch(`${apiUrl}/api/users/signup`, {
       method: "POST",
@@ -63,12 +62,11 @@ export default function Signup() {
         console.log("Response Data:", data);
         if (data.success) {
           alert("Signup successful!");
-          navigate("/login");
+          navigate("/");
         } else {
           setError(data.message || "Error during signup.");
           console.log(data.message);
         }
-
       })
       .catch((error) => {
         setLoading(false);
@@ -76,8 +74,6 @@ export default function Signup() {
         setError("An error occurred. Please try again.");
       });
   };
-
-  
 
   useEffect(() => {
     window.scrollTo(0, 0);
