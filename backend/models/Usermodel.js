@@ -1,27 +1,21 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-// User schema for MongoDB
-const userSchema = new mongoose.Schema(
-  {
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Please provide a name"],
+    },
     email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/\S+@\S+\.\S+/, 'Please enter a valid email address'],
+        type: String,
+        required: [true, "Please provide an email"],
+        unique: true,
     },
     password: {
-      type: String,
-      required: true,
-      minlength: 8,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
+        type: String,
+        required: [true, "Please provide a password"],
+    }
+})
 
-const User = mongoose.model('User', userSchema);
+const userModel = mongoose.models.User || mongoose.model('User', UserSchema);
 
-export default User;
+export default userModel;

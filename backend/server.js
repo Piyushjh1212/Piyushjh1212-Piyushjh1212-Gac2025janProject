@@ -1,28 +1,34 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import helmet from 'helmet';
-import connectDB from './config/config.js';
-import userRoutes from './routes/userRoutes.js';
-
+import dotenv from 'dotenv';
+import connectDb from './config/connectDb.js';
+import userRouter from './routes/userRoute.js';
 dotenv.config();
 
+// Dot env file
+const port = process.env.PORT;
+const mongo_url = process.env.MONGO_URL;
+console.log(mongo_url);
 
 const app = express();
-const port = process.env.PORT || 5000;
 
-// Security Middleware
-app.use(helmet()); // Adds security headers
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse incoming requests
+// Database connection
+connectDb(mongo_url);
 
-// Connect to MongoDB
-connectDB(process.env.MONGO_URI);
+// middleware setup
+app.use(express.json());
+app.use(cors());
+
 
 // Routes
-app.use('/api/user', userRoutes);
 
-// Start Server
+app.use("/api/users", userRouter);
+
+
+app.get("/", (req, res) => {
+    res.send("Server is ready");
+});
+
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    console.log("Server started at http://localhost:5000");
 });

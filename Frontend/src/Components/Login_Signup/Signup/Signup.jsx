@@ -7,6 +7,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState(""); // Added name field
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Signup() {
     setError(""); // Clear previous errors
     setLoading(true); // Start loading
 
-    if (!email || !password || !confirmPassword) {
+    if (!email || !password || !confirmPassword || !name) {
       setError("Please fill out all fields.");
       setLoading(false);
       return;
@@ -41,12 +42,15 @@ export default function Signup() {
       return;
     }
 
-    const userData = { email, password };
+    const userData = { email, password, name };
 
-    // Use import.meta.env for environment variables with Vite
     const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-    fetch(`${apiUrl}/api/user/signup`, {
+    // Log the userData to check its values before sending
+    console.log("User Data:", userData);
+    
+
+    fetch(`${apiUrl}/api/users/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,14 +60,15 @@ export default function Signup() {
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
+        console.log("Response Data:", data);
         if (data.success) {
           alert("Signup successful!");
-
-          // Navigate to the login page after successful signup
           navigate("/login");
         } else {
           setError(data.message || "Error during signup.");
+          console.log(data.message);
         }
+
       })
       .catch((error) => {
         setLoading(false);
@@ -72,9 +77,7 @@ export default function Signup() {
       });
   };
 
-  const handleQuickLogin = (platform) => {
-    alert(`Quick login with ${platform}`);
-  };
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -91,6 +94,17 @@ export default function Signup() {
           {error && <div className="error">{error}</div>}
 
           <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
