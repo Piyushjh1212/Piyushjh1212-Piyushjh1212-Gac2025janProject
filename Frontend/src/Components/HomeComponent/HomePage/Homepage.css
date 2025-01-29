@@ -1,0 +1,17 @@
+.homepage-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('/Assets/image-3.png');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .homepage-title {
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
