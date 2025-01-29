@@ -5,6 +5,10 @@ import "./Signup.css";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState('Ratibad');
+  const [city, setCitiy] = useState('Bhopal');
+  const [country, setCountry] = useState('India');
+  const [phone, setPhone] = useState('9687457854');
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState(""); // Added name field
@@ -42,14 +46,14 @@ export default function Signup() {
       return;
     }
 
-    const userData = { email, password, name };
+    const userData = { email, password, name, address, city, country,phone };
 
     const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     // Log the userData to check its values before sending
     console.log("User Data:", userData);
 
-    fetch(`${apiUrl}/api/users/signup`, {
+    fetch(`http://localhost:10011/api/v1/user/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

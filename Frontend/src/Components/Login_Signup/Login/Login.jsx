@@ -39,8 +39,8 @@
       // Use import.meta.env for environment variables with Vite
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-      fetch(`${apiUrl}/api/user/login`, {
-        method: "GET",
+      fetch(`http://localhost:10011/api/v1/user/login`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

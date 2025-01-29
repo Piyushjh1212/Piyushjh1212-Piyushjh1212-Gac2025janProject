@@ -42,6 +42,13 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/category', categoryRouter);
 
+app.get('/', (req, res) => {
+    return res.status(201).send({
+        success: true,
+        message: `Hello world.`
+    })
+})
+
 // Start Server
 app.listen(port, () => {
     console.log(`🚀 Server is running on port ${port} in ${process.env.NODE_ENV || 'development'} mode.`);
