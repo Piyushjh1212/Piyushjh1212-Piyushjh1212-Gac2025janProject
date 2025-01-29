@@ -40,7 +40,7 @@
       const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
       fetch(`${apiUrl}/api/user/login`, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
@@ -48,6 +48,7 @@
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log("Success:", data);
           setLoading(false);
           if (data.success) {
             alert("Login successful!");
