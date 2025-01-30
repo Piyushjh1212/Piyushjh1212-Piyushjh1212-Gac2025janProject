@@ -6,17 +6,22 @@ import Header from '../Components/Header/Header'
 import Home from '../Components/Home/Home'
 import Login from '../Components/Login_Signup/Login/Login';
 import Signup from '../Components/Login_Signup/Signup/Signup';
+import Profile from '../Components/Profile/Profile';
 
 export default function Page() {
   return (
     <Router>
         <Header />
         <Routes>
-            <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
             {/* Login and Signup routes are added here */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+
+            {/* my profile routes are added here */}
+            <Route path="/my-profile" element={<Profile />} />
+
         </Routes>
     </Router>
   )
