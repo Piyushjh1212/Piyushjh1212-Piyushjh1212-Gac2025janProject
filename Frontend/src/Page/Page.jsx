@@ -7,6 +7,7 @@ import Home from '../Components/Home/Home'
 import Login from '../Components/Login_Signup/Login/Login';
 import Signup from '../Components/Login_Signup/Signup/Signup';
 import Profile from '../Components/Profile/Profile';
+import ImageUpload from '../Components/ImageUpload';
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
 
             {/* my profile routes are added here */}
             <Route path="/my-profile" element={<Profile />} />
+            <Route path='/upload-image' element={<ImageUpload />} />
 
         </Routes>
     </Router>

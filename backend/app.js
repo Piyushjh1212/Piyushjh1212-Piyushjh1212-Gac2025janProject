@@ -10,6 +10,7 @@ import connectDB from './config/db.js';
 import userRouter from './routes/userRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
+import imageRouter from './routes/imageRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -41,6 +42,7 @@ cloudinary.config({
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/category', categoryRouter);
+app.use('/api/v1/image', imageRouter)
 
 app.get('/', (req, res) => {
     return res.status(201).send({
