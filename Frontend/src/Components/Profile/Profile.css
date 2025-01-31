@@ -81,7 +81,11 @@
 .options-container a {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
+    font-weight: 300;
+}
+
+.options-container a:hover {
+    color: #e84848;
 }
 
 .profile-card h1{
@@ -112,4 +116,57 @@
 
 button:hover{
     background-color: #ececec; /* Subtle border */
+}
+
+.Profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.profile-column {
+  width: 30%;
+}
+
+.profile-card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.options-column {
+  width: 20%;
+}
+
+.options-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.options-container li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options-container li:hover {
+  background-color: #f0f0f0;
+}
+
+.options-container .active {
+  color: white;
+  font-weight: bold;
+}
+
+.content-section {
+  width: 45%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.content {
+  padding: 10px;
 }

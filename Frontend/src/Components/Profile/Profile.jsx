@@ -17,9 +17,11 @@ export default function Profile() {
   ];
 
   const [activeOption, setActiveOption] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleOptionClick = (content) => {
+  const handleOptionClick = (content, index) => {
     setActiveOption(content);
+    setActiveIndex(index);
   };
 
   return (
@@ -45,23 +47,28 @@ export default function Profile() {
       <div className="options-column">
         <div className="options-container">
           <ul>
-            {options.map((option) => (
-              <li key={option.name} onClick={() => handleOptionClick(option.content)}>
+            {options.map((option, index) => (
+              <li
+                key={option.name}
+                className={activeIndex === index ? "active" : ""}
+                onClick={() => handleOptionClick(option.content, index)}
+              >
                 <a href="#">{option.name}</a>
               </li>
             ))}
           </ul>
         </div>
-      </div>
-
-      {/* Content Section */}
-      <div className="content-section">
+        {/* Content Section */}
+      
         {activeOption && (
           <div className="content">
             <p>{activeOption}</p>
           </div>
         )}
+    
       </div>
+
+      
     </div>
   );
 }

@@ -1,0 +1,96 @@
+/* Product Page Layout */
+.product-page {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Product Card */
+.product-card {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Product Details */
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.frontend, .backend {
+    width: 45%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Headings */
+h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+h3 {
+    font-size: 16px;
+    color: #007bff;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Button Group */
+.button-group {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Buttons */
+.buy-now,
+.purchase-later {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+.buy-now {
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+}
+
+.purchase-later {
+    background: linear-gradient(135deg, #1a426c, #05b6e7);
+    color: white;
+    margin-left: 10px;
+
+}
+
+/* Hover Effects */
+.buy-now:hover {
+    background: linear-gradient(135deg, #ff6a4d, #fd8a58);
+    transform: scale(1.05);
+}
+
+.purchase-later:hover {
+    background: linear-gradient(135deg, #0056b3, #0095ff);
+    transform: scale(1.05);
+}
