@@ -77,7 +77,7 @@ export default function Header() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/EditProfile">About</Link>
           </li>
           <li>
             <Link to="/Products">Courses</Link>

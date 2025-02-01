@@ -4,3 +4,8 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
+body{
+  scroll-behavior: smoot;
+  font-family: 'Poppins', sans-serif;
+}

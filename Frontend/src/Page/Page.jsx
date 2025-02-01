@@ -10,6 +10,8 @@ import Profile from '../Components/Profile/Profile';
 import Product from '../Components/HomeComponent/Product/Product';
 import ImageUploader from '../Components/ImageUploader/ImageUploder';
 import ProgressCard from '../Components/test/test';
+import ProductGrid from '../Components/HomeComponent/Product/Products';
+import EditProfile from '../Components/Profile/Edit_Profile/Editprofile';
 
 export default function Page() {
   return (
@@ -27,6 +29,8 @@ export default function Page() {
             <Route path="/Products" element={<Product/>} />
             <Route path='/upload-image' element={<ImageUploader />} />
             <Route path='/Progress' element={<ProgressCard />} />
+            <Route path='/Productgrid' element={<ProductGrid />} />
+            <Route path='/EditProfile' element={<EditProfile />} />
 
         </Routes>
     </Router>

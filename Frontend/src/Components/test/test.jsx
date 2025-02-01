@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ProgressCard.css"; // Import CSS file
-import Assets from "./Assets"; // Import image assets
 
 const ProgressCard = () => {
   const [progress, setProgress] = useState(75); // Example progress value

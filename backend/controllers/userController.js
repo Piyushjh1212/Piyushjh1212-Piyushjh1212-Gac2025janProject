@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import getDataUri from "../utils/features.js";
-import cloudinary from "cloudinary";
+import { v2 as cloudinary} from "cloudinary";
 
 export const registerController = async (req, res) => {
   try {
@@ -122,7 +122,9 @@ export const loginController = async (req, res) => {
 
 //Get user profile
 export const getUserProfileController = async (req, res) => {
+  console.log(req.user);
   const user = req.user;
+  console.log(user);
   user.password = undefined;
   try {
     res.status(200).send({
@@ -239,6 +241,9 @@ export const updateProfilePicController = async (req, res) => {
     const user = await userModel.findById(req.user._id);
     const file = getDataUri(req.file);
 
+    console.log(user);
+    console.log(file);
+
     // cloudinary
     // delete previous image
     await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
@@ -263,5 +268,46 @@ export const updateProfilePicController = async (req, res) => {
       success: false,
       message: "error in update profile pic api",
     });
+  }
+};
+
+export const uploadProfilePic = async (req, res) => {
+  console.log("hello");
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+    // console.log(req.file);
+    // console.log(req.user.id);
+    const user = await userModel.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Upload to Cloudinary
+    const result = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "mern-uploads" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+      stream.end(req.file.buffer);
+    });
+
+    console.log(result);
+
+    user.profilePic = { public_id: result.public_id, url: result.secure_url };
+    const savedUser = await user.save();
+    console.log("User saved successfully:", savedUser);
+    return res.status(200).json({
+      message: "Profile picture updated successfully",
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    console.error("Upload error:", error);
+    res.status(500).json({ message: "Image upload failed", error });
   }
 };

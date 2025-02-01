@@ -32,6 +32,12 @@
     margin-bottom: 10px;
 }
 
+.profile_icon img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
 .profile-column{
     display: flex;
     flex-direction: column;
