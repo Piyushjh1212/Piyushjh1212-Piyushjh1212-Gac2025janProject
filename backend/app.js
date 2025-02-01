@@ -11,6 +11,7 @@ import userRouter from './routes/userRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
 import imageRouter from './routes/imageRoutes.js';
+import cloudinarySetup from './config/cloudinarySetup.js';
 
 // Load environment variables
 dotenv.config();
@@ -27,22 +28,24 @@ app.use(cookieParser());
 // Environment variables
 const port = process.env.PORT || 5000;
 const mongo_url = process.env.MONGO_URL || 'mongodb://localhost:27017/mydatabase';
+const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+const cloudApiKey = process.env.CLOUDINARY_API_KEY;
+const cloudApiSecret = process.env.CLOUDINARY_API_SECRET;
+
+console.log('cloudName', cloudName);
+console.log('cloudApiKey', cloudApiKey);
+console.log('cloudApiSecret', cloudApiSecret);
 
 // Database Connection
 connectDB(mongo_url);
-
-// Cloudinary Configuration
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET
-});
+// cloudinarySetup(cloudName, cloudApiKey, cloudApiSecret);
 
 // Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/category', categoryRouter);
-app.use('/api/v1/image', imageRouter)
+app.use('/api/images', imageRouter);
+
 
 app.get('/', (req, res) => {
     return res.status(201).send({

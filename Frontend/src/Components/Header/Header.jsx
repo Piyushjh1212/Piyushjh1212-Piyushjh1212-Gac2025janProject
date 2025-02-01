@@ -86,7 +86,7 @@ export default function Header() {
             <Link to="/contact">Contact</Link>
           </li>
           <li>
-            <Link to="/contact">IIT-JEE</Link>
+            <Link to="/Progress">IIT-JEE</Link>
           </li>
         </ul>
       </nav>

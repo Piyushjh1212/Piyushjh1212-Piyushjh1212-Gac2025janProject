@@ -56,7 +56,7 @@
   }
   
   .send-message-btn {
-    background-color: #007bff;
+    background: var(--websites-main-color);;
     color: #fff;
     border: none;
     padding: 0.6rem 1rem;
