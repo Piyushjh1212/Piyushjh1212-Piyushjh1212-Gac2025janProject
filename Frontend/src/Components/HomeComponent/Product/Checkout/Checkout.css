@@ -1,0 +1,324 @@
+/* Checkout Container */
+.checkout-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkout Content - Flexbox Layout */
+.checkout-content {
+    display: flex;
+    gap: 40px; /* Remove gap between the cards */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Product Details Card */
+.product-details-card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    max-width: 500px; /* Add a max-width to control the width of the product details */
+    margin-bottom: 0px; /* Remove margin-bottom to eliminate gap */
+}
+
+.product-details-card h2 {
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.product-details-card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.product-details-card strong {
+    font-weight: bold;
+}
+
+/* Product Image Centering */
+.product-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkout Form Card */
+.checkout-form-card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    max-width: 500px; /* Add a max-width to control the width of the form */
+    margin-bottom: 0px; /* Remove margin-bottom to eliminate gap */
+}
+
+/* Checkout Form Title */
+.checkout-form-card h1 {
+    font-size: 28px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+/* project description centre */
+
+.project-description{
+    max-width: 300px;
+    padding-top: 20px;
+}
+
+.heading_1{
+    margin: 10px 0 10px 0;
+    font-size: 25px;
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+.project-description .checkout_p {
+    color: rgb(4, 107, 142);
+    text-align: justify;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.project-description .checkout_p1{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.project-description .checkout_list_1 li{
+    list-style-type: disc;
+    font-size: 17px;
+    text-align: justify;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-weight: 100;
+}
+
+.project-description .checkout_list_1 .list_1{
+    font-family: sans-serif;
+}
+
+.project-description .checkout_list_1 .checkout_p2{
+    margin:15px 0 15px 0 ;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+
+/* Payment Method Tabs */
+.payment-method-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.payment-tab {
+    padding: 15px 30px;
+    background-color: white;
+    color: #222;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.payment-tab:hover,
+.payment-tab.active {
+    background-color: #e0e2ea66;
+}
+
+/* Form Field Styling */
+.form-field {
+    margin-bottom: 20px; /* Increased bottom margin for better spacing */
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #003366;
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #002244;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Error Message */
+.error-message {
+    font-size: 18px;
+    color: red;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .checkout-content {
+        flex-direction: column; /* Stack the sections on top of each other on small screens */
+        align-items: center;
+        gap: 20px; /* Add gap between stacked sections */
+    }
+
+    .product-details-card,
+    .checkout-form-card {
+        width: 100%;
+        max-width: 700px; /* Ensure the cards do not exceed this width */
+    }
+
+    .payment-method-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-tab {
+        margin-left: 0;
+        margin-bottom: 10px; /* Space between payment method tabs */
+        width: 80%; /* Make tabs larger for easier clicking on smaller screens */
+    }
+
+    button {
+        padding: 14px 20px;
+        font-size: 20px; /* Slightly larger button size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-content {
+        gap: 15px; /* Reduce gap for very small screens */
+    }
+
+    .product-details-card h2 {
+        font-size: 20px;
+    }
+
+    .checkout-form-card h1 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+}
+
+/* Key Points Container Styling */
+.key-points-container {
+    background-color: #f7f7f7; /* Light background color */
+    padding: 20px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    max-width: 600px; /* Max width for the section */
+    margin: 30px auto; /* Centering the container */
+    font-family: 'Arial', sans-serif; /* Clean font */
+}
+
+/* Title Styling */
+.key-points-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50; /* Dark color for the title */
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Uppercase for the title */
+}
+
+/* Key Points List Styling */
+.key-points-list {
+    list-style-type: none; /* Remove default list style */
+    padding-left: 0;
+}
+
+/* Key Point Item Styling */
+.key-point-item {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #34495e; /* Slightly lighter color for the text */
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px; /* Add some space to the left for the number */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+}
+
+/* Adding a small icon-style number in front of each point */
+.key-point-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(21, 238, 32); /* Vibrant color for the number */
+    position: absolute;
+    left: 10px;
+    top: 0;
+}
+
+/* Hover Effect */
+.key-point-item:hover {
+    transform: translateX(10px); /* Slide to the right on hover */
+    color: #e67e22; /* Change text color on hover */
+    cursor: pointer;
+}
+
+/* Optional: Add a subtle icon or bullet point */
+.key-point-item::before {
+    content: '➤'; /* You can use different icons or Unicode symbols */
+    font-size: 22px;
+    color: rgba(0, 128, 0, 0.821); /* Matching the color with the number */
+    margin-right: 10px; /* Space between icon and text */
+}

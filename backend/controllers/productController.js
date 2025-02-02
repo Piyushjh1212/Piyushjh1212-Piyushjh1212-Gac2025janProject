@@ -57,50 +57,54 @@ export const getSingleProductController = async (req, res) => {
 // create product
 
 export const createProductController = async (req, res) => {
-    try {
-        const { name, description, price, stock, Category } = req.body;
+    console.log("Received Product Data:", req.body);
 
-        // Validate fields
-        if (!name || !description || !price || !stock) {
+    try {
+        const { name, description, price, stock, category, images } = req.body;
+
+        // Validate required fields
+        if (!name || !description || !price || !stock || !category) {
             return res.status(400).send({
                 success: false,
                 message: 'Please provide all required product fields.'
             });
         }
 
-        if (!req.file) {
+        // Ensure images array is provided
+        if (!images || !Array.isArray(images) || images.length === 0) {
             return res.status(400).send({
                 success: false,
-                message: 'You should upload product images.'
+                message: 'Please provide at least one product image.'
             });
         }
 
-        const file = getDataUri(req.file);
-        const cdb = await cloudinary.v2.uploader.upload(file.content);
-        const image = {
-            public_id: cdb.public_id,
-            url: cdb.secure_url
-        };
-
-        const insertedProduct = await productModel.create({
-            name, description, price, Category, stock, images: [image]
+        // Create the product in MongoDB
+        const newProduct = await productModel.create({
+            name,
+            description,
+            price,
+            category,
+            stock,
+            images: images.map((url) => ({ public_id: '', url })), // Store images properly
         });
 
-        console.log(insertedProduct);
+        console.log("Product Created:", newProduct);
 
         return res.status(201).send({
             success: true,
             message: 'Product created successfully.',
-            product: insertedProduct // Optional: return the created product data
+            product: newProduct
         });
+
     } catch (error) {
-        console.error(error); // Use console.error for error logging
+        console.error("Error Creating Product:", error);
         return res.status(500).send({
             success: false,
             message: 'An error occurred while creating the product.'
         });
     }
 };
+
 
 
 export const updateProductController = async (req, res) => {

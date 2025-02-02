@@ -11,7 +11,7 @@ productRouter.get('/get-all', getAllProductController);
 productRouter.get('/:id', getSingleProductController);
 
 // create product
-productRouter.post('/create', isAuth, singleUpload, createProductController)
+productRouter.post('/create', isAuth, createProductController)
 
 // update product
 productRouter.put('/update/:id', isAuth, updateProductController)

@@ -2,7 +2,6 @@ import JWT from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 
 export const isAuth = async (req, res, next) => {
-    console.log(req.header);
   try {
     // Get token from cookies or headers
     const token = req.cookies.token || req.header("Authorization")?.split(" ")[1];
@@ -14,6 +13,7 @@ export const isAuth = async (req, res, next) => {
       });
     }
 
+
     // Verify token
     const decodedData = JWT.verify(token, process.env.JWT_SECRET);
     const user = await userModel.findById(decodedData._id);
@@ -24,7 +24,6 @@ export const isAuth = async (req, res, next) => {
         message: "User not found",
       });
     }
-
     req.user = user;
     next();
   } catch (error) {

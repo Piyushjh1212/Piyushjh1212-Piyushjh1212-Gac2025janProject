@@ -1,6 +1,6 @@
 import React from "react";
 import HomePage from "../HomeComponent/HomePage/Homepage";
-import Product from "../HomeComponent/Product/Product";
+// import Product from "../HomeComponent/Product/Product";
 import Contact from "../HomeComponent/Contact/Contact";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       </section>
 
       <main>
-        <Product />
+        {/* <Product /> */}
         <Contact />
       </main>
     </>

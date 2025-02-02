@@ -23,11 +23,11 @@ const productSchema = new mongoose.Schema({
     images: [
         {
             public_id: String,
-            url: String
+            url: String,
         }
     ]
 
 }, {timestamps: true});
 
-const productModel = mongoose.model("Product", productSchema);
+const productModel = mongoose.models.Product || mongoose.model("Product", productSchema);
 export default productModel;
