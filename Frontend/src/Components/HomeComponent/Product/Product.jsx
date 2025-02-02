@@ -16,8 +16,9 @@ const products = [
   },
   {
     title: "AI/ML Development",
-    frontend: { name: "Flutter", description: "Cross-platform mobile UI" },
-    backend: { name: "Firebase", description: "Serverless backend with Firebase" },
+    frontend: { name: "Python", description: "Cross-platform mobile UI" },
+    backend: { name: "PostgreSQL", description: "Serverless backend with Firebase" },
+    backend: { name: "PostgreSQL", description: "Serverless backend with Firebase" },
   },
 ];
 
