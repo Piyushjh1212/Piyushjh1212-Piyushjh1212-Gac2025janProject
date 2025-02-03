@@ -59,11 +59,12 @@ export const getSingleProductController = async (req, res) => {
 export const createProductController = async (req, res) => {
     console.log("Received Product Data:", req.body);
 
+
     try {
-        const { name, description, price, stock, category, images } = req.body;
+        const { name, description, price, NewPrice, category, images } = req.body;
 
         // Validate required fields
-        if (!name || !description || !price || !stock || !category) {
+        if (!name || !description || !price || !NewPrice || !category) {
             return res.status(400).send({
                 success: false,
                 message: 'Please provide all required product fields.'
@@ -84,7 +85,7 @@ export const createProductController = async (req, res) => {
             description,
             price,
             category,
-            stock,
+            NewPrice,
             images: images.map((url) => ({ public_id: '', url })), // Store images properly
         });
 
@@ -117,11 +118,11 @@ export const updateProductController = async (req, res) => {
                 message: 'Product Not Found'
             })
         }
-        const { name, description, price, stock, Category } = req.body;
+        const { name, description, price, NewPrice, Category } = req.body;
         if (name) product.name = name;
         if (description) product.description = description;
         if (price) product.price = price;
-        if (stock) product.stock = stock;
+        if (NewPrice) product.NewPrice = NewPrice;
         if (Category) product.Category = Category;
         // console.log(product);
         await product.save();

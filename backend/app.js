@@ -11,7 +11,7 @@ import userRouter from './routes/userRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
 import imageRouter from './routes/imageRoutes.js';
-import cloudinarySetup from './config/cloudinarySetup.js';
+import adminUserRouter from './routes/adminUserRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -45,6 +45,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/category', categoryRouter);
 app.use('/api/images', imageRouter);
+app.use('/api/admin-user', adminUserRouter);
 
 
 app.get('/', (req, res) => {

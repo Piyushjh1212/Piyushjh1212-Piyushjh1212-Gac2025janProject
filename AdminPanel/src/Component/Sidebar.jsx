@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   return (
-    <div className="sidebar">
+    <div  className="sidebar">
       <h2 className="sidebar-title">Admin Panel</h2>
       <ul className="sidebar-menu">
         <li className="sidebar-item">
@@ -20,6 +21,7 @@ export default function Sidebar() {
             className="sidebar-logout"
             onClick={() => {
               localStorage.removeItem("adminToken");
+              navigate('/');
               window.location.reload();
             }}
           >

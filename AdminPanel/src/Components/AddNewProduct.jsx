@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import ImageUploader from '../ImageUploader/ImageUploder';
-import { ImageContext } from '../ImageContext/ImageContext';
+import ImageUploader from '../../../Frontend/src/Components/ImageUploader/ImageUploder';
+import { ImageContext } from '../../../Frontend/src/Components/ImageContext/ImageContext';
 import "./AddNew.css"
 
 const CreateProduct = () => {
@@ -10,7 +10,7 @@ const CreateProduct = () => {
     name: "",
     description: "",
     price: "",
-    stock: "",
+    NewPrice: "",
     category: "",
     images: []
   });
@@ -61,7 +61,7 @@ const CreateProduct = () => {
           name: "",
           description: "",
           price: "",
-          stock: "",
+          NewPrice: "",
           category: "",
           images: []
         });
@@ -115,12 +115,12 @@ const CreateProduct = () => {
           />
         </div>
         <div>
-          <label htmlFor="stock">Stock:</label>
+          <label htmlFor="NewPrice">NewPrice:</label>
           <input
             type="number"
             id="stock"
-            name="stock"
-            value={data.stock}
+            name="NewPrice"
+            value={data.NewPrice}
             onChange={handleChange}
             required
           />
