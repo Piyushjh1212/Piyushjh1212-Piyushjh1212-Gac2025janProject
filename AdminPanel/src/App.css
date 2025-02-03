@@ -1,0 +1,173 @@
+/* General Styles */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(158deg, #212f4ac3, #243B55);
+  color: white;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Login Form */
+form {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+input {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 93%;
+  outline: transparent;
+}
+
+button {
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  form {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+
+/* Sidebar here */
+
+/* Sidebar Container */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+/* Sidebar Items */
+.sidebar-item {
+  width: 100%;
+  text-align: center;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: background 0.3s;
+}
+
+.sidebar-link:hover {
+  background: #34495e;
+}
+
+/* Logout Button */
+.sidebar-logout {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #e74c3c;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebar-logout:hover {
+  background: #c0392b;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar-link {
+    font-size: 0;
+    padding: 15px;
+  }
+
+  .sidebar-link::before {
+    content: "🔹";
+    font-size: 1.5rem;
+  }
+
+  .sidebar-logout {
+    font-size: 0;
+  }
+
+  .sidebar-logout::before {
+    content: "🚪";
+    font-size: 1.5rem;
+  }
+}
