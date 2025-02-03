@@ -1,0 +1,160 @@
+.create-product-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+  }
+  
+  .create-product-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .create-product-container .left-section,
+  .create-product-container .right-section {
+    flex: 1;
+  }
+  
+  .create-product-container .left-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-product-container .right-section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-product-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .create-product-container form div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-product-container form label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .create-product-container form input,
+  .create-product-container form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .create-product-container form input:focus,
+  .create-product-container form textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+  }
+  
+  .create-product-container form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .create-product-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-product-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .create-product-container button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .image-uploader {
+    margin-bottom: 30px;
+  }
+  
+  .image-uploader .inputs input {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .image-uploader button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+  
+  .image-uploader button:hover {
+    background-color: #45a049;
+  }
+  
+  .image-uploader .outputs {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .single-image-grid {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .single-image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  
+  .single-image-grid .buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 2px 0;
+  }
+  
+  .single-image-grid .buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .create-product-container {
+      flex-direction: column;
+    }
+  }
+  

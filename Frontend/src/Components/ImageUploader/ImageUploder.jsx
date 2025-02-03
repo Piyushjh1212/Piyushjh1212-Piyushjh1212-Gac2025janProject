@@ -11,8 +11,8 @@ const ImageUploader = () => {
 
   // Save selected image globally
   const saveImage = (url) => {
-      setSelectedImages([...selectedImages, url]);
-      toast.success("Image added successfully!");
+    setSelectedImages([...selectedImages, url]);
+    toast.success("Image added successfully!");
   };
 
   // Fetch images from backend
@@ -82,35 +82,52 @@ const ImageUploader = () => {
   return (
     <div className="image-uploader">
       <div className="inputs">
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-        <button onClick={handleUpload}>Upload</button>
+        <input
+          type="file"
+          className="image-input"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+        <button className="upload-button" onClick={handleUpload}>
+          Upload
+        </button>
       </div>
 
       {/* Image Preview Before Upload */}
       {preview && (
-        <div className="preview">
-          <p>Preview:</p>
-          <img src={preview} alt="Selected" width="150px" />
+        <div className="preview-container">
+          <p className="preview-text">Preview:</p>
+          <img src={preview} alt="Selected" className="preview-image" width="150px" />
         </div>
       )}
 
       {/* Display Uploaded Images */}
       <div className="outputs">
         {images.length === 0 ? (
-          <p>No images uploaded</p>
+          <p className="no-images-text">No images uploaded</p>
         ) : (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div className="image-grid">
             {images.map((img) => (
-              <div className="single-image-grid" key={img._id} style={{ margin: "10px" }}>
+              <div className="single-image-grid" key={img._id}>
                 <img
-                  onClick={() => saveImage(img.imageUrl)} // Fixes incorrect reference
+                  onClick={() => saveImage(img.imageUrl)} // Save image to global context
                   src={img.imageUrl}
                   alt="Uploaded"
+                  className="uploaded-image"
                   width="150px"
                 />
                 <div className="buttons">
-                  <button onClick={() => handleDelete(img._id)}>Delete</button>
-                  <button onClick={() => saveImage(img.imageUrl)}>Use</button>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(img._id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="use-button"
+                    onClick={() => saveImage(img.imageUrl)}
+                  >
+                    Use
+                  </button>
                 </div>
               </div>
             ))}

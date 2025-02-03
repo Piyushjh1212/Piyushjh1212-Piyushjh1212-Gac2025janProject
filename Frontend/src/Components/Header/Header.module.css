@@ -1,15 +1,14 @@
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky; /* Make the header sticky */
-  top: 0; /* Stick to the top */
-  background: var(--website-main-color); /* Matching the footer's gradient */
-  color: #c9d1d9;
-  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  background: var(--website-main-color);
   color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optional: adds a subtle shadow under the header */
-  z-index: 10; /* Ensures header stays on top of other content */
+  padding: 15px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .logo {
@@ -23,14 +22,13 @@ header {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Navigation Links */
-.nav-links {
+.navLinks {
   flex-grow: 1;
   display: flex;
   justify-content: center;
 }
 
-.nav-links ul {
+.navLinks ul {
   display: flex;
   gap: 20px;
   list-style: none;
@@ -38,27 +36,24 @@ header {
   margin: 0;
 }
 
-.nav-links ul li a {
+.navLinks ul li a {
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
   transition: color 0.3s, transform 0.3s;
 }
 
-.nav-links ul li a:hover {
+.navLinks ul li a:hover {
   color: #58a6ff;
   transform: scale(1.1);
 }
 
-
- /* Login and Register buttons */ 
-
- .profile-container{
+.profileContainer {
   display: flex;
   gap: 40px;
- }
+}
 
- .login-btn{
+.loginBtn {
   background: white;
   display: flex;
   align-items: center;
@@ -72,28 +67,12 @@ header {
   transition: background 0.3s;
 }
 
- .login-btn:hover{
+.loginBtn:hover {
   background: #58a6ff;
   color: white;
- }
-
- /* progile  image  */
- .profile-img{
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Mobile view */
-.menu-toggle{
-  display: none;
-}
-
-
-/* Responsive media queries are used to make the header responsive */
-
-/* profile icon css style here */
-.profile-icon {
+.profileIcon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,11 +83,11 @@ header {
   transition: transform 0.1s ease-in-out;
 }
 
-.profile-icon:hover {
+.profileIcon:hover {
   transform: scale(1.1);
 }
 
-.profile-dropdown {
+.profileDropdown {
   position: absolute;
   top: 80px;
   right: 10px;
@@ -122,11 +101,11 @@ header {
   z-index: 1000;
 }
 
-.profile-dropdown.show {
+.profileDropdown.show {
   display: flex;
 }
 
-.profile-option {
+.profileOption {
   display: block;
   padding: 10px 15px;
   text-decoration: none;
@@ -140,22 +119,10 @@ header {
   cursor: pointer;
 }
 
-.profile-option:hover {
+.profileOption:hover {
   background: #f0f0f0;
 }
 
-.login-btn {
-  font-size: 16px;
-  color: white;
-  background: #007bff;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.3s ease-in-out;
+.menuToggle {
+  display: none;
 }
-
-.login-btn:hover {
-  background: #0056b3;
-}
-

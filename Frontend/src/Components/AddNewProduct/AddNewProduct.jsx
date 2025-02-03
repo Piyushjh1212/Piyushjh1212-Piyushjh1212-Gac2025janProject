@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ImageUploader from '../ImageUploader/ImageUploder';
 import { ImageContext } from '../ImageContext/ImageContext';
+import "./AddNew.css"
 
 const CreateProduct = () => {
-  const { selectedImages } = useContext(ImageContext);
+  const { selectedImages, setSelectedImages } = useContext(ImageContext);
 
   const [data, setData] = useState({
     name: "",
@@ -13,7 +14,9 @@ const CreateProduct = () => {
     category: "",
     images: []
   });
-
+  
+  const [loading, setLoading] = useState(false);
+  
   // Update images only when selectedImages changes
   useEffect(() => {
     setData((prevData) => ({
@@ -30,39 +33,47 @@ const CreateProduct = () => {
     });
   };
 
-  useEffect(() => {
-    console.log("Product Data:", data);
-    console.log("Selected Images:", selectedImages);
-  }, [data]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (selectedImages.length === 0) {
       alert("Please select at least one image.");
       return;
     }
+    
+    setLoading(true); // Set loading to true while submitting
 
     try {
       const response = await fetch('http://localhost:10011/api/v1/product/create', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // Fix: Added missing content type
+          'Content-Type': 'application/json', 
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(data),
       });
 
-      const responseData = await response.json(); // Parse JSON response
+      const responseData = await response.json();
 
       if (response.ok) {
         alert('Product created successfully');
+        // Reset form and selected images after successful submission
+        setData({
+          name: "",
+          description: "",
+          price: "",
+          stock: "",
+          category: "",
+          images: []
+        });
+        setSelectedImages([]); // Clear selected images from context
       } else {
         alert(responseData.message || 'Error creating product');
       }
     } catch (error) {
       alert('Error creating product');
       console.error(error);
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -125,7 +136,9 @@ const CreateProduct = () => {
             required
           />
         </div>
-        <button type="submit">Create Product</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Creating Product..." : "Create Product"}
+        </button>
       </form>
     </div>
   );

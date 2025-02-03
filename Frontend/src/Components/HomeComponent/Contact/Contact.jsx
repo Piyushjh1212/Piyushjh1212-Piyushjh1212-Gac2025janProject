@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import "./Contact.css"; // Import your styles
+import { FaUser, FaEnvelope, FaComment } from "react-icons/fa"; // React Icons
+import styles from "./Contact.module.css"; // Import CSS Module
+import contactImage from "/Users/Piyush Jhariya/Desktop/GrowAllProject/Frontend/public/Assets/contatat.webp"; // Import image correctly
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -35,26 +32,26 @@ const Contact = () => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length === 0) {
-      // Simulate form submission
       console.log("Form Submitted:", formData);
       setIsSubmitted(true);
       setFormData({ name: "", email: "", message: "" }); // Reset the form
+      setTimeout(() => setIsSubmitted(false), 3000); // Hide success message after 3s
     } else {
       setErrors(formErrors);
     }
   };
 
   return (
-    <div className="contact-us-container">
-      <div className="contact-us-content">
+    <div className={styles.contactContainer}>
+      <div className={styles.contactContent}>
         {/* Left Column: Contact Form */}
-        <div className="contact-form-container">
-          <h2>Contact us</h2>
-          {isSubmitted && <p className="success-message">Message sent successfully!</p>}
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
+        <div className={styles.contactFormContainer}>
+          <h2>Contact Us</h2>
+          {isSubmitted && <p className={styles.successMessage}>Message sent successfully!</p>}
+          <form className={styles.contactForm} onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
               <label htmlFor="name">
-                <i className="fas fa-user"></i> Name
+                <FaUser className={styles.icon} /> Name
               </label>
               <input
                 type="text"
@@ -64,11 +61,11 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              {errors.name && <p className="error-message">{errors.name}</p>}
+              {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="email">
-                <i className="fas fa-envelope"></i> Email
+                <FaEnvelope className={styles.icon} /> Email
               </label>
               <input
                 type="email"
@@ -78,11 +75,11 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
-              {errors.email && <p className="error-message">{errors.email}</p>}
+              {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
             </div>
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="message">
-                <i className="fas fa-comment"></i> Message
+                <FaComment className={styles.icon} /> Message
               </label>
               <textarea
                 id="message"
@@ -91,17 +88,17 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              {errors.message && <p className="error-message">{errors.message}</p>}
+              {errors.message && <p className={styles.errorMessage}>{errors.message}</p>}
             </div>
-            <button type="submit" className="send-message-btn">
+            <button type="submit" className={styles.sendMessageBtn}>
               Send Message
             </button>
           </form>
         </div>
 
         {/* Right Column: Image */}
-        <div className="contact-image-container">
-          <img src="src/assets/contatat.webp" alt="Contact Us Illustration" />
+        <div className={styles.contactImageContainer}>
+          <img src={contactImage} alt="Contact Us Illustration" />
         </div>
       </div>
     </div>
