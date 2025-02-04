@@ -27,6 +27,7 @@ const Product = ({ handleAddToCart }) => {
     // Fetch products when component mounts
     useEffect(() => {
         fetchAllProduct();
+        window.scrollTo(0, 0);
     }, []);
 
     return (

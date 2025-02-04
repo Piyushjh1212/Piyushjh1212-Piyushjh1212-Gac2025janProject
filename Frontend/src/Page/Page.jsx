@@ -11,7 +11,7 @@ import EditProfile from "../Components/Profile/Edit_Profile/Editprofile";
 import Footer from "../Components/Footer/Footer";
 import Product from "../Components/HomeComponent/Product/Product";
 import Contact from "../Components/HomeComponent/Contact/Contact";
-// import Products from "../Components/HomeComponent/Product/Product";
+import ProductPage from "../Components/HomeComponent/Product/Products";
 
 export default function Page() {
   return (
@@ -31,6 +31,7 @@ export default function Page() {
         {/* Profile and Product Pages */}
         <Route path="/my-profile" element={<Profile />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/Products" element={<ProductPage/>}/>
         
         {/* <Route path="/products" element={<Products />} /> */}
         <Route path="/progress" element={<ProgressCard />} />
