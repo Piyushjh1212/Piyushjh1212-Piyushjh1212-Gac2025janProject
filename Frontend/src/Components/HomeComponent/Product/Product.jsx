@@ -46,23 +46,28 @@ const Product = ({ handleAddToCart }) => {
                             </div>
                             <h3>{product.name}</h3>
                             <p className="price">
-                                <span className="real-price">₹{product.price}</span> INR
+                            <span className="real-price">₹{product.price}</span>
+                            <span className="Offer-price">₹{product.price}</span>
+                            INR
+                            <span className="Offer-Percentage">₹{product.price} %Off</span>
+                            
+
                             </p>
                             <div className="product-details">
                                 <Link
                                     to={`/products/checkout`}
                                     state={{ product }}
-                                    className="add-to-cart-btn-buy-n"
+                                    className="product-add-to-cart-btn-buy"
                                     aria-label={`Buy ${product.name}`}
                                 >
                                     Enroll Now
                                 </Link>
                                 <button
-                                    className="add-to-cart-btn"
+                                    className="product-add-to-cart-btn"
                                     onClick={() => handleAddToCart(product)}
                                     aria-label={`Add ${product.name} to cart`}
                                 >
-                                    Add to Cart
+                                    See Browchure
                                 </button>
                             </div>
                         </div>

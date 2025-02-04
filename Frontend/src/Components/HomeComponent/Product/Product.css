@@ -1,7 +1,6 @@
 /* Product Section Styles */
-
 .product-section {
-  background: linear-gradient(to bottom, #f1f2f4, #6479be); /* Similar to the header background */
+  background: linear-gradient(to bottom, #f1f2f4, #6479be);
   padding: 50px 20px;
   color: #ffffff;
   text-align: center;
@@ -10,156 +9,173 @@
 .product-header {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .product-second-header {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.5rem;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: rgb(12, 149, 228);
 }
 
+/* Product Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  justify-content: center;
 }
 
+/* Product Card */
 .product-card {
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ensure the card takes full height */
+  height: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
+/* Product Image */
 .product-image {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f8f9fa;
+  padding: 15px;
 }
 
 .product-image img {
   width: 100%;
-  max-height: 200px; /* Ensuring the image doesn't stretch too tall */
+  max-height: 200px;
   object-fit: cover;
+  border-bottom: 2px solid #ddd;
 }
 
+/* Product Details */
 .product-card h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: #1e3a8a;
-  margin: 15px 0 10px;
-  text-align: center; /* Align product name to the center */
+  margin: 12px 0;
+  text-align: center;
 }
 
 .price {
   font-size: 1rem;
-  margin-bottom: 15px;
-  color: black;
-  text-align: center; /* Align price to the center */
+  margin-bottom: 12px;
+  color: #333;
+  text-align: center;
 }
 
 .real-price {
   text-decoration: line-through;
-  color: #6b7280;
-  margin-right: 10px;
+  color: #b91c1c;
+  margin-right: 8px;
 }
 
-.Discounted-Price {
-  font-size: 0.9rem;
+.Offer-price{
+  color: black;
+  margin-right: 8px;
+}
+
+.Offer-Percentage{
+  color: green;
+  margin-left: 8px;
+}
+
+.discounted-price {
+  font-size: 1.1rem;
   color: #10b981;
   font-weight: bold;
-  margin-left: 10px;
 }
 
+/* Product Buttons */
 .product-details {
   display: flex;
+  flex-direction: row; /* Ensure buttons stay in a row by default */
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  margin-top: auto; /* Push the buttons to the bottom of the card */
+  margin-top: auto; /* Push buttons to the bottom of the card */
+  gap: 10px; /* Space between buttons */
 }
 
-.add-to-cart-btn,
-.add-to-cart-btn-buy-n {
+/* Buttons */
+.product-add-to-cart-btn-buy,
+.product-add-to-cart-btn {
   background-color: #2563eb;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 1px;
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: inline-flex; /* Use flex for better alignment */
-  align-items: center; /* Vertically align text inside the button */
-  justify-content: center; /* Horizontally center text */
-  width: 48%; /* Use 48% width to allow a small gap between buttons */
-  height: 40px; /* Consistent height */
+  width: 48%; /* Ensure buttons are responsive and take up equal width */
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  margin-top: 5px;
+  text-decoration: none;
 }
 
-.add-to-cart-btn:hover,
-.add-to-cart-btn-buy-n:hover {
+.product-add-to-cart-btn-buy:hover,
+.product-add-to-cart-btn:hover {
   background-color: #1d4ed8;
 }
 
-.add-to-cart-btn-buy-n {
+.product-add-to-cart-btn {
   background-color: #10b981;
-  margin-right: 4%; /* Small gap between the buttons */
+  margin-right: 0; /* Ensure no gap for the last button */
 }
 
-.add-to-cart-btn-buy-n:hover {
+.product-add-to-cart-btn:hover {
   background-color: #059669;
 }
 
-.add-to-cart-btn {
-  margin-bottom: 20px;
-}
-
-/* Add responsiveness for mobile devices */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
   }
 
   .product-details {
-    flex-direction: column; /* Stack buttons on smaller screens */
-    align-items: stretch; /* Stretch buttons to full width */
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    align-items: stretch; /* Stretch buttons to take up full width */
   }
 
   .add-to-cart-btn,
   .add-to-cart-btn-buy-n {
-    width: 100%; /* Buttons take full width on mobile */
-    margin-bottom: 10px; /* Add space between buttons */
+    width: 100%; /* Ensure buttons take full width on mobile */
+    margin-bottom: 10px; /* Space between stacked buttons */
   }
 }
 
 @media (max-width: 480px) {
   .product-header {
-    font-size: 2rem; /* Make the header smaller on very small screens */
+    font-size: 2rem;
   }
 
   .product-second-header {
-    font-size: 1.2rem; /* Adjust sub-header size for smaller screens */
-  }
-
-  .price {
-    font-size: 0.9rem; /* Adjust price font size */
+    font-size: 1.3rem;
   }
 
   .product-card h3 {
-    font-size: 1.1rem; /* Smaller font size for the product name */
+    font-size: 1.15rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
   }
 }
