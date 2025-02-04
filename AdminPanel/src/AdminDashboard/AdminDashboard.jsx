@@ -9,7 +9,7 @@ import CreateProduct from "../Components/AddNewProduct";
 
 
 export default function AdminDashboard() {
-  const isAdmin = localStorage.getItem('adminToken'); // Example: Token for authentication
+  const isAdmin = true; // Example: Token for authentication
 console.log(isAdmin);
   return (
     <Router>
@@ -22,7 +22,7 @@ console.log(isAdmin);
               <Route path="/admin/products" element={<Products />} />
               <Route path="/admin/settings" element={<Settings />} />
               {/* <Route path="*" element={<Navigate to="/admin/users" />} /> */}
-              {/* <Route path="/add-new-product" element={<CreateProduct />} /> */}
+              <Route path="/admin/add-new-product" element={<CreateProduct />} />
             </Routes>
           </div>
         </div>

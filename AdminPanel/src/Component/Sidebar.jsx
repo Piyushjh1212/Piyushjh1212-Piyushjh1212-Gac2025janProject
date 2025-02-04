@@ -17,6 +17,9 @@ export default function Sidebar() {
           <Link to="/admin/settings" className="sidebar-link">Settings</Link>
         </li>
         <li className="sidebar-item">
+          <Link to="/admin/add-new-product" className="sidebar-link">Add image</Link>
+        </li>
+        <li className="sidebar-item">
           <button
             className="sidebar-logout"
             onClick={() => {

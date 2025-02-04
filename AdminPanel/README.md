@@ -29,3 +29,6 @@ Currently, two official plugins are available:
 │── 📄 package.json
 │── 📄 vite.config.js
 │── 📄 README.md
+
+
+# First user
