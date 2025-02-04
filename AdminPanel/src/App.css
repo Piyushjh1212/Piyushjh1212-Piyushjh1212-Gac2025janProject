@@ -68,6 +68,21 @@ button:hover {
   }
 }
 
+/* admin style here */
+
+.admin-container {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  margin-left: 250px; /* Sidebar width */
+  padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  width: calc(100% - 250px);
+}
+
 
 /* Sidebar here */
 
@@ -169,5 +184,81 @@ button:hover {
   .sidebar-logout::before {
     content: "🚪";
     font-size: 1.5rem;
+  }
+}
+
+/* Product stle design */
+
+/* Products Container */
+.products-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Heading */
+.products-heading {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Products List */
+.products-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ecf0f1;
+  padding: 12px 15px;
+  border-radius: 6px;
+  margin: 8px 0;
+  font-size: 1.1rem;
+  color: #34495e;
+  transition: background 0.3s ease;
+}
+
+.product-item:hover {
+  background: #d5dbdb;
+}
+
+.product-name {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.product-price {
+  color: #16a085;
+}
+
+/* No Products Message */
+.no-products {
+  color: red;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .products-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .products-heading {
+    font-size: 1.5rem;
+  }
+
+  .product-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

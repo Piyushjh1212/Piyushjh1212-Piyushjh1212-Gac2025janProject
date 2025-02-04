@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
+import ProgressCard from "./KeyTopics/M_Courses/ProgressCard";
 
 export default function Profile() {
   const [user, setUser] = useState([]);
@@ -10,7 +11,7 @@ export default function Profile() {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const options = [
-    { name: "Your Courses", content: "Here are your courses!" },
+    { name: "Your Courses", content: "progress-bar" },
     { name: "Your Progress", content: "Track your progress here!" },
     { name: "Achievements", content: "View your achievements!" },
     { name: "Targets", content: "Your targets are displayed here." },
@@ -76,7 +77,7 @@ export default function Profile() {
                 <div className="profile_icon">
                   <img src={user.profilePic.url} alt="" />
                 </div>
-                <Link to={"/EditProfile"}>
+                <Link to={"/edit-profile"}>
                   <button>Edit Your Profile</button>
                 </Link>
                 <p>
@@ -112,7 +113,9 @@ export default function Profile() {
         {/* Content Section */}
         {activeOption && (
           <div className="content">
-            <p>{activeOption}</p>
+            <>
+            {activeOption === 'progress-bar' ? <ProgressCard/> : ""}
+            </>
           </div>
         )}
       </div>

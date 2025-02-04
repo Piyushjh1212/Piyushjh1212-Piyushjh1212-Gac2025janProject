@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Products.css";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -11,12 +12,19 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
-      <h2>Manage Products</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product._id}>{product.name} - ${product.price}</li>
-        ))}
+    <div className="products-container">
+      <h2 className="products-heading">Manage Products</h2>
+      <ul className="products-list">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <li key={product._id} className="product-item">
+              <span className="product-name">{product.name}</span>
+              <span className="product-price">${product.price}</span>
+            </li>
+          ))
+        ) : (
+          <p className="no-products">No products available</p>
+        )}
       </ul>
     </div>
   );
