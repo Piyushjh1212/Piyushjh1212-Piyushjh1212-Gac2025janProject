@@ -12,6 +12,8 @@ import Footer from "../Components/Footer/Footer";
 import Product from "../Components/HomeComponent/Product/Product";
 import Contact from "../Components/HomeComponent/Contact/Contact";
 import ProductPage from "../Components/HomeComponent/Product/Products";
+import Checkout from "../Components/HomeComponent/Product/Checkout/Checkout";
+import MyCourses from "../Components/Profile/My_Courses/Mycourses";
 
 export default function Page() {
   return (
@@ -27,6 +29,7 @@ export default function Page() {
         {/* Login and Signup */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/MyCourse" element={<MyCourses />} />
 
         {/* Profile and Product Pages */}
         <Route path="/my-profile" element={<Profile />} />
@@ -37,6 +40,12 @@ export default function Page() {
         <Route path="/progress" element={<ProgressCard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/show-products" element={<Product />} />
+        <Route path="products/checkout" element={<Checkout/>}/>
+
+
+
+        
+
       </Routes>
 
       {/* Footer should always be visible */}

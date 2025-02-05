@@ -1,31 +1,38 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom"
 import "./Products.css";
 
 const ProductPage = () => {
+
+  
+
   const categories = [
     {
       id: 1,
       title: "Web Development",
       description: "Master frontend and backend technologies to build stunning websites.",
-      image: "/Assets/Backend.webp",
+      image: "/Assets/Webdevelopment.webp",
       link: "/web-development"
     },
     {
       id: 3,
       title: "App Development",
       description: "Build mobile applications for Android and iOS with modern frameworks.",
-      image: "/Assets/Backend.webp",
+      image: "/Assets/Androiddevelopment.webp",
       link: "/app-development"
     },
     {
       id: 2,
       title: "AI Development",
       description: "Learn AI, Machine Learning, and Deep Learning to create smart applications.",
-      image: "/Assets/Backend.webp",
+      image: "/Assets/AIMI.webp",
       link: "ai-development"
     }
   ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
   return (
     <section className="products-page">

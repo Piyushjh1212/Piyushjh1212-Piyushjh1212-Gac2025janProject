@@ -20,7 +20,7 @@
   }
   
   .products-card {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(37, 39, 41, 0.119);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -55,17 +55,17 @@
   
   .products-explore-btn {
     display: inline-block;
-    background: #2563eb;
+    background: #141E30;
+    width: 120px;
     color: white;
     padding: 10px 20px;
-    border-radius: 8px;
     text-decoration: none;
     font-size: 1rem;
     transition: background 0.3s ease;
   }
   
   .products-explore-btn:hover {
-    background: #1d4ed8;
+    background: #0247c690;
   }
   
   /* Responsive Design */

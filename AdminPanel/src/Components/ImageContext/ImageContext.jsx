@@ -7,7 +7,7 @@ export const ImageProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(selectedImages);
-  },[]);
+  }, []);
 
   return (
     <ImageContext.Provider value={{ selectedImages, setSelectedImages }}>

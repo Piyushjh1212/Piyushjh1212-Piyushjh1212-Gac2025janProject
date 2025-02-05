@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import ImageUploader from '../../../Frontend/src/Components/ImageUploader/ImageUploder';
+// import ImageUploader from '../../../Frontend/src/Components/ImageUploader/ImageUploder';
 import { ImageContext } from '../../../Frontend/src/Components/ImageContext/ImageContext';
 import "./AddNew.css"
 
@@ -12,6 +12,7 @@ const CreateProduct = () => {
     price: "",
     NewPrice: "",
     category: "",
+    discounted : "",
     images: []
   });
   
@@ -63,6 +64,7 @@ const CreateProduct = () => {
           price: "",
           NewPrice: "",
           category: "",
+          discounted: "",
           images: []
         });
         setSelectedImages([]); // Clear selected images from context
@@ -79,7 +81,7 @@ const CreateProduct = () => {
 
   return (
     <div>
-      <ImageUploader />
+      {/* <ImageUploader /> */}
       <h1>Create Product</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -136,6 +138,18 @@ const CreateProduct = () => {
             required
           />
         </div>
+        <div>
+        <label htmlFor="category">discounted:</label>
+          <input
+            type="text"
+            id="category"
+            name="category"
+            value={data.category}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
         <button type="submit" disabled={loading}>
           {loading ? "Creating Product..." : "Create Product"}
         </button>

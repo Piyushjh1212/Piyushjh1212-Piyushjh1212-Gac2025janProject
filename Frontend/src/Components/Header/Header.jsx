@@ -100,7 +100,7 @@ export default function Header() {
           {showProfileMenu && (
             <div className={`${styles.profileDropdown} ${styles.show}`} ref={profileDropdownRef}>
               <Link to="/my-profile" className={styles.profileOption}>My Profile</Link>
-              <Link to="/my-courses" className={styles.profileOption}>My Courses</Link>
+              <Link to="/MyCourse" className={styles.profileOption}>My Courses</Link>
               <button onClick={handleLogout} className={styles.profileOption}>Logout</button>
             </div>
           )}

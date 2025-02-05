@@ -61,10 +61,10 @@ export const createProductController = async (req, res) => {
 
 
     try {
-        const { name, description, price, NewPrice, category, images } = req.body;
+        const { name, description, discounted, price, NewPrice, category, images } = req.body;
 
         // Validate required fields
-        if (!name || !description || !price || !NewPrice || !category) {
+        if (!name || !description || !discounted || !price || !NewPrice || !category) {
             return res.status(400).send({
                 success: false,
                 message: 'Please provide all required product fields.'
@@ -83,6 +83,7 @@ export const createProductController = async (req, res) => {
         const newProduct = await productModel.create({
             name,
             description,
+            discounted,
             price,
             category,
             NewPrice,
@@ -118,12 +119,13 @@ export const updateProductController = async (req, res) => {
                 message: 'Product Not Found'
             })
         }
-        const { name, description, price, NewPrice, Category } = req.body;
+        const { name,discounted, description, price, NewPrice, Category } = req.body;
         if (name) product.name = name;
         if (description) product.description = description;
         if (price) product.price = price;
         if (NewPrice) product.NewPrice = NewPrice;
         if (Category) product.Category = Category;
+        if (discounted) product.discounted = discounted;
         // console.log(product);
         await product.save();
         res.status(200).send({

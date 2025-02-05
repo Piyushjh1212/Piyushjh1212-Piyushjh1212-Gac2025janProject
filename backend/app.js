@@ -12,6 +12,8 @@ import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
 import imageRouter from './routes/imageRoutes.js';
 import adminUserRouter from './routes/adminUserRoutes.js';
+// import paymentRouter from "./routes/Paymentroutes.js"; // Your payment routes
+
 
 // Load environment variables
 dotenv.config();
@@ -46,6 +48,8 @@ app.use('/api/v1/product', productRouter);
 app.use('/api/v1/category', categoryRouter);
 app.use('/api/images', imageRouter);
 app.use('/api/admin-user', adminUserRouter);
+
+// app.use("/api/payment", paymentRouter); // Payment routes
 
 
 app.get('/', (req, res) => {
