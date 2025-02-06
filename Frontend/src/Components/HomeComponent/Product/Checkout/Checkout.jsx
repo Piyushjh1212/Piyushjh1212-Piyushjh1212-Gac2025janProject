@@ -24,16 +24,17 @@ const OrderForm = () => {
   }, [data]);
 
   const handleSubmit = async () => {
-    const response = fetch(`url`, {
+    const response = fetch(`http://localhost:10011/api/v1/orders/place-order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authentication: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     });
 
     const respResult = (await response).json();
+    console.log(respResult);
   };
 
   return (
@@ -77,7 +78,7 @@ const OrderForm = () => {
             }}
             placeholder="Street"
             type="text"
-          />  
+          />
         </div>
 
         <div className="input-group">
@@ -133,7 +134,9 @@ const OrderForm = () => {
           />
         </div>
 
-        <button className="checkout-button">CHECKOUT</button>
+        <button onClick={handleSubmit} className="checkout-button">
+          CHECKOUT
+        </button>
       </div>
       <div className="course-details">
         {/* Ensure unique images */}
