@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 export const ImageContext = createContext();
 
-export const ImageProvider = ({ children }) => {
+export const ImageContextProvider = ({ children }) => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {

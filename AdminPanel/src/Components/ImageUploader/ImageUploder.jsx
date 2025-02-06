@@ -101,7 +101,7 @@ const ImageUploader = () => {
       )}
 
       {/* Display Uploaded Images */}
-      <div className="outputs">
+      <div id="grid" className="outputs">
         {images.length === 0 ? (
           <p className="no-images-text">No images uploaded</p>
         ) : (
