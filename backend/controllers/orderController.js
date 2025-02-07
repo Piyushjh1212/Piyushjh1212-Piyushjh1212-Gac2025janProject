@@ -59,7 +59,7 @@ export const createOrderController = async (req, res) => {
     // Save the order to the database
     await newOrder.save();
     console.log("New Order Created:", newOrder);
-
+    console.log(newOrder);
     return res.status(201).json({
       success: true,
       message: "Order created successfully",

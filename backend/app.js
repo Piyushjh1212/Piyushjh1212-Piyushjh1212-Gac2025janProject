@@ -13,7 +13,8 @@ import categoryRouter from "./routes/categoryRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 import adminUserRouter from "./routes/adminUserRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
-// import paymentRouter from "./routes/Paymentroutes.js"; // Your payment routes
+import pdfRoutes from "./routes/PdfRoute.js"
+import paymentRouter from "./routes/Paymentroutes.js"; // Your payment routes
 
 // Load environment variables
 dotenv.config();
@@ -51,7 +52,12 @@ app.use("/api/images", imageRouter);
 app.use("/api/admin-user", adminUserRouter);
 app.use("/api/v1/orders", orderRouter);
 
-// app.use("/api/payment", paymentRouter); // Payment routes
+// use pdf routes 
+
+app.use('/api', pdfRoutes);
+
+// use payment api
+app.use("/api/v1/payment", paymentRouter); // Payment routes
 
 app.get("/", (req, res) => {
   return res.status(201).send({

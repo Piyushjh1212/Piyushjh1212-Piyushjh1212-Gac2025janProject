@@ -1,8 +1,8 @@
-import Razorpay from 'razorpay';  // Import Razorpay correctly (with uppercase 'R')
+import Razorpay from "razorpay";
 
-export const razorPayInstance = (razorPayKeyId, razorPayKeySecret) => {
+export const createRazorpayInstance = () => {
   return new Razorpay({
-    key_id: razorPayKeyId,
-    key_secret: razorPayKeySecret
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
   });
 };

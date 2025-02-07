@@ -46,7 +46,7 @@ const Contact = () => {
       <div className={styles.contactContent}>
         {/* Left Column: Contact Form */}
         <div className={styles.contactFormContainer}>
-          <h2>Contact Us</h2>
+          <h2 className="Contact-Heading">Contact Us</h2>
           {isSubmitted && <p className={styles.successMessage}>Message sent successfully!</p>}
           <form className={styles.contactForm} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>

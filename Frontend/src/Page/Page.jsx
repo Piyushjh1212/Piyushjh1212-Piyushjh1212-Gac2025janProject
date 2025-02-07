@@ -41,6 +41,7 @@ export default function Page() {
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/show-products" element={<Product />} />
         <Route path="products/checkout" element={<Checkout/>}/>
+        
 
 
 

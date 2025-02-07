@@ -2,9 +2,9 @@
 import express from 'express';  // ES Module syntax
 import { createOrder, verifyPayment } from '../controllers/PaymentController.js';
 
-const router = express.Router();
+const paymentRouter = express.Router();
 
-router.post('/createOrder', createOrder);
-router.post('/verifyPayments', verifyPayment);
+paymentRouter.post('/createOrder', createOrder);
+paymentRouter.post('/verifyPayments', verifyPayment);
 
-export default router;  // Export the router as default
+export default paymentRouter;  // Export the router as default
