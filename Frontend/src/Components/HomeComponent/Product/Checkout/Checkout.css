@@ -117,7 +117,6 @@ input:focus {
   background-color: #477dd1;
 }
 
-
 /* Responsive Design */
 @media (max-width: 900px) {
   .order-form-container {

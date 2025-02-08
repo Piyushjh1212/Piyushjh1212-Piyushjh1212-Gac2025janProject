@@ -5,7 +5,7 @@ import "./Checkout.css";
 const OrderForm = () => {
   const location = useLocation();
   const product = location.state?.product;
-  
+
   if (!product) {
     return <p>Product details not found.</p>;
   }
@@ -37,41 +37,57 @@ const OrderForm = () => {
     });
   };
 
+  
+
   const handlePayment = async () => {
     if (!data.firstName || !data.lastName || !data.email || !data.phone) {
       alert("Please fill all required fields.");
       return;
     }
-
+  
     try {
       const token = localStorage.getItem("token") || "";
-
+  
       // Step 1: Load Razorpay script
       const razorpayLoaded = await loadRazorpay();
       if (!razorpayLoaded) {
         alert("Razorpay SDK failed to load.");
         return;
       }
-
-      // Step 2: Create an order on the backend
-      const orderResponse = await fetch("http://localhost:10011/api/v1/payment/create-order", {
+  
+      // Step 2: Create order on the backend
+      const orderResponse = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-Order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ amount: product.price * 100, currency: "INR" }),
+        body: JSON.stringify({ amount: product.price, currency: "INR" }),
       });
-
-      const orderData = await orderResponse.json();
-      if (!orderData.success) {
-        alert("Failed to create order.");
+  
+      const textResponse = await orderResponse.text();
+      console.log("Server Response:", textResponse);
+  
+      let orderData;
+      try {
+        orderData = JSON.parse(textResponse);
+      } catch (error) {
+        console.error("Error parsing JSON:", error, textResponse);
+        alert("Invalid response from server.");
         return;
       }
+    
 
+  
+      if (!orderData.success || !orderData.id) {
+        alert("Order creation failed.");
+        return;
+      }
+  
       // Step 3: Open Razorpay payment modal
       const options = {
-        key: "YOUR_RAZORPAY_KEY", // Replace with your Razorpay Key
+        key: import.meta.env.VITE_RAZORPAY_KEY, // ✅ Using environment variable
         amount: orderData.amount,
         currency: orderData.currency,
         name: "Growall Coaching",
@@ -79,9 +95,9 @@ const OrderForm = () => {
         order_id: orderData.id,
         handler: async function (response) {
           alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-
-          // Step 4: Verify payment on the backend
-          const verifyResponse = await fetch("http://localhost:10011/api/v1/payment/verify-payment", {
+  
+          // Step 4: Verify payment
+          const verifyResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/verify-payment`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -93,10 +109,21 @@ const OrderForm = () => {
               razorpay_signature: response.razorpay_signature,
             }),
           });
-
-          const verifyData = await verifyResponse.json();
+  
+          const verifyText = await verifyResponse.text();
+          console.log("Verify Payment Response:", verifyText);
+  
+          let verifyData;
+          try {
+            verifyData = JSON.parse(verifyText);
+          } catch (error) {
+            console.error("Error parsing verification response:", error, verifyText);
+            alert("Payment verification failed.");
+            return;
+          }
+  
           if (verifyData.success) {
-            alert("Payment verified and order placed successfully!");
+            alert("Payment verified successfully!");
           } else {
             alert("Payment verification failed.");
           }
@@ -110,13 +137,15 @@ const OrderForm = () => {
           color: "#3399cc",
         },
       };
-
+  
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
     } catch (error) {
       console.error("Payment process failed:", error);
+      alert("An error occurred. Please try again.");
     }
   };
+  
 
   return (
     <div className="order-form-container">
