@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import {Link} from "react-router-dom"
 import "./MyCourses.css"; // Import CSS for the page
 
 const MyCourses = () => {
-  const [courses, setCourses] = useState([]);
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    // Replace this URL with the actual endpoint where courses are fetched
-    const fetchCourses = async () => {
-      try {
-        const response = await fetch("/api/courses"); // Fetch from backend
-        const data = await response.json();
-
-        if (data.message) {
-          setMessage(data.message); // Show no courses message
-        } else {
-          setCourses(data); // Set courses data
-        }
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        setMessage("An error occurred while fetching your courses.");
-      }
-    };
-
-    fetchCourses();
-  }, []); // Empty dependency array ensures this runs only once after initial render
+  const courses = [
+    {
+      id: 1,
+      title: "JavaScript Basics",
+      description: "Learn the fundamentals of JavaScript.",
+      image: "Assets/java.webp", // Replace with actual image path
+      link: "/courses/javascript", // Course URL
+    },
+    {
+      id: 2,
+      title: "React Mastery",
+      description: "Dive deep into React and build amazing apps.",
+      image: "Assets/react.png", // Replace with actual image path
+      link: "/courses/react", // Course URL
+    },
+  ]; // Static course data
 
   return (
     <div className="my-courses-container">
       <h2>Your Courses</h2>
 
-      {message && <p className="no-courses-message">{message}</p>}
-
       <div className="courses-list">
         {courses.length > 0 ? (
           courses.map((course) => (
             <div key={course.id} className="course-card">
+              <img src={course.image} alt={course.title} className="course-image" />
               <h3>{course.title}</h3>
               <p>{course.description}</p>
+              <Link to = {"/MyCourse/Outline"}><a href={course.link} className="course-button">Go to Course</a></Link>
             </div>
           ))
         ) : (

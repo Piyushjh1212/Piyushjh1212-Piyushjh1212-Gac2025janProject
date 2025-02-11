@@ -14,6 +14,7 @@ const orderSchema = new mongoose.Schema({
       zipcode: String,
       country: String,
       phone: String,
+      amount: Number
     },
     status: { type: String, default: "Pending" },
     payment: { type: Boolean, default: false },
@@ -25,6 +26,8 @@ const orderSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
   });
   
+  
   const orderModel = mongoose.models.order || mongoose.model("order", orderSchema);
   
   export default orderModel;
+  

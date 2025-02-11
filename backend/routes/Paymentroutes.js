@@ -1,10 +1,10 @@
-// routes/payMentRoute.js
-import express from 'express';  // ES Module syntax
+import express from 'express';
 import { createOrder, verifyPayment } from '../controllers/PaymentController.js';
+import { isAuth } from '../middlewares/AutheMiddleware.js';
 
 const paymentRouter = express.Router();
 
-paymentRouter.post('/create-Order', createOrder);
-paymentRouter.post('/verifyPayments', verifyPayment);
+paymentRouter.post('/create-Order', isAuth,createOrder);
+paymentRouter.post('/verifyPayments',isAuth, verifyPayment);
 
-export default paymentRouter;  // Export the router as default
+export default paymentRouter;

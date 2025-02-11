@@ -1,56 +1,106 @@
+/* Container Styles */
 .my-courses-container {
-    display: flex;
+  text-align: center;
+  padding: 60px 20px;
+  background: #fafafa; /* Soft off-white background */
+  min-height: 100vh;
+}
+
+/* Title Styling */
+.my-courses-container h2 {
+  font-size: 2.8em;
+  color: #34495e; /* Charcoal gray for strong contrast */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Courses Grid */
+.courses-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Course Card - Glassmorphism Effect */
+.course-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 25px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.course-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Course Image */
+.course-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.course-card:hover .course-image {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Course Title */
+h3 {
+  color: #2ecc71; /* Fresh green for course titles */
+  font-size: 1.9em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Course Description */
+p {
+  color: #7f8c8d; /* Soft gray for description text */
+  font-size: 1.1em;
+  margin-bottom: 18px;
+}
+
+/* "Go to Course" Button */
+.course-button {
+  display: inline-block;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #185b88, #41085a); /* Blue to Purple gradient */
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 2px 2px 10px rgba(26, 114, 173, 0.5);
+}
+
+.course-button:hover {
+  background: linear-gradient(135deg, #41085a, #185b88);
+  transform: scale(1.08);
+  box-shadow: 3px 3px 15px rgba(15, 110, 108, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .courses-list {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
   }
-  
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .no-courses-message {
-    color: red;
-    font-size: 1.2rem;
-  }
-  
-  .courses-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
+
   .course-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    width: 250px;
-    text-align: center;
+    width: 90%;
   }
-  
-  .course-card h3 {
-    font-size: 1.5rem;
-    color: #007bff;
-  }
-  
-  .course-card p {
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+}

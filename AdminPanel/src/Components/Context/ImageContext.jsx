@@ -1,14 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 
+// Create the context
 export const ImageContext = createContext();
 
-export const ImageContextProvider = ({ children }) => {
+// ImageProvider component
+export const ImageProvider = ({ children }) => {
   const [selectedImages, setSelectedImages] = useState([]);
-
-  useEffect(() => {
-    console.log(selectedImages);
-  }, []);
-
   return (
     <ImageContext.Provider value={{ selectedImages, setSelectedImages }}>
       {children}

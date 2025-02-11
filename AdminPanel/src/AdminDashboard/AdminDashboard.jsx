@@ -6,6 +6,7 @@ import Login from "../Component/Login";
 import Users from "../Component/Users";
 import Sidebar from "../Component/Sidebar";
 import CreateProduct from "../Components/AddNewProduct";
+import VideoUploader from "../Components/VedioUploader/VideoUploader";
 
 
 export default function AdminDashboard() {
@@ -23,6 +24,7 @@ console.log(isAdmin);
               <Route path="/admin/settings" element={<Settings />} />
               {/* <Route path="*" element={<Navigate to="/admin/users" />} /> */}
               <Route path="/admin/add-new-product" element={<CreateProduct />} />
+              <Route path="/admin/add-new-Vedio" element={<VideoUploader />} />
             </Routes>
           </div>
         </div>

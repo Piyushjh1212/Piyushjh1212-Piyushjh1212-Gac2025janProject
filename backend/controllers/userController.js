@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import getDataUri from "../utils/features.js";
-import { v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 
 export const registerController = async (req, res) => {
   try {
@@ -29,14 +29,6 @@ export const registerController = async (req, res) => {
       });
     }
 
-    // console.log(name);
-    // console.log(email);
-    // console.log(password);
-    // console.log(city);
-    // console.log(country);
-    // console.log(phone);
-
-    // const userModel = await User.create();
     const user = await userModel.create({
       name,
       email,

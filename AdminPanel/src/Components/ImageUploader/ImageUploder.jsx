@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./ImageUploder.css";
 import { toast } from "react-toastify";
-import { ImageContext } from "../ImageContext/ImageContext";
+import { ImageContext } from "../Context/ImageContext";
 
 const ImageUploader = () => {
   const [image, setImage] = useState(null);

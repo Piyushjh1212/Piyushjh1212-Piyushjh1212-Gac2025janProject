@@ -21,111 +21,91 @@ const OrderForm = () => {
     zipcode: "",
     country: "",
     phone: "",
+    amount: product.price,
   });
 
+  // Load Razorpay Script Once
   useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  const loadRazorpay = () => {
-    return new Promise((resolve) => {
+    const scriptExists = document.querySelector(
+      "script[src='https://checkout.razorpay.com/v1/checkout.js']"
+    );
+    if (!scriptExists) {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
       document.body.appendChild(script);
-    });
-  };
-
-  
+    }
+  }, []);
 
   const handlePayment = async () => {
     if (!data.firstName || !data.lastName || !data.email || !data.phone) {
       alert("Please fill all required fields.");
       return;
     }
-  
+
     try {
       const token = localStorage.getItem("token") || "";
-  
-      // Step 1: Load Razorpay script
-      const razorpayLoaded = await loadRazorpay();
-      if (!razorpayLoaded) {
-        alert("Razorpay SDK failed to load.");
+      if (!token) {
+        alert("User authentication required. Please log in.");
         return;
       }
-  
-      // Step 2: Create order on the backend
-      const orderResponse = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-Order`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ amount: product.price, currency: "INR" }),
-      });
-  
-      const textResponse = await orderResponse.text();
-      console.log("Server Response:", textResponse);
-  
-      let orderData;
-      try {
-        orderData = JSON.parse(textResponse);
-      } catch (error) {
-        console.error("Error parsing JSON:", error, textResponse);
-        alert("Invalid response from server.");
-        return;
-      }
-    
 
-  
+      // **Create Order**
+      const orderResponse = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!orderResponse.ok) {
+        throw new Error("Failed to create order.");
+      }
+
+      const orderData = await orderResponse.json();
       if (!orderData.success || !orderData.id) {
-        alert("Order creation failed.");
+        alert(`Order creation failed: ${orderData.message || "Unknown error"}`);
         return;
       }
-  
-      // Step 3: Open Razorpay payment modal
+
+      // **Show Razorpay Modal**
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY, // ✅ Using environment variable
+        key: import.meta.env.VITE_RAZORPAY_KEY,
         amount: orderData.amount,
         currency: orderData.currency,
         name: "Growall Coaching",
         description: product.name,
+        image: "/Assets/GAC.jpg",
         order_id: orderData.id,
         handler: async function (response) {
-          alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-  
-          // Step 4: Verify payment
-          const verifyResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/verify-payment`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_signature: response.razorpay_signature,
-            }),
-          });
-  
-          const verifyText = await verifyResponse.text();
-          console.log("Verify Payment Response:", verifyText);
-  
-          let verifyData;
-          try {
-            verifyData = JSON.parse(verifyText);
-          } catch (error) {
-            console.error("Error parsing verification response:", error, verifyText);
-            alert("Payment verification failed.");
-            return;
+          alert(`✅ Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+
+          // **Verify Payment**
+          const verifyResponse = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/verifyPayments`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify(response),
+            }
+          );
+
+          if (!verifyResponse.ok) {
+            throw new Error("Payment verification failed.");
           }
-  
+
+          const verifyData = await verifyResponse.json();
           if (verifyData.success) {
-            alert("Payment verified successfully!");
+            alert("✅ Payment verified successfully!");
           } else {
-            alert("Payment verification failed.");
+            alert("❌ Payment verification failed.");
           }
         },
         prefill: {
@@ -134,18 +114,19 @@ const OrderForm = () => {
           contact: data.phone,
         },
         theme: {
-          color: "#3399cc",
+          color: "#243B55",
         },
       };
-  
+
       const paymentObject = new window.Razorpay(options);
+      paymentObject.on("payment.failed", function (response) {
+        alert("❌ Payment failed! " + response.error.description);
+      });
       paymentObject.open();
     } catch (error) {
-      console.error("Payment process failed:", error);
       alert("An error occurred. Please try again.");
     }
   };
-  
 
   return (
     <div className="order-form-container">
@@ -154,14 +135,18 @@ const OrderForm = () => {
           <input
             className="input-first-name"
             value={data.firstName}
-            onChange={(e) => setData((prev) => ({ ...prev, firstName: e.target.value }))}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, firstName: e.target.value }))
+            }
             placeholder="First name"
             type="text"
           />
           <input
             className="input-last-name"
             value={data.lastName}
-            onChange={(e) => setData((prev) => ({ ...prev, lastName: e.target.value }))}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, lastName: e.target.value }))
+            }
             placeholder="Last name"
             type="text"
           />
@@ -170,47 +155,19 @@ const OrderForm = () => {
           <input
             className="input-email"
             value={data.email}
-            onChange={(e) => setData((prev) => ({ ...prev, email: e.target.value }))}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, email: e.target.value }))
+            }
             placeholder="Email"
             type="email"
           />
           <input
             className="input-street"
             value={data.street}
-            onChange={(e) => setData((prev) => ({ ...prev, street: e.target.value }))}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, street: e.target.value }))
+            }
             placeholder="Street"
-            type="text"
-          />
-        </div>
-        <div className="input-group">
-          <input
-            className="input-city"
-            value={data.city}
-            onChange={(e) => setData((prev) => ({ ...prev, city: e.target.value }))}
-            placeholder="City"
-            type="text"
-          />
-          <input
-            className="input-state"
-            value={data.state}
-            onChange={(e) => setData((prev) => ({ ...prev, state: e.target.value }))}
-            placeholder="State"
-            type="text"
-          />
-        </div>
-        <div className="input-group">
-          <input
-            className="input-zipcode"
-            value={data.zipcode}
-            onChange={(e) => setData((prev) => ({ ...prev, zipcode: e.target.value }))}
-            placeholder="Zipcode"
-            type="text"
-          />
-          <input
-            className="input-country"
-            value={data.country}
-            onChange={(e) => setData((prev) => ({ ...prev, country: e.target.value }))}
-            placeholder="Country"
             type="text"
           />
         </div>
@@ -218,7 +175,9 @@ const OrderForm = () => {
           <input
             className="input-phone"
             value={data.phone}
-            onChange={(e) => setData((prev) => ({ ...prev, phone: e.target.value }))}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, phone: e.target.value }))
+            }
             placeholder="Contact number"
             type="text"
           />

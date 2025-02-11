@@ -14,6 +14,7 @@ import Contact from "../Components/HomeComponent/Contact/Contact";
 import ProductPage from "../Components/HomeComponent/Product/Products";
 import Checkout from "../Components/HomeComponent/Product/Checkout/Checkout";
 import MyCourses from "../Components/Profile/My_Courses/Mycourses";
+import CourseOutline from "../Components/Profile/My_Courses/CourseOutline/Courseoutline";
 
 export default function Page() {
   return (
@@ -40,7 +41,8 @@ export default function Page() {
         <Route path="/progress" element={<ProgressCard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/show-products" element={<Product />} />
-        <Route path="products/checkout" element={<Checkout/>}/>
+        <Route path="/products/checkout" element={<Checkout/>}/>
+        <Route path="/MyCourse/Outline" element={<CourseOutline/>}/>
         
 
 
