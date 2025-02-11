@@ -15,6 +15,7 @@ import adminUserRouter from "./routes/adminUserRoutes.js";
 import pdfRoutes from "./routes/PdfRoute.js"
 import paymentRouter from "./routes/Paymentroutes.js"; // Your payment routes
 import orderRouter from "./routes/orderRoutes.js";
+import fetchcourseRouter from "./routes/fetchCoursesroutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -42,7 +43,6 @@ console.log("cloudApiSecret", cloudApiSecret);
 
 // Database Connection
 connectDB(mongo_url);
-// cloudinarySetup(cloudName, cloudApiKey, cloudApiSecret);
 
 // Routes
 app.use("/api/v1/user", userRouter);
@@ -58,6 +58,7 @@ app.use('/api', pdfRoutes);
 
 // use payment api
 app.use("/api/v1/payment", paymentRouter); // Payment routes
+app.use('/api/v1/courses', fetchcourseRouter)
 
 app.get("/", (req, res) => {
   return res.status(201).send({

@@ -27,7 +27,7 @@ const generatePDF = (order, callback) => {
 
     // --- Header ---
     doc.rect(0, 0, 612, 80).fill(primaryColor); // Colored header background
-    doc.fontSize(20).fillColor('white').text('SCHOOL SUPPLY ORDER INVOICE', 50, 25);
+    doc.fontSize(20).fillColor('white').text('GAC Order Invoice', 50, 25);
     doc.fontSize(14).fillColor('white').text(`Order Date: ${order.orderDate}`, { align: 'right', x: 562, y: 25 }); // Adjusted x position
     doc.fontSize(14).fillColor('white').text(`Order Number: ${order.orderNumber}`, { align: 'right', x: 562, y: 50 }); // Adjusted x position
     doc.moveDown(1);
@@ -67,9 +67,9 @@ const generatePDF = (order, callback) => {
     order.items.forEach((item, index) => {
         const total = item.price * item.quantity;
         doc.text(item.description, 70, doc.y);
-        doc.text(`$${item.price.toFixed(2)}`, 350, doc.y, { align: 'right' });
+        doc.text(`INR${item.price.toFixed(2)}`, 350, doc.y, { align: 'right' });
         doc.text(`${item.quantity}`, 450, doc.y, { align: 'right' });
-        doc.text(`$${total.toFixed(2)}`, 500, doc.y, { align: 'right' });
+        doc.text(`INR${total.toFixed(2)}`, 500, doc.y, { align: 'right' });
         doc.moveDown(0.5);
     });
 
