@@ -22,36 +22,44 @@ export const getAllProductController = async (req, res) => {
     }
 }
 
+
+
 export const getSingleProductController = async (req, res) => {
     try {
-        const singleProduct = await productModel.findById(req.params.id);
-        // validation 
-        if (!singleProduct) {
-            return res.status(500).send({
+        const { id } = req.params;
+
+        // ✅ Validate if the ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
                 success: false,
-                message: "single product not found",
-            })
+                message: "Invalid product ID format",
+            });
         }
 
-        res.status(200).send({
-            success: true,
-            message: "Single product found Successfully",
-            singleProduct
-        })
-    } catch (error) {
-        if (error.name === 'CastError') {
-            return res.status(500).send({
+        const singleProduct = await productModel.findById(id);
+
+        if (!singleProduct) {
+            return res.status(404).json({
                 success: false,
-                message: 'Cast Error You should resolve product id in params'
-            })
+                message: "Product not found",
+            });
         }
-        console.log(error);
-        res.status(500).send({
+
+        res.status(200).json({
+            success: true,
+            message: "Single product found successfully",
+            singleProduct,
+        });
+    } catch (error) {
+        console.error("Error fetching product:", error);
+        res.status(500).json({
             success: false,
-            message: 'single product api error not found'
-        })
+            message: "Internal server error",
+            error: error.message,
+        });
     }
-}
+};
+
 
 
 // create product

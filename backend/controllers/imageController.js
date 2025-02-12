@@ -1,35 +1,48 @@
 import imageModel from "../models/imageModel.js";
-import cloudinary from "../config/cloudinarySetup.js"; // ✅ Ensure Cloudinary is imported
+import cloudinary from "../config/cloudinarySetup.js";
+import multer from "multer";
+
+// Multer configuration for memory storage (buffer)
+const storage = multer.memoryStorage();
+const upload = multer({ storage }).single("image");
 
 export const uploadImageController = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
+  upload(req, res, async (err) => {
+    try {
+      if (err) {
+        return res.status(400).json({ message: "Multer error", error: err.message });
+      }
 
-    // ✅ Upload image to Cloudinary
-    const result = await new Promise((resolve, reject) => {
-      const stream = cloudinary.uploader.upload_stream(
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+
+      // ✅ Upload image to Cloudinary
+      const result = await cloudinary.uploader.upload_stream(
         { folder: "mern-uploads" },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
+        async (error, result) => {
+          if (error) {
+            console.error("Cloudinary upload error:", error);
+            return res.status(500).json({ message: "Cloudinary upload failed", error });
+          }
+
+          // ✅ Save image details in MongoDB
+          const savedImage = await imageModel.create({
+            imageUrl: result.secure_url,
+            imageId: result.public_id,
+          });
+
+          res.status(200).json({ message: "Image uploaded successfully!", savedImage });
         }
       );
-      stream.end(req.file.buffer); // Upload buffer to Cloudinary
-    });
 
-    // ✅ Save image details in MongoDB
-    const savedImage = await imageModel.create({
-      imageUrl: result.secure_url,
-      imageId: result.public_id
-    });
-
-    res.status(200).json({ message: "Image uploaded successfully!", savedImage });
-  } catch (error) {
-    console.error("Upload error:", error);
-    res.status(500).json({ message: "Image upload failed", error });
-  }
+      // Send file buffer to Cloudinary
+      result.end(req.file.buffer);
+    } catch (error) {
+      console.error("Upload error:", error);
+      res.status(500).json({ message: "Image upload failed", error });
+    }
+  });
 };
 
 export const getImageController = async (req, res) => {
@@ -50,6 +63,10 @@ export const getImageController = async (req, res) => {
 export const deleteImageController = async (req, res) => {
   try {
     const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ message: "Image ID is required" });
+    }
 
     const image = await imageModel.findById(id);
     if (!image) {

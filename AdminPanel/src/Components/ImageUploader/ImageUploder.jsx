@@ -5,7 +5,7 @@ import { ImageContext } from "../Context/ImageContext";
 
 const ImageUploader = () => {
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null); // Image preview before upload
+  const [preview, setPreview] = useState(null);
   const [images, setImages] = useState([]);
   const { selectedImages, setSelectedImages } = useContext(ImageContext);
 
@@ -18,7 +18,7 @@ const ImageUploader = () => {
   // Fetch images from backend
   const fetchImages = async () => {
     try {
-      const response = await fetch("http://localhost:10011/api/images/image");
+      const response = await fetch("http://localhost:10011/api/v1/images/image");
       if (!response.ok) throw new Error("Failed to fetch images");
       const data = await response.json();
       setImages(data);
@@ -31,28 +31,48 @@ const ImageUploader = () => {
     fetchImages();
   }, []);
 
+  // Handle Image Selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type (optional)
+    const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Only JPG, JPEG, and PNG files are allowed.");
+      return;
+    }
+
+    setImage(file);
+    setPreview(URL.createObjectURL(file)); // Show image preview
+  };
+
   // Handle Image Upload
   const handleUpload = async () => {
-    if (!image) return toast.error("Please select an image");
+    if (!image) {
+      toast.error("Please select an image first.");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
 
     try {
-      const response = await fetch("http://localhost:10011/api/images/upload", {
+      const response = await fetch("http://localhost:10011/api/v1/images/upload", {
         method: "POST",
         body: formData,
       });
+      console.log("http://localhost:10011/api/v1/images/upload")
 
       if (!response.ok) throw new Error("Upload failed");
 
       const data = await response.json();
       toast.success(data.message);
-      fetchImages(); // Refresh images without full page reload
+      fetchImages(); // Refresh images
       setImage(null); // Reset input
       setPreview(null); // Remove preview
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Upload error: " + error.message);
     }
   };
 
@@ -61,7 +81,7 @@ const ImageUploader = () => {
     if (!window.confirm("Are you sure you want to delete this image?")) return;
 
     try {
-      const response = await fetch(`http://localhost:10011/api/images/delete`, {
+      const response = await fetch("http://localhost:10011/api/v1/images/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,9 +92,8 @@ const ImageUploader = () => {
       if (!response.ok) throw new Error("Failed to delete image");
 
       toast.success("Image deleted successfully!");
-      fetchImages(); // Refresh images
+      fetchImages();
     } catch (error) {
-      console.error("Delete error:", error);
       toast.error("Failed to delete image");
     }
   };
@@ -84,15 +103,16 @@ const ImageUploader = () => {
       <div className="inputs">
         <input
           type="file"
+          accept="image/*"
           className="image-input"
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={handleImageChange}
         />
         <button className="upload-button" onClick={handleUpload}>
           Upload
         </button>
       </div>
 
-      {/* Image Preview Before Upload */}
+      {/* Image Preview */}
       {preview && (
         <div className="preview-container">
           <p className="preview-text">Preview:</p>
@@ -109,23 +129,17 @@ const ImageUploader = () => {
             {images.map((img) => (
               <div className="single-image-grid" key={img._id}>
                 <img
-                  onClick={() => saveImage(img.imageUrl)} // Save image to global context
+                  onClick={() => saveImage(img.imageUrl)}
                   src={img.imageUrl}
                   alt="Uploaded"
                   className="uploaded-image"
                   width="150px"
                 />
                 <div className="buttons">
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDelete(img._id)}
-                  >
+                  <button className="delete-button" onClick={() => handleDelete(img._id)}>
                     Delete
                   </button>
-                  <button
-                    className="use-button"
-                    onClick={() => saveImage(img.imageUrl)}
-                  >
+                  <button className="use-button" onClick={() => saveImage(img.imageUrl)}>
                     Use
                   </button>
                 </div>

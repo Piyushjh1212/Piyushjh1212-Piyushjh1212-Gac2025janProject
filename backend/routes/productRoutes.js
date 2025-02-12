@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express from 'express';
 import { createProductController, deleteProductImageController, getAllProductController, getSingleProductController, updateProductController, updateProductImageController } from '../controllers/productController.js';
 import { isAuth } from '../middlewares/AutheMiddleware.js';
 import { singleUpload } from '../middlewares/multer.js';
@@ -21,4 +21,5 @@ productRouter.put('/upd-img/:id', isAuth, singleUpload, updateProductImageContro
 
 // delete product image
 productRouter.delete('/delete/:id', isAuth, singleUpload, deleteProductImageController)
+
 export default productRouter;

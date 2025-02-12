@@ -8,7 +8,7 @@ export default function Sidebar() {
       <h2 className="sidebar-title">Admin Panel</h2>
       <ul className="sidebar-menu">
         <li className="sidebar-item">
-          <Link to="/admin/users" className="sidebar-link">Users</Link>
+          <Link to="/admin/users" className="sidebar-link">User-Data</Link>
         </li>
         <li className="sidebar-item">
           <Link to="/admin/products" className="sidebar-link">Products</Link>

@@ -12,6 +12,6 @@ const upload = multer({ storage });
 imageRouter.post("/upload", upload.single("image"), uploadImageController);
 imageRouter.get("/image", getImageController);
 imageRouter.post("/delete", deleteImageController);
-
+console.log(uploadImageController)
 
 export default imageRouter;

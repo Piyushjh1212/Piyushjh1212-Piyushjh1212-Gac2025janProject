@@ -48,7 +48,7 @@ connectDB(mongo_url);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/category", categoryRouter);
-app.use("/api/images", imageRouter);
+app.use("/api/v1/images", imageRouter);
 app.use("/api/admin-user", adminUserRouter);
 // app.use("/api/v1/order", orderRouter)
 

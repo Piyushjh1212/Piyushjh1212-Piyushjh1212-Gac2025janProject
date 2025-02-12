@@ -56,7 +56,7 @@ const CreateProduct = () => {
           body: JSON.stringify(data),
         }
       );
-
+      console.log("http://localhost:10011/api/v1/product/create");
       const responseData = await response.json();
 
       if (response.ok) {
