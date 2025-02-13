@@ -1,74 +1,133 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import "./UserDisplay.css";
+import { GacContext } from "../../../Components/Context/GacContext";
 
-export default function UserDisplay() {
+// Register chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export default function Users() {
   const [userCount, setUserCount] = useState(0);
   const [totalPayments, setTotalPayments] = useState(0);
   const [totalRequest, setTotalRequest] = useState(0);
-  const [users, setUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const { adminUser } = useContext(GacContext);
 
   useEffect(() => {
-    // Example static data
-    setUserCount(120);
-    setTotalPayments(85000);
-    setTotalRequest(500);
+    // Fetch data for user count, total payments, and total requests
+    if (adminUser) {
+      setUserCount(adminUser.length); // Set actual user count
+      setTotalPayments(adminUser.reduce((sum, user) => sum + user.payment, 0)); // Sum payments for total payments
+      setTotalRequest(adminUser.length); // Example: Count requests, modify as needed
+    }
+  }, [adminUser]); // Recalculate when adminUser updates
 
-    setUsers([
-      { id: 1, name: "John Doe", email: "john@example.com", registrationDate: "2025-01-15" },
-      { id: 2, name: "Jane Smith", email: "jane@example.com", registrationDate: "2025-01-20" },
-      { id: 3, name: "Sam Wilson", email: "sam@example.com", registrationDate: "2025-02-05" },
-      // Add more users as needed
-    ]);
-  }, []);
+  // Dynamic payment data for the graph based on actual data
+  const paymentData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], // Example static months
+    datasets: [
+      {
+        label: "Total user Count",
+        data: [0, totalPayments / 7, totalPayments / 6, totalPayments / 5, totalPayments / 4, totalPayments / 3, totalPayments], // Adjust data dynamically
+        borderColor: "#ff6347",
+        backgroundColor: "rgba(255, 99, 71, 0.2)",
+        fill: true,
+        tension: 0.3,
+      },
+    ],
+  };
 
-  // Filter users based on the search query
-  const filteredUsers = users.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  // Chart.js options to format the y-axis labels
+  const chartOptions = {
+    scales: {
+      y: {
+        ticks: {
+          callback: function (value) {
+            if (value >= 1000000) return value / 1000000 + "M"; // Convert 1M+
+            if (value >= 1000) return value / 1000 + "k"; // Convert 1k+
+            return value;
+          },
+        },
+      },
+    },
+  };
+
+  // Filtered users based on search query
+  const filteredUsers = adminUser?.filter(user =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="users-dashboard">
-      <h1 className="dashboard-title">User Dashboard</h1>
-
-      <div className="stats-container">
-        <div className="stat-card">
-          <h3>Total Users</h3>
-          <p>{userCount}</p>
+    <div className="admin-dashboard">
+      <h1 className="admin-dashboard-title">User Dashboard</h1>
+      <div className="dashboard-container">
+        <div className="stats-section">
+          <div className="stats-box">
+            <Link to={"/admin/UserdataDisplay"} aria-label="View user details">
+              <h3>Total Users</h3>
+              <p>{userCount || 0}</p> {/* Display actual user count */}
+            </Link>
+          </div>
         </div>
+
+        <div className="charts-section">
+          <div className="chart-box">
+            <h3>Total Users</h3>
+            <Line data={paymentData} options={chartOptions} /> {/* Dynamically adjusted chart */}
+          </div>
+        </div>
+
       </div>
-
-      <div className="users-list">
-        <h2>User Details</h2>
-
-        {/* Search input field */}
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search by name or email"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Update search query state
-          />
+      {/* Search Bar */}
+      <div className="search-container">
+        <span className="search-user-user-f-d-b">Search User</span>
+        <div>
+        <input
+          type="text"
+          placeholder="Search Users"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         </div>
-
-        <table>
+       
+      </div>
+      
+      {/* User Data Section */}
+      <div className="user-data-section">
+        <h3>User Data</h3>
+        <table className="user-data-table">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Registration Date</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
+            {filteredUsers?.map((user, index, Date) => (
+              <tr key={index}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.registrationDate}</td>
+                <td>{user.Date}</td>
               </tr>
             ))}
           </tbody>

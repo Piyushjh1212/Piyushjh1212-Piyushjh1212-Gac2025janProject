@@ -303,3 +303,27 @@ export const uploadProfilePic = async (req, res) => {
     res.status(500).json({ message: "Image upload failed", error });
   }
 };
+
+export const getAllUsercontroller = async (req, res) => {
+  try {
+    const allUsers = await userModel.find();
+    console.log(allUsers);
+
+    if (!allUsers)
+      return res.status(501).json({
+        success: false,
+        message: `User not found`,
+      });
+
+    return res.status(201).json({
+      success: true,
+      message: `User fetched successfully!`,
+      allUsers,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: `Api got this ${error.message}`,
+    });
+  }
+};

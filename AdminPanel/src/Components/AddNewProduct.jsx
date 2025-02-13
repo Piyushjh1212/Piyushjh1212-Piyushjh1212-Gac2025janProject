@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-// import ImageUploader from '../../../Frontend/src/Components/ImageUploader/ImageUploder';
 import "./AddNew.css";
 import { ImageContext } from "../Components/Context/ImageContext";
 import ImageUploader from "../Components/ImageUploader/ImageUploder";
@@ -43,6 +42,7 @@ const CreateProduct = () => {
     }
 
     setLoading(true); // Set loading to true while submitting
+    console.log(data);
 
     try {
       const response = await fetch(
@@ -56,7 +56,6 @@ const CreateProduct = () => {
           body: JSON.stringify(data),
         }
       );
-      console.log("http://localhost:10011/api/v1/product/create");
       const responseData = await response.json();
 
       if (response.ok) {
@@ -87,14 +86,12 @@ const CreateProduct = () => {
     <>
       <div
         style={{
-          display: "flex",
           justifyContent: "space-evenly",
           flexWrap: "wrap",
         }}
         className="product-container"
       >
         <div>
-          {/* <ImageUploader /> */}
           <h1>Create Product</h1>
           <form onSubmit={handleSubmit}>
             <div>
@@ -130,10 +127,10 @@ const CreateProduct = () => {
               />
             </div>
             <div>
-              <label htmlFor="NewPrice">NewPrice:</label>
+              <label htmlFor="NewPrice">New Price:</label>
               <input
                 type="number"
-                id="stock"
+                id="NewPrice"
                 name="NewPrice"
                 value={data.NewPrice}
                 onChange={handleChange}
@@ -152,12 +149,12 @@ const CreateProduct = () => {
               />
             </div>
             <div>
-              <label htmlFor="category">discounted:</label>
+              <label htmlFor="discounted">Discounted:</label>
               <input
                 type="text"
-                id="category"
-                name="category"
-                value={data.category}
+                id="discounted"
+                name="discounted"
+                value={data.discounted}
                 onChange={handleChange}
                 required
               />
@@ -181,15 +178,21 @@ const CreateProduct = () => {
             }}
             className="images-container"
           >
-            <img
-              style={{ width: "65%" }}
-              src={selectedImages[selectedImages.length - 1]}
-              alt=""
-            />
+            {selectedImages.length > 0 ? (
+              <img
+                style={{ width: "65%" }}
+                src={selectedImages[selectedImages.length - 1]}
+                alt=""
+              />
+            ) : (
+              <p>No image selected</p>
+            )}
           </div>
         </div>
       </div>
-      <ImageUploader />
+      <div>
+      {/* <ImageUploader /> */}
+      </div>
     </>
   );
 };

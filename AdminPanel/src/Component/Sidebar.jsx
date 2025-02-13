@@ -4,30 +4,40 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Sidebar() {
   const navigate = useNavigate();
   return (
-    <div  className="sidebar">
+    <div className="sidebar">
       <h2 className="sidebar-title">Admin Panel</h2>
       <ul className="sidebar-menu">
         <li className="sidebar-item">
-          <Link to="/admin/users" className="sidebar-link">User-Data</Link>
+          <Link to="/admin/users" className="sidebar-link">
+            User-Data
+          </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/admin/products" className="sidebar-link">Products</Link>
+          <Link to="/admin/products" className="sidebar-link">
+            Products
+          </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/admin/add-new-product" className="sidebar-link">Add image</Link>
+          <Link to="/admin/add-new-product" className="sidebar-link">
+            Add image
+          </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/admin/add-new-Vedio" className="sidebar-link">Add Vedios</Link>
+          <Link to="/admin/add-new-Vedio" className="sidebar-link">
+            Add Vedios
+          </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/admin/settings" className="sidebar-link">Settings</Link>
+          <Link to="/admin/settings" className="sidebar-link">
+            Settings
+          </Link>
         </li>
         <li className="sidebar-item">
           <button
             className="sidebar-logout"
             onClick={() => {
               localStorage.removeItem("adminToken");
-              navigate('/');
+              navigate("/");
               window.location.reload();
             }}
           >

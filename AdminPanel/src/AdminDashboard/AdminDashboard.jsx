@@ -8,6 +8,7 @@ import Sidebar from "../Component/Sidebar";
 import CreateProduct from "../Components/AddNewProduct";
 import VideoUploader from "../Components/VedioUploader/VideoUploader";
 import UserDisplay from "../Component/UserDataDisplay/UserDisplay/UserDisplay";
+import FormDisplay from "../Component/UserDataDisplay/PaymentDisplay/FormDisplay";
 
 export default function AdminDashboard() {
   const isAdmin = true; // Example: Token for authentication or check if the user is an admin
@@ -26,6 +27,7 @@ export default function AdminDashboard() {
               <Route path="/admin/add-new-product" element={<CreateProduct />} />
               <Route path="/admin/add-new-Vedio" element={<VideoUploader />} />
               <Route path="/admin/UserdataDisplay" element={<UserDisplay />} />
+              <Route path="/admin/FormdataDisplay" element={<FormDisplay />} />
 
               {/* Fallback route for unknown paths */}
               <Route path="*" element={<Navigate to="/admin/users" />} />

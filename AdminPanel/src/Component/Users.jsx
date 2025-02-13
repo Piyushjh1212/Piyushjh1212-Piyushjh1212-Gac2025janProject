@@ -28,6 +28,14 @@ export default function Users() {
   const [userCount, setUserCount] = useState(0);
   const [totalPayments, setTotalPayments] = useState(0);
   const [totalRequest, setTotalRequest] = useState(0);
+
+  useEffect(() => {
+    // Fetch data for user count and total payments here if you have APIs (skipped for now)
+    setUserCount(120); // Example static data
+    setTotalPayments(85000); // Example static data
+    setTotalRequest(500);
+  }, []);
+
   // Example static data for the graph
   const userData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], // Months for x-axis
@@ -57,16 +65,9 @@ export default function Users() {
     ],
   };
 
-  useEffect(() => {
-    // Fetch data for user count and total payments here if you have APIs (skipped for now)
-    setUserCount(120); // Example static data
-    setTotalPayments(85000); // Example static data
-    setTotalRequest(500);
-  }, []);
-
   return (
     <div className="users-dashboard">
-      <h1 className="dashboard-title">User Dashboard</h1>
+      <h1 className="dashboard-title">Admin Dashboard</h1>
       <div className="stats-container">
         <div className="stat-card">
           <Link to={"/admin/UserdataDisplay"} aria-label="View user details">
@@ -81,7 +82,20 @@ export default function Users() {
         </div>
 
         <div className="stat-card">
-          <h3>Total Form Request</h3>
+          <h3>Total Form Requests</h3>
+          <p>{totalRequest}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Total Doubt Queries</h3>
+          <p>{totalRequest}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Total Certified students</h3>
+          <p>{totalRequest}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Total Reviews</h3>
           <p>{totalRequest}</p>
         </div>
       </div>
@@ -96,6 +110,7 @@ export default function Users() {
           <h3>Payment Collection Over Time</h3>
           <Line data={paymentData} />
         </div>
+        
       </div>
     </div>
   );
