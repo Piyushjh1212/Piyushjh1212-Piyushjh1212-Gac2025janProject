@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import ProgressCard from "./KeyTopics/M_Courses/ProgressCard";
+import Usersetting from "./KeyTopics/Settings/Usersetting";
+import Achivements from "./KeyTopics/Achivements/Achivements";
 
 export default function Profile() {
   const [user, setUser] = useState([]);
@@ -13,9 +15,9 @@ export default function Profile() {
   const options = [
     { name: "Your Courses", content: "progress-bar" },
     { name: "Your Progress", content: "Track your progress here!" },
-    { name: "Achievements", content: "View your achievements!" },
+    { name: "Achievements", content: "Achivements here" },
     { name: "Targets", content: "Your targets are displayed here." },
-    { name: "Settings", content: "Adjust your settings here." },
+    { name: "Settings", content: "Settings" },
   ];
 
   // ✅ Fetch User Function
@@ -115,6 +117,9 @@ export default function Profile() {
           <div className="content">
             <>
             {activeOption === 'progress-bar' ? <ProgressCard/> : ""}
+            {activeOption === 'Settings' ? <Usersetting/> : ""}
+            {activeOption === 'Achivements here' ? <Achivements/> : ""}
+
             </>
           </div>
         )}

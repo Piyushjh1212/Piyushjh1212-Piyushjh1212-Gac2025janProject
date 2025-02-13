@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// Import components
 import Header from "../Components/Header/Header";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login_Signup/Login/Login";
@@ -14,7 +15,8 @@ import Contact from "../Components/HomeComponent/Contact/Contact";
 import ProductPage from "../Components/HomeComponent/Product/Products";
 import Checkout from "../Components/HomeComponent/Product/Checkout/Checkout";
 import MyCourses from "../Components/Profile/My_Courses/Mycourses";
-import CourseOutline from "../Components/Profile/My_Courses/CourseOutline/Courseoutline";
+import CourseOutline from "../My_Course_List/Html$Css/Html"; // Your Course Outline component
+import VideoLecture from "../Vedio_Lectures/VideoLecture";
 
 export default function Page() {
   return (
@@ -26,29 +28,25 @@ export default function Page() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-
-        {/* Login and Signup */}
+        {/* Login and Signup Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/MyCourse" element={<MyCourses />} />
 
         {/* Profile and Product Pages */}
         <Route path="/my-profile" element={<Profile />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/Products" element={<ProductPage/>}/>
-        
-        {/* <Route path="/products" element={<Products />} /> */}
+        <Route path="/Products" element={<ProductPage />} />
         <Route path="/progress" element={<ProgressCard />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/show-products" element={<Product />} />
-        <Route path="/products/checkout" element={<Checkout/>}/>
-        <Route path="/MyCourse/Outline" element={<CourseOutline/>}/>
-        
+        <Route path="/products/checkout" element={<Checkout />} />
 
+        {/* My Courses Routes */}
+        <Route path="/MyCourse" element={<MyCourses />} />
+        <Route path="/MyCourse/Html$css" element={<CourseOutline />} /> {/* Route for HTML and CSS Course Outline */}
 
-
-        
-
+        {/* Dynamic Routes for Lessons and Subtopics */}
+        <Route path="/course/html-css/lesson-:lessonId/subtopic-:subtopicId" element={<VideoLecture />} /> {/* Fixed route for VideoLecture */}
       </Routes>
 
       {/* Footer should always be visible */}
