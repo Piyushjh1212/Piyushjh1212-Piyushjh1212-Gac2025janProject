@@ -15,7 +15,7 @@ const VideoUploader = () => {
   // Fetch topics from backend
   const fetchTopics = async () => {
     try {
-      const response = await fetch("http://localhost:10011/api/topics");
+      const response = await fetch("http://localhost:10011/V1/Videos/Vedio");
       if (!response.ok) throw new Error("Failed to fetch topics");
       const data = await response.json();
       setTopics(data);

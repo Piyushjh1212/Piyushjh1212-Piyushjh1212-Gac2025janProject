@@ -5,10 +5,11 @@ import Settings from "../Component/Settings";
 import Login from "../Component/Login";
 import Users from "../Component/Users";
 import Sidebar from "../Component/Sidebar";
-import CreateProduct from "../Components/AddNewProduct";
-import VideoUploader from "../Components/VedioUploader/VideoUploader";
 import UserDisplay from "../Component/UserDataDisplay/UserDisplay/UserDisplay";
 import FormDisplay from "../Component/UserDataDisplay/PaymentDisplay/FormDisplay";
+import CreateProduct from "../Components/Add_Vedio_Image/ImageAdd/AddNewProduct";
+import CreateVideoAndSave from "../Components/Add_Vedio_Image/VedioAdd/Addvedio";
+import AddCourseStats from "../Component/AddVideoshere/Addvideostofrontend";
 
 export default function AdminDashboard() {
   const isAdmin = true; // Example: Token for authentication or check if the user is an admin
@@ -25,12 +26,20 @@ export default function AdminDashboard() {
               <Route path="/admin/products" element={<Products />} />
               <Route path="/admin/settings" element={<Settings />} />
               <Route path="/admin/add-new-product" element={<CreateProduct />} />
-              <Route path="/admin/add-new-Vedio" element={<VideoUploader />} />
+              <Route path="/admin/add-new-Vedio" element={<CreateVideoAndSave />} />
               <Route path="/admin/UserdataDisplay" element={<UserDisplay />} />
               <Route path="/admin/FormdataDisplay" element={<FormDisplay />} />
+              <Route path="/admin/Addcoursestofrntend" element={<AddCourseStats/>}/>
 
               {/* Fallback route for unknown paths */}
               <Route path="*" element={<Navigate to="/admin/users" />} />
+
+
+              <Route path="/Piyush" element={<CreateVideoAndSave/>}/>
+
+
+
+              
             </Routes>
           </div>
         </div>

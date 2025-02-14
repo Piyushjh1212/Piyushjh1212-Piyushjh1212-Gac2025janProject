@@ -1,0 +1,53 @@
+.course-stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .course-stat-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .course-stat-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .course-stat-card h3 {
+    font-size: 25px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .course-stat-card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4c6ef5;
+  }
+  
+
+  .Updatecourse_para{
+    width: 120px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 75px;
+    font-weight: 300 !important;
+    font-size: 25px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 90px;
+    cursor: pointer;
+  }
+
+  .Updatecourse_para:hover{
+    background: #f0ecec;
+  }

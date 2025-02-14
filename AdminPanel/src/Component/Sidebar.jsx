@@ -23,7 +23,7 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="sidebar-item">
-          <Link to="/admin/add-new-Vedio" className="sidebar-link">
+          <Link to="/admin/Addcoursestofrntend" className="sidebar-link">
             Add Vedios
           </Link>
         </li>

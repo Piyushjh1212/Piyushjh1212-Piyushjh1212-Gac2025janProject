@@ -14,8 +14,8 @@ import imageRouter from "./routes/imageRoutes.js";
 import adminUserRouter from "./routes/adminUserRoutes.js";
 import pdfRoutes from "./routes/PdfRoute.js"
 import paymentRouter from "./routes/Paymentroutes.js"; // Your payment routes
-import orderRouter from "./routes/orderRoutes.js";
 import fetchcourseRouter from "./routes/fetchCoursesroutes.js";
+import VideoRouter from "./routes/VedioRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -48,9 +48,9 @@ connectDB(mongo_url);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/category", categoryRouter);
-app.use("/api/v1/images", imageRouter);
 app.use("/api/admin-user", adminUserRouter);
-// app.use("/api/v1/order", orderRouter)
+app.use("/api/v1/images", imageRouter);
+app.use("/api/v1/Vedios", VideoRouter);
 
 // use pdf routes 
 

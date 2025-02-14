@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./AddNew.css";
-import { ImageContext } from "../Components/Context/ImageContext";
-import ImageUploader from "../Components/ImageUploader/ImageUploder";
+import { ImageContext } from "../../Context/ImageContext";
+import ImageUploader from "../../ImageUploader/ImageUploder";
 
 const CreateProduct = () => {
   const { selectedImages, setSelectedImages } = useContext(ImageContext);

@@ -13,7 +13,8 @@
       setSelectedImages([...selectedImages, url]);
       toast.success("Image added successfully!");
     };
-
+    
+    // fetch Image from backend
     const fetchImages = async () => {
       try {
         const response = await fetch(
