@@ -84,16 +84,13 @@ const CreateProduct = () => {
 
   return (
     <>
-      <div
-        style={{
-          justifyContent: "space-evenly",
-          flexWrap: "wrap",
-        }}
-        className="product-container"
-      >
-        <div>
+      <div className="product-container">
+        <div className="product-container-2">
           <h1>Create Product</h1>
-          <form onSubmit={handleSubmit}>
+          <form 
+          onSubmit={handleSubmit}
+          className="Product-container-form-add"
+          >
             <div>
               <label htmlFor="name">Product Name:</label>
               <input
@@ -170,11 +167,10 @@ const CreateProduct = () => {
           <div
             style={{
               border: "1px solid gray",
-              height: "85%",
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              height:"50%",
+              width: "80%",
+              overflow: "hidden"
+             
             }}
             className="images-container"
           >
@@ -191,7 +187,7 @@ const CreateProduct = () => {
         </div>
       </div>
       <div>
-      {/* <ImageUploader /> */}
+        <ImageUploader />
       </div>
     </>
   );

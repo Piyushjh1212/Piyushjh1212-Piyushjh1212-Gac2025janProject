@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "./Vediolecture.css";
+import { courseVideo } from "../../public/Assets/Assets";
 
 const VideoLecture = () => {
   const { lessonId, subtopicId } = useParams();
@@ -8,7 +9,7 @@ const VideoLecture = () => {
   // Define video files based on lesson and subtopic
   const videoUrls = {
     1: {
-      1: "/videos/recoed.mp4", // Correct path for the video in public/videos
+      1: courseVideo.html_css_Js, // Correct path for the video in public/videos
       2: "/videos/basic-syntax.mp4",
       3: "/videos/tags-attributes.mp4",
       4: "/videos/selectors-styling.mp4",
@@ -36,7 +37,10 @@ const VideoLecture = () => {
 
   return (
     <div className="video-lecture-container">
-      <h2>Video Lecture: Lesson {lessonId} - Subtopic {subtopicId}</h2>
+      {/* <video src={courseVideo.html_css_Js}></video> */}
+      <h2>
+        Video Lecture: Lesson {lessonId} - Subtopic {subtopicId}
+      </h2>
       {videoUrl ? (
         <div className="video-player">
           <video width="100%" controls>
@@ -46,7 +50,8 @@ const VideoLecture = () => {
         </div>
       ) : (
         <p className="video-error">
-          Sorry, the video is not available for this subtopic. Please check back later.
+          Sorry, the video is not available for this subtopic. Please check back
+          later.
         </p>
       )}
     </div>

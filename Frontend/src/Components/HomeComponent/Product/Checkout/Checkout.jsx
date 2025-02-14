@@ -67,6 +67,7 @@ const OrderForm = () => {
       }
 
       const orderData = await orderResponse.json();
+      console.log(orderData);
       if (!orderData.success || !orderData.id) {
         alert(`Order creation failed: ${orderData.message || "Unknown error"}`);
         return;
@@ -124,6 +125,7 @@ const OrderForm = () => {
       });
       paymentObject.open();
     } catch (error) {
+      console.log(error.message);
       alert("An error occurred. Please try again.");
     }
   };

@@ -5,20 +5,32 @@ import { VideoContext } from "../Context/VedioContext";
 
 const VideoUploader = () => {
   const [video, setVideo] = useState(null);
-  const [preview, setPreview] = useState(null); // Video preview before upload
+  const [preview, setPreview] = useState(null);
   const [videos, setVideos] = useState([]);
+  const [topics, setTopics] = useState([]); // List of available topics
+  const [selectedTopic, setSelectedTopic] = useState(""); // Selected topic for upload
+
   const { selectedVideos, setSelectedVideos } = useContext(VideoContext);
 
-  // Save selected video globally
-  const saveVideo = (url) => {
-    setSelectedVideos([...selectedVideos, url]);
-    toast.success("Video added successfully!");
+  // Fetch topics from backend
+  const fetchTopics = async () => {
+    try {
+      const response = await fetch("http://localhost:10011/api/topics");
+      if (!response.ok) throw new Error("Failed to fetch topics");
+      const data = await response.json();
+      setTopics(data);
+    } catch (error) {
+      console.error("Error fetching topics:", error);
+    }
   };
 
-  // Fetch videos from backend
+  // Fetch videos for the selected topic
   const fetchVideos = async () => {
+    if (!selectedTopic) return;
     try {
-      const response = await fetch("http://localhost:10011/api/videos/video");
+      const response = await fetch(
+        `http://localhost:10011/api/videos/video?topic=${selectedTopic}`
+      );
       if (!response.ok) throw new Error("Failed to fetch videos");
       const data = await response.json();
       setVideos(data);
@@ -28,15 +40,21 @@ const VideoUploader = () => {
   };
 
   useEffect(() => {
-    fetchVideos();
+    fetchTopics();
   }, []);
+
+  useEffect(() => {
+    fetchVideos();
+  }, [selectedTopic]);
 
   // Handle Video Upload
   const handleUpload = async () => {
     if (!video) return toast.error("Please select a video");
+    if (!selectedTopic) return toast.error("Please select a topic");
 
     const formData = new FormData();
     formData.append("video", video);
+    formData.append("topic", selectedTopic); // Send topic name
 
     try {
       const response = await fetch("http://localhost:10011/api/videos/upload", {
@@ -48,9 +66,9 @@ const VideoUploader = () => {
 
       const data = await response.json();
       toast.success(data.message);
-      fetchVideos(); // Refresh videos without full page reload
-      setVideo(null); // Reset input
-      setPreview(null); // Remove preview
+      fetchVideos();
+      setVideo(null);
+      setPreview(null);
     } catch (error) {
       toast.error(error.message);
     }
@@ -72,26 +90,38 @@ const VideoUploader = () => {
       if (!response.ok) throw new Error("Failed to delete video");
 
       toast.success("Video deleted successfully!");
-      fetchVideos(); // Refresh videos
+      fetchVideos();
     } catch (error) {
-      console.error("Delete error:", error);
       toast.error("Failed to delete video");
     }
   };
 
-  // Update preview video on file selection
+  // Handle file selection
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setVideo(file);
-      const url = URL.createObjectURL(file); // Generate a URL for previewing
-      setPreview(url);
+      setPreview(URL.createObjectURL(file));
     }
   };
 
   return (
     <div className="video-uploader">
       <div className="inputs">
+        {/* Topic Selection */}
+        <select
+          className="topic-select"
+          value={selectedTopic}
+          onChange={(e) => setSelectedTopic(e.target.value)}
+        >
+          <option value="">Select a Topic</option>
+          {topics.map((topic) => (
+            <option key={topic._id} value={topic.name}>
+              {topic.name}
+            </option>
+          ))}
+        </select>
+
         <input
           type="file"
           className="video-input"
@@ -103,7 +133,7 @@ const VideoUploader = () => {
         </button>
       </div>
 
-      {/* Video Preview Before Upload */}
+      {/* Video Preview */}
       {preview && (
         <div className="preview-container">
           <p className="preview-text">Preview:</p>
@@ -114,7 +144,7 @@ const VideoUploader = () => {
         </div>
       )}
 
-      {/* Display Uploaded Videos */}
+      {/* Display Videos */}
       <div id="grid" className="outputs">
         {videos.length === 0 ? (
           <p className="no-videos-text">No videos uploaded</p>
@@ -135,7 +165,7 @@ const VideoUploader = () => {
                   </button>
                   <button
                     className="use-button"
-                    onClick={() => saveVideo(videoItem.videoUrl)}
+                    onClick={() => setSelectedVideos([...selectedVideos, videoItem.videoUrl])}
                   >
                     Use
                   </button>

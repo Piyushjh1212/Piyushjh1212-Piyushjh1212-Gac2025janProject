@@ -56,14 +56,18 @@ const MyCourses = () => {
           courses.map((course) => (
             <div key={course.id} className="course-card">
               <img
-                src={course.images && course.images.length > 0 ? course.images[0].url : "Assets/default-image.jpg"} // Fallback to default image if no course image
+                src={
+                  course.images && course.images.length > 0
+                    ? course.images[0].url
+                    : "Assets/default-image.jpg"
+                } // Fallback to default image if no course image
                 alt={course.title}
                 className="course-image"
               />
               <h3>{course.title}</h3>
               <p>{course.description}</p>
               <Link
-                to={`/MyCourse/${course.slug || course.id}`} // Use slug or ID for dynamic routing
+                to={`/MyCourse/${course._id}`} // Use slug or ID for dynamic routing
                 className="course-button"
               >
                 Go to Course

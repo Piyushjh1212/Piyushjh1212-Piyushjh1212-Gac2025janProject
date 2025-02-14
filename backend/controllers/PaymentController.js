@@ -21,8 +21,19 @@ export const createOrder = async (req, res) => {
       phone,
     } = req.body;
 
-    const userId = req.user?._id;
+    const previosOrder = await Payment.findOne({ courseId });
 
+    console.log(previosOrder.courseId);
+    console.log(courseId);
+
+    if (previosOrder.courseId === courseId) {
+      return res.status(500).json({
+        success: false,
+        message: `Course allready purchaged.`,
+      });
+    }
+
+    const userId = req.user?._id;
 
     if (!amount || amount <= 0) {
       return res
@@ -82,7 +93,6 @@ export const verifyPayment = async (req, res) => {
         { $set: { paymentStatus: "Success", paymentResponse: req.body } },
         { new: true }
       );
-
 
       return res
         .status(200)

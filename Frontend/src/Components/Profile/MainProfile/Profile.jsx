@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import ProgressCard from "./KeyTopics/M_Courses/ProgressCard";
-import Usersetting from "./KeyTopics/Settings/Usersetting";
-import Achivements from "./KeyTopics/Achivements/Achivements";
+import ProgressCard from "../KeyTopics/M_Courses/ProgressCard";
+import Usersetting from "../KeyTopics/Settings/Usersetting";
+import Achivements from "../KeyTopics/Achivements/Achivements";
 
 export default function Profile() {
   const [user, setUser] = useState([]);

@@ -43,10 +43,11 @@ export default function Page() {
 
         {/* My Courses Routes */}
         <Route path="/MyCourse" element={<MyCourses />} />
-        <Route path="/MyCourse/Html$css" element={<CourseOutline />} /> {/* Route for HTML and CSS Course Outline */}
+        <Route path="/MyCourse/:courseId" element={<CourseOutline />} /> {/* Route for HTML and CSS Course Outline */}
 
         {/* Dynamic Routes for Lessons and Subtopics */}
         <Route path="/course/html-css/lesson-:lessonId/subtopic-:subtopicId" element={<VideoLecture />} /> {/* Fixed route for VideoLecture */}
+        <Route path="/watch-video" element={<VideoLecture/>} />
       </Routes>
 
       {/* Footer should always be visible */}
