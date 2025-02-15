@@ -10,6 +10,8 @@ import FormDisplay from "../Component/UserDataDisplay/PaymentDisplay/FormDisplay
 import CreateProduct from "../Components/Add_Vedio_Image/ImageAdd/AddNewProduct";
 import CreateVideoAndSave from "../Components/Add_Vedio_Image/VedioAdd/Addvedio";
 import AddCourseStats from "../Component/AddVideoshere/Addvideostofrontend";
+// import VideoUploader from "../Components/VedioUploader/VideoUploader";
+import VideoUpload from "./videoUploader";
 
 export default function AdminDashboard() {
   const isAdmin = true; // Example: Token for authentication or check if the user is an admin
@@ -30,16 +32,10 @@ export default function AdminDashboard() {
               <Route path="/admin/UserdataDisplay" element={<UserDisplay />} />
               <Route path="/admin/FormdataDisplay" element={<FormDisplay />} />
               <Route path="/admin/Addcoursestofrntend" element={<AddCourseStats/>}/>
-
               {/* Fallback route for unknown paths */}
               <Route path="*" element={<Navigate to="/admin/users" />} />
-
-
               <Route path="/Piyush" element={<CreateVideoAndSave/>}/>
-
-
-
-              
+              <Route path="/upload-video" element={<VideoUpload/>} />
             </Routes>
           </div>
         </div>
