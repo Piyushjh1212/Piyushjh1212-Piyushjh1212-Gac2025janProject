@@ -1,0 +1,22 @@
+/* Video Lecture Page */
+.video-lecture-container {
+    max-width: 80%;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .video-lecture-container h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  video {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
+  }
+  

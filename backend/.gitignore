@@ -1,0 +1,15 @@
+.env
+node_modules
+# Ignore large media files
+*.mp4
+*.avi
+*.mov
+*.zip
+*.rar
+*.tar.gz
+
+# Ignore node modules (for JS projects)
+node_modules/
+
+# Ignore environment files
+.env

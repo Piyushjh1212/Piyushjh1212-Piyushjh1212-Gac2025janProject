@@ -1,0 +1,189 @@
+/* VideoUploader.css */
+
+/* General Styling */
+.video-uploader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Input Section */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.topic-select,
+.video-input {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.topic-select:hover,
+.video-input:hover {
+  border-color: #007bff;
+}
+
+/* Upload Button */
+.upload-button {
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+/* Preview Section */
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.preview-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.preview-video {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Grid Section */
+.outputs {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.no-videos-text {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  justify-items: center;
+  width: 100%;
+}
+
+/* Individual Video Item */
+.single-video-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.single-video-grid:hover {
+  transform: scale(1.05);
+}
+
+.uploaded-video {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 180px;
+  height: 120px;
+  object-fit: cover;
+}
+
+/* Button Section */
+.buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.delete-button,
+.use-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.use-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.use-button:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .video-uploader {
+      padding: 15px;
+  }
+
+  .video-grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .uploaded-video {
+      height: 100px;
+  }
+
+  .upload-button {
+      font-size: 14px;
+      padding: 10px 20px;
+  }
+
+  .delete-button,
+  .use-button {
+      font-size: 12px;
+      padding: 6px 10px;
+  }
+}

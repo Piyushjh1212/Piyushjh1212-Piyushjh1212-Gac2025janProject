@@ -1,0 +1,161 @@
+/* What We Do Section */
+.what-we-do-section {
+  background-color: #FFFFFF;
+  padding: 40px 20px;
+  text-align: center;
+  border: 1px solid black;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+/* Container */
+.what-we-do-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section Title */
+.what-we-do-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #0D9488;
+}
+
+/* Section Description */
+.what-we-do-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Tabs Navigation */
+.what-we-do-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.what-we-do-tab {
+  background-color: #F97316;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.what-we-do-tab:hover {
+  background-color: #D85A11;
+}
+
+.what-we-do-tab.active {
+  background-color: #0D9488;
+}
+
+/* Tab Content */
+.what-we-do-tab-content {
+  padding: 30px;
+  background-color: #F9F9F9;
+  border-radius: 8px;
+  height: 30vh;
+  z-index: -999;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure Only Active Panel is Visible */
+.what-we-do-tab-panel {
+  display: none;
+}
+
+.what-we-do-tab-panel h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #0D9488;
+}
+
+.what-we-do-tab-panel p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Show Only Active Tab Panel */
+.what-we-do-tab-panel.active {
+  display: block;
+}
+
+/* Join Us Section */
+.what-we-do-join-us {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.what-we-do-join-us p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Call-to-action Button */
+.what-we-do-cta-button {
+  max-width: 300px;
+  width: 30%;
+  background-color: #F97316;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.what-we-do-cta-button:hover {
+  background-color: #D85A11;
+}
+
+/* Footer */
+footer {
+  background-color: #0D9488;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .what-we-do-title {
+    font-size: 2rem;
+  }
+
+  .what-we-do-description {
+    font-size: 1rem;
+  }
+
+  .what-we-do-tab {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  .what-we-do-cta-button {
+    width: 100%;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+  }
+}

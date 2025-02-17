@@ -1,0 +1,62 @@
+.card {
+    width: 300px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  p {
+    color: #555;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .progress-container {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: #4caf50;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .progress-text {
+    font-size: 12px;
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .milestones {
+    text-align: left;
+    margin-top: 10px;
+  }
+  
+  .milestones p {
+    font-size: 13px;
+    color: #333;
+  }
+  
