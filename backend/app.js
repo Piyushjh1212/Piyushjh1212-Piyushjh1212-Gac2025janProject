@@ -14,6 +14,7 @@ import pdfRoutes from "./routes/PdfRoute.js"
 import paymentRouter from "./routes/Paymentroutes.js"; 
 import fetchcourseRouter from "./routes/fetchCoursesroutes.js";
 import vRouter from "./routes/vUplRoutes.js";
+import courseVideoRouter from "./routes/courseVideoRouter.js";
 
 // Load environment variables
 dotenv.config();
@@ -59,6 +60,7 @@ app.use("/api/v1/images", imageRouter);
 // VedioUpload Api
 
 app.use("/api/v1/video", vRouter);
+app.use("/api/v1/course-video", courseVideoRouter);
 
 app.get("/", (req, res) => {
   return res.status(201).send({

@@ -4,7 +4,8 @@ import userModel from "../models/userModel.js";
 export const isAuth = async (req, res, next) => {
   try {
     // Get token from cookies or headers
-    const token = req.cookies.token || req.header("Authorization")?.split(" ")[1];
+    const token =
+      req.cookies.token || req.header("Authorization")?.split(" ")[1];
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -47,7 +48,7 @@ export const isAuth = async (req, res, next) => {
     }
 
     // General error handler for other issues (e.g., database or unexpected errors)
-    console.error("Token verification failed:", error);  // Log for debugging purposes
+    console.error("Token verification failed:", error); // Log for debugging purposes
     return res.status(401).json({
       success: false,
       message: "Invalid or expired token",

@@ -112,23 +112,6 @@ const VideoUploader = () => {
                   <source src={videoItem.videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className="buttons">
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDelete(videoItem._id)}
-                    disabled={uploading}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="use-button"
-                    onClick={() =>
-                      setSelectedVideos([...selectedVideos, videoItem.videoUrl])
-                    }
-                  >
-                    Use
-                  </button>
-                </div>
               </div>
             ))}
           </div>

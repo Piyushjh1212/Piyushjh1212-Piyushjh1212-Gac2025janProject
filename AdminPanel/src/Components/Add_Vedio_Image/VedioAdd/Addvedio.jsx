@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import "./Addvidio.css";
 import { ImageContext } from "../../Context/ImageContext";
 import VideoUploader from "../../VedioUploader/VideoUploader";
 import { GacContext } from "../../Context/GacContext";
@@ -145,11 +146,14 @@ const CreateVideoAndSave = () => {
 
       {/* Uploaded Videos Section */}
       <div className="show-videos">
-        <h2>Uploaded Videos</h2>
         {fetchV.length > 0 ? (
           fetchV.map((item, i) => (
-            <div key={i} style={{ margin: "10px" }}>
+            <div className="single-video" key={i} style={{ margin: "10px" }}>
               <video style={{ width: "320px" }} src={item.url} controls />
+              <div className="buttons">
+                <button>Use</button>
+                <button>Delete</button>
+              </div>
             </div>
           ))
         ) : (

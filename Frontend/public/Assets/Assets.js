@@ -1,5 +1,5 @@
-import html_css_Js from './recoed.mp4';
+import html_css_Js from './cPlus.webp';
 
 export const courseVideo = {
-     html_css_Js,
+     html_css_Js
 }

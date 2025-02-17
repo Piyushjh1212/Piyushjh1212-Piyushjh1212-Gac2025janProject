@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Products from "../Component/Products";
 import Settings from "../Component/Settings";
 import Login from "../Component/Login";
@@ -13,6 +18,7 @@ import AddCourseStats from "../Component/AddVideoshere/Addvideostofrontend";
 // import VideoUploader from "../Components/VedioUploader/VideoUploader";
 import VideoUpload from "./videoUploader";
 import ImageUploader from "../Components/ImageUploader/ImageUploader";
+import VideoUploader from "../Component/VideoUploader/VideoUploader";
 
 export default function AdminDashboard() {
   const isAdmin = true; // Example: Token for authentication or check if the user is an admin
@@ -28,17 +34,27 @@ export default function AdminDashboard() {
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/products" element={<Products />} />
               <Route path="/admin/settings" element={<Settings />} />
-              <Route path="/admin/add-new-product" element={<CreateProduct />} />
-              <Route path="/admin/add-new-Vedio" element={<CreateVideoAndSave />} />
+              <Route
+                path="/admin/add-new-product"
+                element={<CreateProduct />}
+              />
+              <Route
+                path="/admin/add-new-Vedio"
+                element={<CreateVideoAndSave />}
+              />
               <Route path="/admin/UserdataDisplay" element={<UserDisplay />} />
               <Route path="/admin/FormdataDisplay" element={<FormDisplay />} />
-              <Route path="/admin/Addcoursestofrntend" element={<AddCourseStats/>}/>
+              <Route
+                path="/admin/Addcoursestofrntend"
+                element={<AddCourseStats />}
+              />
               {/* Fallback route for unknown paths */}
               <Route path="*" element={<Navigate to="/admin/users" />} />
-              <Route path="/Piyush" element={<CreateVideoAndSave/>}/>
-              <Route path="/upload-video" element={<VideoUpload/>} />
+              <Route path="/Piyush" element={<CreateVideoAndSave />} />
+              <Route path="/upload-video" element={<VideoUpload />} />
 
-              <Route path= "/Upload-image" element={<ImageUploader/>} />
+              <Route path="/Upload-image" element={<ImageUploader />} />
+              <Route path="/video-upload" element={<VideoUploader />} />
             </Routes>
           </div>
         </div>
