@@ -10,13 +10,13 @@ import Profile from "../Components/Profile/MainProfile/Profile";
 import ProgressCard from "../Components/Profile/KeyTopics/M_Courses/ProgressCard";
 import EditProfile from "../Components/Profile/Edit_Profile/Editprofile";
 import Footer from "../Components/Footer/Footer";
-import Product from "../Components/HomeComponent/Product/Product";
 import Contact from "../Components/HomeComponent/Contact/Contact";
 import ProductPage from "../Components/HomeComponent/Product/Products";
 import Checkout from "../Components/HomeComponent/Product/Checkout/Checkout";
 import MyCourses from "../Components/Profile/My_Courses/Mycourses";
 import CourseOutline from "../My_Course_List/Html$Css/Html"; // Your Course Outline component
 import VideoLecture from "../Vedio_Lectures/VideoLecture";
+import Product from "../Components/HomeComponent/Product/Product_here/Product";
 
 export default function Page() {
   return (

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import "./VideoUploader.css";
 import { toast } from "react-toastify";
 import { VideoContext } from "../Context/VedioContext";
-import VideoUpload from "../VUpload/VUpload";
+import VideoUpload from "../../Component/VideoUploader/VUpload/VUpload";
 
 const VideoUploader = () => {
   const [videos, setVideos] = useState([]);

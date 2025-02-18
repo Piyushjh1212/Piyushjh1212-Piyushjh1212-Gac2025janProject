@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useContext } from "react";
-import { GacContext } from "../Context/GacContext";
+import { GacContext } from "../../../Components/Context/GacContext";
 
 const VideoUpload = ({ onUploadSuccess }) => {
   const [title, setTitle] = useState("");
@@ -93,7 +93,7 @@ const VideoUpload = ({ onUploadSuccess }) => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <input
-        type="file"
+        type="file" 
         accept="video/*"
         onChange={handleFileChange}
         ref={fileInputRef}

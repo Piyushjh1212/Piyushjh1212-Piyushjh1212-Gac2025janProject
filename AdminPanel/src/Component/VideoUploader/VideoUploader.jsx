@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import VideoUpload from "../../Components/VUpload/VUpload";
+import VideoUpload from "./VUpload/VUpload";
 import { GacContext } from "../../Components/Context/GacContext";
 import { videoTopic } from "../../assets/assets";
+import "./VideoUploader.css"; // Ensure you have a CSS file
 
 const VideoUploader = () => {
   const { fetchV = [] } = useContext(GacContext); // Ensure fetchV is an array
@@ -54,18 +55,19 @@ const VideoUploader = () => {
   );
 
   return (
-    <div className="video-uploader">
+    <div className="video-uploader-container">
       {/* Selected Video Display */}
-      <div className="use-video-container">
+      <div className="selected-video-container">
         {selectedVideo ? (
-          <video style={{ width: "320px" }} src={selectedVideo} controls />
+          <video className="selected-video" src={selectedVideo} controls />
         ) : (
-          <p>No video selected</p>
+          <p className="no-video-text">No video selected</p>
         )}
       </div>
 
       {/* Subtitle Input */}
       <input
+        className="subtitle-input"
         value={subTitle}
         onChange={(e) => setSubTitle(e.target.value)}
         type="text"
@@ -73,63 +75,70 @@ const VideoUploader = () => {
       />
 
       {/* Video Topic and Subcategory Selection */}
-      <div className="video-topic">
-        <select
-          value={selectedTopic}
-          onChange={(e) => setSelectedTopic(e.target.value)}
-        >
-          <option value="" disabled>
-            Select Video Topic
-          </option>
-          {videoTopic.map((item) => (
-            <option key={item._id} value={item.name}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-
-        {/* Subcategory Selection (Visible only if subcategories exist) */}
-        {selectedTopicObj?.subCategory && (
+      <div className="video-topic-container">
+        <div className="video-topic-container-2">
           <select
-            value={selectedSubTopic}
-            onChange={(e) => setSelectedSubTopic(e.target.value)}
+            className="topic-select"
+            value={selectedTopic}
+            onChange={(e) => setSelectedTopic(e.target.value)}
           >
             <option value="" disabled>
-              Select Subcategory
+              Select Video Topic
             </option>
-            {selectedTopicObj.subCategory.map((topic, i) => (
-              <option key={i} value={topic}>
-                {topic}
+            {videoTopic.map((item) => (
+              <option key={item._id} value={item.name}>
+                {item.name}
               </option>
             ))}
           </select>
-        )}
+
+          {/* Subcategory Selection (Visible only if subcategories exist) */}
+          {selectedTopicObj?.subCategory && (
+            <select
+              className="subtopic-select"
+              value={selectedSubTopic}
+              onChange={(e) => setSelectedSubTopic(e.target.value)}
+            >
+              <option value="" disabled>
+                Select Subcategory
+              </option>
+              {selectedTopicObj.subCategory.map((topic, i) => (
+                <option key={i} value={topic}>
+                  {topic}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
 
         {/* Upload Course Video Button */}
-        <button onClick={uploadCourseVideo}>Submit Course Data</button>
+        <button className="upload-btn" onClick={uploadCourseVideo}>
+          Submit Course Data
+        </button>
       </div>
 
       {/* Video Upload Component */}
       <VideoUpload />
 
       {/* Show Uploaded Videos */}
-      <div className="show-videos">
+      <div className="uploaded-videos-container">
         {fetchV.length > 0 ? (
           fetchV.map((item) => (
-            <div
-              className="single-video"
-              key={item._id || item.url}
-              style={{ margin: "10px" }}
-            >
-              <video style={{ width: "320px" }} src={item.url} controls />
-              <div className="buttons">
-                <button onClick={() => setSelectedVideo(item.url)}>Use</button>
-                <button>Delete</button>
+            <div className="uploaded-video-card" key={item._id || item.url}>
+              <video className="uploaded-video" src={item.url} controls />
+              <div className="video-buttons">
+                <button
+                  className="use-video-btn"
+                  onClick={() => setSelectedVideo(item.url)}
+                >
+                  Use
+                </button>
+                <button className="delete-video-btn">Delete</button>
               </div>
             </div>
           ))
         ) : (
-          <p>No videos available</p>
+          <p className="no-videos-text">No videos available</p>
         )}
       </div>
     </div>
