@@ -1,34 +1,34 @@
 import React from 'react';
-import { FaLaptopCode, FaServer, FaUsers } from 'react-icons/fa';
+import { FaCode, FaAppStore, FaRobot } from 'react-icons/fa'; // Corrected icon names
 import './WhatWeDo.css';
 
 const services = [
   {
     id: 'frontend',
-    title: 'Frontend Development',
+    title: 'Web Development',
     description:
       'We teach HTML, CSS, and JavaScript to help you build beautiful and interactive websites.',
-    icon: <FaLaptopCode size={50} color="#008080" />,
+    icon: <FaCode size={50} color="#008080" />, // Updated icon
   },
   {
     id: 'backend',
-    title: 'Backend Development',
+    title: 'App Development',
     description:
       'Master Node.js, Express, and more to build powerful server-side applications.',
-    icon: <FaServer size={50} color="#FF6F61" />,
+    icon: <FaAppStore size={50} color="#FF6F61" />, // Updated icon
   },
   {
     id: 'fullstack',
-    title: 'Full Stack Development',
+    title: 'AI/ML Development',
     description:
       'Learn both frontend and backend to become a full-stack developer.',
-    icon: <FaUsers size={50} color="#FF9800" />,
+    icon: <FaRobot size={50} color="#FF9800" />, // Updated icon
   },
 ];
 
 const teamMembers = [
   {
-    name: 'Piyush Jhariya',
+    name: 'Mr. Piyush Jhariya',
     role: 'Founder (Frontend Developer)',
     image: 'https://randomuser.me/api/portraits/men/10.jpg',
     bio: 'In a mission to train the thousand of students',
@@ -69,7 +69,6 @@ const WhatWeDo = () => {
               <div className="what-we-do-icon-container">{service.icon}</div>
               <h3 className="what-we-do-service-title">{service.title}</h3>
               <p className="what-we-do-service-description">{service.description}</p>
-              <button className="what-we-do-learn-more-btn">Learn More</button>
             </div>
           ))}
         </div>
