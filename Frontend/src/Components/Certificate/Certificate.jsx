@@ -23,7 +23,7 @@ const Certificate = ({ name, course, date }) => {
           <div className="signature-section">
             <div>
               <p className="label">Instructor</p>
-              <p className="info">EduTech Academy</p>
+              <p className="info">Growallcoaching</p>
             </div>
             <div>
               <p className="label">Signature</p>

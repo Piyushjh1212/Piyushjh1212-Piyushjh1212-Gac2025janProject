@@ -160,6 +160,7 @@ input:focus {
   border: 1px solid #666;
   border-radius: 2px;
   outline: none;
+  width: fit-content;
 }
 /* Responsive Design */
 @media (max-width: 900px) {

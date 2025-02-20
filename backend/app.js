@@ -34,8 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Environment variables
 const port = process.env.PORT || 5000;
-const mongo_url =
-  process.env.MONGO_URL || "mongodb://localhost:27017/mydatabase";
+const mongo_url = process.env.MONGO_URL || "mongodb://localhost:27017/mydatabase";
 const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
 const cloudApiKey = process.env.CLOUDINARY_API_KEY;
 const cloudApiSecret = process.env.CLOUDINARY_API_SECRET;

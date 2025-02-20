@@ -36,4 +36,30 @@ export const uploadCourseVideoController = async (req, res) => {
   }
 };
 
+export const getAllCourseVideoController = async (req, res) => {
+  try {
+    const data = await courseVideoModel.find();
+
+    if (data.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No course videos found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "All course videos fetched successfully",
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message, // Include the error message for debugging
+    });
+  }
+};
+
+
 export default uploadCourseVideoController;
