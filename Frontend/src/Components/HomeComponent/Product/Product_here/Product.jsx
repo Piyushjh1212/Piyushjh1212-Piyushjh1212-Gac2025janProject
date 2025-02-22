@@ -50,7 +50,7 @@ const Product = ({ handleAddToCart }) => {
               </div>
               <h3>{product.name}</h3>
               <p className="price">
-              <div className="Offer-Percentage">
+                <div className="Offer-Percentage">
                   <span>₹{product.discounted} %Off</span>
                 </div>
                 <div>
@@ -58,7 +58,6 @@ const Product = ({ handleAddToCart }) => {
                   <span className="Offer-price">₹{product.price}</span>
                   INR
                 </div>
-                
               </p>
               <div className="product-details">
                 <Link
@@ -71,10 +70,11 @@ const Product = ({ handleAddToCart }) => {
                 </Link>
                 <button
                   className="product-add-to-cart-btn"
-                  onClick={() => handleAddToCart(product)}
-                  aria-label={`Add ${product.name} to cart`}
+                  onClick={() =>
+                    window.open("/Pdf/Syllabus_of_HtmlandCss.pdf", "_blank")
+                  }
                 >
-                  See Browchure
+                  See Brochure
                 </button>
               </div>
             </div>
