@@ -17,6 +17,7 @@ import MyCourses from "../Components/Profile/My_Courses/Mycourses";
 import CourseOutline from "../My_Course_List/Html$Css/Html"; // Your Course Outline component
 import VideoLecture from "../Vedio_Lectures/VideoLecture";
 import Product from "../Components/HomeComponent/Product/Product_here/Product";
+import VideoPreview from "../My_Course_List/Html$Css/Video/VideoPreview";
 
 export default function Page() {
   return (
@@ -48,6 +49,8 @@ export default function Page() {
         {/* Dynamic Routes for Lessons and Subtopics */}
         <Route path="/course/html-css/lesson-:lessonId/subtopic-:subtopicId" element={<VideoLecture />} /> {/* Fixed route for VideoLecture */}
         <Route path="/watch-video" element={<VideoLecture/>} />
+
+        <Route path="/Vedio-watch" element={<VideoPreview/>}/>
       </Routes>
 
       {/* Footer should always be visible */}

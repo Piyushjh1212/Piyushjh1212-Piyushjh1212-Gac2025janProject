@@ -1,0 +1,68 @@
+HTML & CSS Course Outline
+
+Module 1: Introduction to Web Development
+What is Web Development?
+Difference between Frontend & Backend
+Understanding Browsers & How the Web Works
+
+Module 2: Getting Started with HTML
+Introduction to HTML
+Basic HTML Structure
+HTML Elements, Tags & Attributes
+Text Formatting (Headings, Paragraphs, Lists)
+Links & Navigation
+Images, Audio & Video Embedding
+
+Module 3: HTML Forms & Tables
+Creating Forms (Input, Textarea, Select, Checkbox, Radio Buttons)
+Form Validation & Attributes
+Tables in HTML (Rows, Columns, Merging Cells)
+HTML5 Form Elements (Date, Range, Color, etc.)
+
+Module 4: HTML5 Semantic Elements
+Understanding Semantic HTML
+<header>, <nav>, <article>, <section>, <footer>
+Accessibility & SEO Benefits
+Module 5: Introduction to CSS
+What is CSS & Why Use It?
+Different Ways to Apply CSS (Inline, Internal, External)
+CSS Selectors & Specificity
+Understanding Colors, Units, and Fonts
+
+Module 6: CSS Box Model & Layout
+Margin, Padding, Border
+Width & Height
+Display Property (Block, Inline, Inline-Block)
+Positioning (Static, Relative, Absolute, Fixed)
+
+Module 7: CSS Flexbox & Grid
+Introduction to Flexbox
+Flexbox Properties (justify-content, align-items, flex-wrap, etc.)
+CSS Grid System & Layout Design
+Grid Template Rows & Columns
+
+Module 8: Responsive Web Design
+Introduction to Responsive Design
+Media Queries
+Mobile-First Approach
+Viewport Meta Tag
+
+Module 9: CSS Styling & Advanced Concepts
+CSS Transitions & Animations
+CSS Pseudo-elements & Pseudo-classes
+Custom Fonts & Icon Fonts (Google Fonts, Font Awesome)
+CSS Variables
+
+Module 10: CSS Frameworks & Preprocessors
+Introduction to CSS Frameworks (Bootstrap, Tailwind CSS – Optional)
+Introduction to SASS & LESS
+Module 11: Building a Complete Web Page
+Combining HTML & CSS
+Creating a Multi-Page Website
+Best Practices & Performance Optimization
+
+Module 12: Project & Final Assessment
+Build a Landing Page
+Create a Portfolio Website
+Debugging & Troubleshooting CSS Issues
+Final Project Review & Deployment

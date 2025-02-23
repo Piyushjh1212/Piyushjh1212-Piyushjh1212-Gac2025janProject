@@ -1,123 +1,128 @@
 import React, { useContext, useEffect, useState } from "react";
 import VideoUpload from "./VUpload/VUpload";
 import { GacContext } from "../../Components/Context/GacContext";
-import { videoTopic } from "../../assets/assets";
 import "./VideoUploader.css"; // Ensure you have a CSS file
+import CourseRendering from "../../AdminDashboard/CoursesRendering";
 
 const VideoUploader = () => {
   const { fetchV = [] } = useContext(GacContext); // Ensure fetchV is an array
-  const [selectedTopic, setSelectedTopic] = useState(""); // State to manage selected topic
-  const [selectedSubTopic, setSelectedSubTopic] = useState(""); // Subcategory
-  const [selectedVideo, setSelectedVideo] = useState(""); // Video URL state
-  const [subTitle, setSubTitle] = useState(""); // Subtitle for video
+  const { renderVideo, setRenderVideo } = useContext(GacContext);
 
-  // Function to handle video upload
-  const uploadCourseVideo = async () => {
+  const [data, setData] = useState({
+    title: "",
+    videoTopic: "",
+    vUrl: "",
+  });
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]); // Now tracks state updates
+
+  const fetchVideoTopic = async () => {
     try {
       const response = await fetch(
-        `http://localhost:10011/api/v1/course-video/add`,
+        `http://localhost:10011/api/v1/course-render/get-all`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong while fetching topics");
+      }
+
+      const responseData = await response.json();
+      console.log(responseData);
+      setRenderVideo(responseData.allrenderedVideo || []);
+
+      if (!responseData.success) {
+        alert(responseData.message);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchVideoTopic();
+  }, []);
+
+  const updateVideoRender = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:10011/api/v1/course-render/update`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            selectedTopic,
-            selectedSubTopic,
-            selectedVideo,
-            subTitle,
-          }),
+          body: JSON.stringify(data),
         }
       );
 
       if (!response.ok) {
-        throw new Error(
-          "Something went wrong while uploading the course video."
-        );
+        throw new Error("Error updating video data");
       }
 
-      const data = await response.json();
-
-      if (!data.success) {
-        alert(data.message);
-      } else {
-        alert("Video uploaded successfully!");
-      }
+      const result = await response.json();
+      console.log(result);
+      alert("Course data updated successfully!");
     } catch (error) {
-      console.error("Upload error:", error);
-      alert("An error occurred while uploading the video.");
+      alert(error.message);
     }
   };
 
-  // Find the selected topic object
-  const selectedTopicObj = videoTopic.find(
-    (topic) => topic.name === selectedTopic
-  );
-
   return (
     <div className="video-uploader-container">
-      {/* Selected Video Display */}
       <div className="selected-video-container">
-        {selectedVideo ? (
-          <video className="selected-video" src={selectedVideo} controls />
+        {data.vUrl ? (
+          <video className="selected-video" src={data.vUrl} controls />
         ) : (
           <p className="no-video-text">No video selected</p>
         )}
       </div>
 
-      {/* Subtitle Input */}
+      {/* Input for Video Title */}
       <input
         className="subtitle-input"
-        value={subTitle}
-        onChange={(e) => setSubTitle(e.target.value)}
+        value={data.videoTopic}
+        onChange={(e) =>
+          setData((prev) => ({ ...prev, videoTopic: e.target.value }))
+        }
         type="text"
-        placeholder="Enter subtitle"
+        placeholder="Enter title"
       />
 
-      {/* Video Topic and Subcategory Selection */}
+      {/* Video Topic Selection */}
       <div className="video-topic-container">
         <div className="video-topic-container-2">
           <select
             className="topic-select"
-            value={selectedTopic}
-            onChange={(e) => setSelectedTopic(e.target.value)}
+            value={data.title}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, title: e.target.value }))
+            }
           >
             <option value="" disabled>
               Select Video Topic
             </option>
-            {videoTopic.map((item) => (
-              <option key={item._id} value={item.name}>
-                {item.name}
+            {renderVideo.map((item) => (
+              <option key={item._id} value={item.title}>
+                {item.title}
               </option>
             ))}
           </select>
-
-          {/* Subcategory Selection (Visible only if subcategories exist) */}
-          {selectedTopicObj?.subCategory && (
-            <select
-              className="subtopic-select"
-              value={selectedSubTopic}
-              onChange={(e) => setSelectedSubTopic(e.target.value)}
-            >
-              <option value="" disabled>
-                Select Subcategory
-              </option>
-              {selectedTopicObj.subCategory.map((topic, i) => (
-                <option key={i} value={topic}>
-                  {topic}
-                </option>
-              ))}
-            </select>
-          )}
         </div>
 
-        {/* Upload Course Video Button */}
-        <button className="upload-btn" onClick={uploadCourseVideo}>
+        <button className="upload-btn" onClick={updateVideoRender}>
           Submit Course Data
         </button>
       </div>
 
-      {/* Video Upload Component */}
+      <br />
+      <hr />
       <VideoUpload />
 
       {/* Show Uploaded Videos */}
@@ -129,7 +134,9 @@ const VideoUploader = () => {
               <div className="video-buttons">
                 <button
                   className="use-video-btn"
-                  onClick={() => setSelectedVideo(item.url)}
+                  onClick={() =>
+                    setData((prev) => ({ ...prev, vUrl: item.url }))
+                  }
                 >
                   Use
                 </button>
@@ -140,6 +147,12 @@ const VideoUploader = () => {
         ) : (
           <p className="no-videos-text">No videos available</p>
         )}
+      </div>
+
+      
+      <hr />
+      <div className="create-new-topic">
+        <CourseRendering/>
       </div>
     </div>
   );

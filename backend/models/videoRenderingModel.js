@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-const videoRenderingSchema = new mongoose.Schema({
+// Define the schema for Category
+const renderingVideoSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -10,25 +11,13 @@ const videoRenderingSchema = new mongoose.Schema({
     required: true,
   },
   subTitle: {
-    type: [
-      {
-        vsubTitle: {
-          type: String,
-          required: true,
-        },
-        vUrl: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    default: [],
-  },
+    type: Array,
+    default: []
+  }
 });
 
-const videoRenderingModel =
-  mongoose.models.CourseVideos ||
-  mongoose.model("CourseVideos", videoRenderingSchema);
+const renderingVideoModel =
+  mongoose.models.RenderVideo ||
+  mongoose.model("RenderVideo", renderingVideoSchema);
 
-export default videoRenderingModel;
-    
+export default renderingVideoModel;

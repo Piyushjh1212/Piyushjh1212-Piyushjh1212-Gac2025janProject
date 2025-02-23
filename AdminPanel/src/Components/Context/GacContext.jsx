@@ -5,6 +5,8 @@ export const GacContext = createContext(null); // Corrected context creation
 const GacContextProvider = (props) => {
   const [adminUser, setAdminUser] = useState([]);
   const [fetchV, setFetchV] = useState([]);
+  const [renderVideo, setRenderVideo] = useState([]);
+
   const fetchAllUsers = async () => {
     try {
       const response = await fetch(
@@ -36,7 +38,9 @@ const GacContextProvider = (props) => {
   const contextValue = {
     adminUser,
     fetchV,
-    setFetchV
+    setFetchV,
+    renderVideo,
+    setRenderVideo,
   }; // You can add state or functions here
 
   return (

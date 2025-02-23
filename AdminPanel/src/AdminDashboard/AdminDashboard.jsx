@@ -18,6 +18,7 @@ import CreateVideoAndSave from "../Components/Add_Vedio_Image/VedioAdd/Addvedio"
 import VideoUpload from "./videoUploader";
 import ImageUploader from "../Components/ImageUploader/ImageUploader";
 import VideoUploader from "../Component/VideoUploader/VideoUploader";
+import CourseRendering from "./CoursesRendering";
 
 export default function AdminDashboard() {
   const isAdmin = true; // Example: Token for authentication or check if the user is an admin
@@ -51,6 +52,8 @@ export default function AdminDashboard() {
 
               <Route path="/Upload-image" element={<ImageUploader />} />
               <Route path="/admin/video-upload" element={<VideoUploader />} />
+              <Route path="/rendering" element={<CourseRendering/>} />
+              
             </Routes>
           </div>
         </div>
