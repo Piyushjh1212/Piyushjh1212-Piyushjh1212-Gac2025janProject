@@ -1,0 +1,105 @@
+/* Global Styling */
+.privacy-container {
+    margin: 50px auto;
+    padding: 30px;
+    max-width: 92%;
+    background: #ffffff;
+    border-radius: 10px;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Header */
+  .privacy-container h1 {
+    text-align: center;
+    background: linear-gradient(45deg, #007bff, #00bcd4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .privacy-container p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  
+  /* Sections */
+  .privacy-container section {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-left: 5px solid #007bff;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .privacy-container section:hover {
+    background: #eef5ff;
+    transform: scale(1.02);
+  }
+  
+  /* Section Titles */
+  .privacy-container h2 {
+    color: #007bff;
+    font-size: 22px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  
+  .privacy-container h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #007bff;
+    margin-top: 5px;
+  }
+  
+  /* Lists */
+  .privacy-container ul {
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .privacy-container ul li {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 8px;
+    padding-left: 25px;
+    position: relative;
+  }
+  
+  .privacy-container ul li::before {
+    content: "✔";
+    color: #007bff;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  
+  /* Footer */
+  .privacy-container footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .privacy-container {
+      padding: 20px;
+    }
+    .privacy-container h1 {
+      font-size: 24px;
+    }
+    .privacy-container h2 {
+      font-size: 20px;
+    }
+  }
+  

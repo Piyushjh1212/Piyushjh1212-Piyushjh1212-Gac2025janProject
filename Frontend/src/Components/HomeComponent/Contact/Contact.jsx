@@ -41,7 +41,7 @@ const Contact = () => {
   };
 
   return (
-    <div className={styles.contactContainer}>
+    <div className={styles.contactContainer} id="Contact-From">
       <div className={styles.contactContent}>
         {/* Left Column: Contact Form */}
         <div className={styles.contactFormContainer}>

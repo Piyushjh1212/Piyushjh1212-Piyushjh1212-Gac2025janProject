@@ -18,6 +18,7 @@ import CourseOutline from "../My_Course_List/Html$Css/Html"; // Your Course Outl
 import VideoLecture from "../Vedio_Lectures/VideoLecture";
 import Product from "../Components/HomeComponent/Product/Product_here/Product";
 import VideoPreview from "../My_Course_List/Html$Css/Video/VideoPreview";
+import PrivacyPolicy from "../Components/HomeComponent/PrivacyPolicy/PrivacyPolicy";
 
 export default function Page() {
   return (
@@ -51,6 +52,9 @@ export default function Page() {
         <Route path="/watch-video" element={<VideoLecture/>} />
 
         <Route path="/Vedio-watch" element={<VideoPreview/>}/>
+
+        {/* Privacy Policy  */}
+        <Route path="/growallcoaching/Privacy-policy" element={<PrivacyPolicy/>}/>
       </Routes>
 
       {/* Footer should always be visible */}

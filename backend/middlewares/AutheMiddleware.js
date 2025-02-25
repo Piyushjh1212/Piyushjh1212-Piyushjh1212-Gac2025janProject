@@ -6,6 +6,10 @@ export const isAuth = async (req, res, next) => {
     // Get token from cookies or headers
     const token =
       req.cookies.token || req.header("Authorization")?.split(" ")[1];
+    
+    // Log the token for debugging
+    console.log("Token received:", token);
+
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -15,6 +19,9 @@ export const isAuth = async (req, res, next) => {
 
     // Verify token
     const decodedData = JWT.verify(token, process.env.JWT_SECRET);
+
+    // Log the decoded data for debugging
+    console.log("Decoded Data:", decodedData);
 
     // Check if user exists
     const user = await userModel.findById(decodedData._id);

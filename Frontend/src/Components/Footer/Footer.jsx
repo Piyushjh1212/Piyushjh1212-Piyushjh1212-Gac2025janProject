@@ -37,10 +37,10 @@ export default function Footer() {
             <h3 className={styles.footerTitle}>Quick Links</h3>
             <ul className={styles.footerList}>
               <li><a className={styles.footerLink} href="#home">Home</a></li>
-              <li><a className={styles.footerLink} href="#about">About</a></li>
-              <li><a className={styles.footerLink} href="#courses">Courses</a></li>
-              <li><a className={styles.footerLink} href="#contact">Contact Us</a></li>
-              <li><a className={styles.footerLink} href="#">Privacy Policy</a></li>
+              <li><a className={styles.footerLink} href="/about">About</a></li>
+              <li><a className={styles.footerLink} href="/Products">Courses</a></li>
+              <li><a className={styles.footerLink} href="#Contact-From">Contact Us</a></li>
+              <li><a className={styles.footerLink} href="/growallcoaching/Privacy-policy">Privacy Policy</a></li>
             </ul>
           </div>
 

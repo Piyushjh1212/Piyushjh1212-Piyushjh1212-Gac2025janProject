@@ -3,7 +3,7 @@ import "./HomePage.css"; // Make sure the filename matches
 
 export default function HomePage() {
   return (
-    <div className="home-container">
+    <div className="home-container" id="home">
       <div className="home-container-2">
         <h1 className="home-title">
           Welcome to <span className="brand-name">GrowAllCoaching</span>, an

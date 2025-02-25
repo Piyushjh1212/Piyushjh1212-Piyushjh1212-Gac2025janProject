@@ -2,6 +2,8 @@ import userModel from "../models/userModel.js";
 import getDataUri from "../utils/features.js";
 import { v2 as cloudinary } from "cloudinary";
 
+// register user here
+
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, address, city, country, phone } = req.body;
@@ -21,13 +23,6 @@ export const registerController = async (req, res) => {
       });
     }
 
-    const existingUser = await userModel.findOne({ email });
-    if (existingUser) {
-      return res.status(500).send({
-        success: false,
-        message: `Email ${email} Allready Exist!`,
-      });
-    }
 
     const user = await userModel.create({
       name,
@@ -46,14 +41,22 @@ export const registerController = async (req, res) => {
   } catch (error) {
     res.status(501).send({
       success: false,
-      message: "error in register api",
+      message: "Register user API Failed",
       error,
     });
     console.log(error);
   }
 };
 
-// loging controller
+const existingUser = await userModel.findOne({ email });
+if (existingUser) {
+  return res.status(500).send({
+    success: false,
+    message: `Email ${email} Allready Exist!`,
+  });
+}
+
+// loging controller here
 
 export const loginController = async (req, res) => {
   try {

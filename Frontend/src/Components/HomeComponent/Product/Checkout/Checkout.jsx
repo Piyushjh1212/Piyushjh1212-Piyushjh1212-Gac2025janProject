@@ -71,35 +71,48 @@ const OrderForm = () => {
       alert("Please fill all required fields.");
       return;
     }
-
+  
+    console.log("📌 Sending payment request with data:", data);
+  
     try {
       const token = localStorage.getItem("token") || "";
       if (!token) {
         alert("User authentication required. Please log in.");
         return;
       }
-
-      const orderResponse = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-order`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
+      console.log("📌 Token Sent:", token);
+  
+      const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-Order`;
+      console.log("📌 API Request URL:", apiUrl);
+  
+      const orderResponse = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      });
+  
+      console.log("📌 API Response Status:", orderResponse.status);
+  
+      const responseText = await orderResponse.text(); // Get full response text
+      console.log("📌 Raw API Response:", responseText);
+  
       if (!orderResponse.ok) {
-        throw new Error("Failed to create order.");
+        throw new Error(`Failed to create order. Server responded with: ${responseText}`);
       }
-
-      const orderData = await orderResponse.json();
+  
+      const orderData = JSON.parse(responseText); // Convert response text to JSON
+      console.log("📌 Parsed API Response:", orderData);
+  
       if (!orderData.success || !orderData.id) {
         alert(`Order creation failed: ${orderData.message || "Unknown error"}`);
         return;
       }
+  
+   
+  
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY,
@@ -151,8 +164,8 @@ const OrderForm = () => {
       });
       paymentObject.open();
     } catch (error) {
-      console.log(error.message);
-      alert("An error occurred. Please try again.");
+      console.error("🚨 Error in handlePayment:", error);
+      alert(`An error occurred: ${error.message}`);
     }
   };
 
