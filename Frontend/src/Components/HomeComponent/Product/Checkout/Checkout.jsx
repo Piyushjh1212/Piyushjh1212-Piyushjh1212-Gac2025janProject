@@ -22,6 +22,7 @@ const OrderForm = () => {
     zipcode: "",
     country: "IN", // default country set to India
     phone: "",
+    features: product.price, //  Add features to the form data
     amount: product.price,
   });
 
@@ -71,9 +72,11 @@ const OrderForm = () => {
       alert("Please fill all required fields.");
       return;
     }
-  
+    // 📌 Log the token before making the API request
+    const token = localStorage.getItem("token") || "";
+    console.log("📌 Token Sent:", token);
     console.log("📌 Sending payment request with data:", data);
-  
+
     try {
       const token = localStorage.getItem("token") || "";
       if (!token) {
@@ -81,10 +84,12 @@ const OrderForm = () => {
         return;
       }
       console.log("📌 Token Sent:", token);
-  
-      const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/create-Order`;
+
+      const apiUrl = `${
+        import.meta.env.VITE_BACKEND_URL
+      }/api/v1/payment/create-Order`;
       console.log("📌 API Request URL:", apiUrl);
-  
+
       const orderResponse = await fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -93,26 +98,26 @@ const OrderForm = () => {
         },
         body: JSON.stringify(data),
       });
-  
+
       console.log("📌 API Response Status:", orderResponse.status);
-  
+
       const responseText = await orderResponse.text(); // Get full response text
       console.log("📌 Raw API Response:", responseText);
-  
+
       if (!orderResponse.ok) {
-        throw new Error(`Failed to create order. Server responded with: ${responseText}`);
+        throw new Error(
+          `Failed to create order. Server responded with: ${responseText}`
+        );
       }
-  
+
       const orderData = JSON.parse(responseText); // Convert response text to JSON
       console.log("📌 Parsed API Response:", orderData);
-  
+
       if (!orderData.success || !orderData.id) {
         alert(`Order creation failed: ${orderData.message || "Unknown error"}`);
         return;
       }
-  
-   
-  
+      console.log("📌 Order ID:", orderData.id);
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY,
@@ -123,7 +128,9 @@ const OrderForm = () => {
         image: "/Assets/GAC.jpg",
         order_id: orderData.id,
         handler: async function (response) {
-          alert(`✅ Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+          alert(
+            `✅ Payment Successful! Payment ID: ${response.razorpay_payment_id}`
+          );
 
           const verifyResponse = await fetch(
             `${import.meta.env.VITE_BACKEND_URL}/api/v1/payment/verifyPayments`,
@@ -185,15 +192,13 @@ const OrderForm = () => {
         <div className="course-order-heading">
           <h2>What you get in this course</h2>
         </div>
+        {/* course list for checkout */}
+
         <div className="course-order-heading-1">
           <ul>
-            <li>Complete Frontend Development (HTML, CSS, JavaScript, and frameworks)</li>
-            <li>Complete Backend Development (Node.js, Express.js)</li>
-            <li>Complete Database (SQL & MongoDB), MERN Stack</li>
-            <li>Real Life and Industry Grade Projects</li>
-            <li>Complete Java Language</li>
-            <li>Complete Data Structures & Algorithms</li>
-            <li>Library of DSA Qs with Video Solutions from Top Companies</li>
+            {product.features?.map((feature, index) => (
+              <li key={index}>{feature}</li> // ✅ Display each feature dynamically
+            ))}
           </ul>
         </div>
       </div>
@@ -209,7 +214,9 @@ const OrderForm = () => {
               placeholder="First name"
               type="text"
             />
-            {errors.firstName && <p className="error-text">{errors.firstName}</p>}
+            {errors.firstName && (
+              <p className="error-text">{errors.firstName}</p>
+            )}
             <input
               className="input-last-name"
               value={data.lastName}

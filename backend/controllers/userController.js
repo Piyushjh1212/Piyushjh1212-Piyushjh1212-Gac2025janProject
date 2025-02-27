@@ -2,331 +2,133 @@ import userModel from "../models/userModel.js";
 import getDataUri from "../utils/features.js";
 import { v2 as cloudinary } from "cloudinary";
 
-// register user here
-
+// Register User
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, address, city, country, phone } = req.body;
-
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !address ||
-      !city ||
-      !country ||
-      !phone
-    ) {
-      return res.status(505).send({
-        success: false,
-        message: "please provide all fields",
-      });
+    if (!name || !email || !password || !address || !city || !country || !phone) {
+      return res.status(400).json({ success: false, message: "Please provide all fields" });
     }
 
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ success: false, message: `Email ${email} already exists!` });
+    }
 
-    const user = await userModel.create({
-      name,
-      email,
-      password,
-      address,
-      city,
-      country,
-      phone,
-    });
-    res.status(201).send({
-      success: true,
-      message: "user created successfully",
-      user,
-    });
+    const user = await userModel.create({ name, email, password, address, city, country, phone });
+    res.status(201).json({ success: true, message: "User created successfully", user });
   } catch (error) {
-    res.status(501).send({
-      success: false,
-      message: "Register user API Failed",
-      error,
-    });
-    console.log(error);
+    res.status(500).json({ success: false, message: "Register user API failed", error });
   }
 };
 
-const existingUser = await userModel.findOne({ email });
-if (existingUser) {
-  return res.status(500).send({
-    success: false,
-    message: `Email ${email} Allready Exist!`,
-  });
-}
-
-// loging controller here
-
+// Login Controller
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-    // validation
     if (!email || !password) {
-      return res.status(500).send({
-        success: false,
-        message: "Email or Password is Required.",
-      });
+      return res.status(400).json({ success: false, message: "Email or Password is required." });
     }
 
-    // check user
     const user = await userModel.findOne({ email });
-    if (!user) {
-      return res.status(500).send({
-        success: false,
-        message: "User Not Found",
-      });
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(401).json({ success: false, message: "Invalid Credentials." });
     }
 
-    // check password
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
-      return res.status(404).send({
-        success: false,
-        message: "Invalid Credential.",
-      });
-    }
-
-    // token
     const token = user.generateToken();
     user.password = undefined;
 
-    res
-      .status(200)
+    res.status(200)
       .cookie("token", token, {
         expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
-        secure: process.env.NODE_ENV === "Development" ? true : false,
-        httpOnly: process.env.NODE_ENV === "Development" ? true : false,
-        sameSite: process.env.NODE_ENV === "Development" ? true : false,
+        secure: process.env.NODE_ENV !== "Development",
+        httpOnly: true,
+        sameSite: "Strict",
       })
-      .send({
-        success: true,
-        message: "User Logined Successfully",
-        token,
-        user,
-      });
+      .json({ success: true, message: "User logged in successfully", token, user });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error In Login!",
-      error,
-    });
+    res.status(500).json({ success: false, message: "Error in login API", error });
   }
 };
 
-//Get user profile
+// Get User Profile
 export const getUserProfileController = async (req, res) => {
-  console.log(req.user);
-  const user = req.user;
-  console.log(user);
-  user.password = undefined;
   try {
-    res.status(200).send({
-      success: true,
-      message: "User Profile Fetched Successfully",
-      user,
-    });
+    const user = req.user;
+    user.password = undefined;
+    res.status(200).json({ success: true, message: "User profile fetched successfully", user });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Problem in getUserProfileController api",
-      error,
-    });
+    res.status(500).json({ success: false, message: "Error fetching user profile", error });
   }
 };
 
 // Logout
 export const logoutController = async (req, res) => {
   try {
-    res
-      .status(200)
-      .cookie("token", "", {
-        expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
-        secure: process.env.NODE_ENV === "Development" ? true : false,
-        httpOnly: process.env.NODE_ENV === "Development" ? true : false,
-        sameSite: process.env.NODE_ENV === "Development" ? true : false,
-      })
-      .send({
-        success: true,
-        message: "User logout successfully",
-      });
+    res.status(200)
+      .cookie("token", "", { expires: new Date(0), httpOnly: true })
+      .json({ success: true, message: "User logged out successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "logout api problem",
-      error,
-    });
+    res.status(500).json({ success: false, message: "Logout API error", error });
   }
 };
 
-// update profile
-
-export const updateProfileConroller = async (req, res) => {
+// Update Profile
+export const updateProfileController = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
-    const { name, email, address, city, country, phone } = req.body;
-    // validation
-    if (name) user.name = name;
-    if (email) user.email = email;
-    if (address) user.address = address;
-    if (city) user.city = city;
-    if (country) user.country = country;
-    if (phone) user.phone = phone;
-    // save user
+    Object.assign(user, req.body);
     await user.save();
-    res.status(200).send({
-      success: true,
-      message: "user updated successfully",
-    });
+    res.status(200).json({ success: true, message: "User updated successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "error in update-profile api",
-      error,
-    });
+    res.status(500).json({ success: false, message: "Error updating profile", error });
   }
 };
 
+// Update Password
 export const updatePasswordController = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
-    console.log(user);
     const { oldPassword, newPassword } = req.body;
-    console.log(oldPassword);
-    console.log(newPassword);
-    if (!oldPassword || !newPassword) {
-      return res.status(500).send({
-        success: false,
-        message: "Password Field is required",
-      });
-    }
 
-    // old password check
-    const isMatchPass = await user.comparePassword(oldPassword);
-    //validation
-    if (!isMatchPass) {
-      return res.status(500).send({
-        success: true,
-        message: "Old Password Does Not Match",
-      });
+    if (!oldPassword || !newPassword || !(await user.comparePassword(oldPassword))) {
+      return res.status(400).json({ success: false, message: "Incorrect old password or missing fields" });
     }
     user.password = newPassword;
     await user.save();
-    res.status(200).send({
-      success: true,
-      message: "Your password updated successfully",
-    });
+    res.status(200).json({ success: true, message: "Password updated successfully" });
   } catch (error) {
-    console.log(error);
-    return res.status(500).send({
-      success: false,
-      message: "error in update password api",
-    });
+    res.status(500).json({ success: false, message: "Error updating password", error });
   }
 };
 
-// Profile Picture Updating With the Multer And Cloudinary DataBase
-
+// Update Profile Picture
 export const updateProfilePicController = async (req, res) => {
   try {
     const user = await userModel.findById(req.user._id);
     const file = getDataUri(req.file);
 
-    console.log(user);
-    console.log(file);
+    if (user.profilePic?.public_id) {
+      await cloudinary.uploader.destroy(user.profilePic.public_id);
+    }
 
-    // cloudinary
-    // delete previous image
-    await cloudinary.v2.uploader.destroy(user.profilePic.public_id);
-    // update
-    const cdb = await cloudinary.v2.uploader.upload(file.content);
-    user.profilePic = {
-      name: cdb.public_id,
-      url: cdb.secure_url,
-    };
-
-    //save function
-
+    const uploadResult = await cloudinary.uploader.upload(file.content);
+    user.profilePic = { public_id: uploadResult.public_id, url: uploadResult.secure_url };
     await user.save();
 
-    res.status(200).send({
-      success: true,
-      message: "profile picture changed successfully",
-    });
+    res.status(200).json({ success: true, message: "Profile picture updated successfully" });
   } catch (error) {
-    console.log(error);
-    return res.status(500).send({
-      success: false,
-      message: "error in update profile pic api",
-    });
+    res.status(500).json({ success: false, message: "Error updating profile picture", error });
   }
 };
 
-export const uploadProfilePic = async (req, res) => {
-  console.log("hello");
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: "No file uploaded" });
-    }
-    // console.log(req.file);
-    // console.log(req.user.id);
-    const user = await userModel.findById(req.user.id);
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Upload to Cloudinary
-    const result = await new Promise((resolve, reject) => {
-      const stream = cloudinary.uploader.upload_stream(
-        { folder: "mern-uploads" },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      );
-      stream.end(req.file.buffer);
-    });
-
-    console.log(result);
-
-    user.profilePic = { public_id: result.public_id, url: result.secure_url };
-    const savedUser = await user.save();
-    console.log("User saved successfully:", savedUser);
-    return res.status(200).json({
-      message: "Profile picture updated successfully",
-      profilePic: user.profilePic,
-    });
-  } catch (error) {
-    console.error("Upload error:", error);
-    res.status(500).json({ message: "Image upload failed", error });
-  }
-};
-
-export const getAllUsercontroller = async (req, res) => {
+// Get all users
+export const getAllUserController = async (req, res) => {
   try {
     const allUsers = await userModel.find();
-    console.log(allUsers);
-
-    if (!allUsers)
-      return res.status(501).json({
-        success: false,
-        message: `User not found`,
-      });
-
-    return res.status(201).json({
-      success: true,
-      message: `User fetched successfully!`,
-      allUsers,
-    });
+    res.status(200).json({ success: true, message: "Users fetched successfully", allUsers });
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: `Api got this ${error.message}`,
-    });
+    res.status(500).json({ success: false, message: `Error fetching users: ${error.message}` });
   }
 };

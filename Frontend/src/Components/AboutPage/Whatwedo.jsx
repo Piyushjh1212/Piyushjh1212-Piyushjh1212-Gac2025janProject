@@ -73,7 +73,7 @@ const WhatWeDo = () => {
           ))}
         </div>
       </div>
-
+{/* 
       <div className="what-we-do-team">
         <h2 className="what-we-do-title">Meet Our Team</h2>
         <div className="what-we-do-team-members">
@@ -90,7 +90,7 @@ const WhatWeDo = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="what-we-do-testimonials">
         <h2 className="what-we-do-title">What Our Students Say</h2>

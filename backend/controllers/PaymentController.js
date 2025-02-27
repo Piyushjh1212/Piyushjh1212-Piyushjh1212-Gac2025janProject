@@ -21,26 +21,24 @@ export const createOrder = async (req, res) => {
       phone,
     } = req.body;
 
-    const previosOrder = await Payment.findOne({ courseId });
+    const userId = req.user?._id;
 
-    console.log(previosOrder.courseId);
-    console.log(courseId);
+    // Validate input
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ success: false, message: "Invalid amount" });
+    }
 
-    if (previosOrder.courseId === courseId) {
-      return res.status(500).json({
+    // Check if user already purchased the course
+    const previousOrder = await Payment.findOne({ courseId, userId });
+
+    if (previousOrder) {
+      return res.status(400).json({
         success: false,
-        message: `Course allready purchaged.`,
+        message: "You have already purchased this course.",
       });
     }
 
-    const userId = req.user?._id;
-
-    if (!amount || amount <= 0) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid amount" });
-    }
-
+    // Prepare Razorpay order
     const options = {
       amount: amount * 100, // Convert to paise
       currency: "INR",
@@ -49,6 +47,11 @@ export const createOrder = async (req, res) => {
 
     const order = await razorpayInstance.orders.create(options);
 
+    // Set expiry date (5 years from now)
+    const expiryDate = new Date();
+    expiryDate.setFullYear(expiryDate.getFullYear() + 5);
+
+    // Create a new order in the database
     const newOrder = await Payment.create({
       courseId: courseId,
       userId: userId,
@@ -60,6 +63,7 @@ export const createOrder = async (req, res) => {
       transactionId: order.id, // Store the Razorpay order ID
       paymentStatus: "Pending",
       paymentDate: new Date(),
+      expiryDate: expiryDate, // Store expiry date
       paymentResponse: {}, // Optional: Store full payment response
     });
 
@@ -70,41 +74,50 @@ export const createOrder = async (req, res) => {
       currency: order.currency,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ success: false, message: "Something went wrong" });
+    console.error("Error in createOrder:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };
 
 // **Verify Payment API**
 export const verifyPayment = async (req, res) => {
   try {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
-      req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
     const secret = process.env.RAZORPAY_KEY_SECRET;
 
+    // Generate HMAC signature
     const hmac = crypto.createHmac("sha256", secret);
     hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
     const generatedSignature = hmac.digest("hex");
 
     if (generatedSignature === razorpay_signature) {
+      // Update payment status to success
       const successOrderStatus = await Payment.findOneAndUpdate(
         { transactionId: razorpay_order_id }, // Find payment using Razorpay order ID
         { $set: { paymentStatus: "Success", paymentResponse: req.body } },
         { new: true }
       );
 
-      return res
-        .status(200)
-        .json({ success: true, message: "Payment verified" });
+      return res.status(200).json({
+        success: true,
+        message: "Payment verified successfully",
+      });
     } else {
-      return res
-        .status(400)
-        .json({ success: false, message: "Payment not verified" });
+      return res.status(400).json({
+        success: false,
+        message: "Payment verification failed due to signature mismatch",
+      });
     }
   } catch (error) {
-    return res
-      .status(500)
-      .json({ success: false, message: "Something went wrong" });
+    console.error("Error in verifyPayment:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };
