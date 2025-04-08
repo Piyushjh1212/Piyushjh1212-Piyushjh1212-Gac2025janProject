@@ -1,197 +1,211 @@
-/* General Container */
-.order-form-container {
+:root {
+  --primary-color: #4caf50;
+  --accent-color: #388e3c;
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+  --bg-color: #f7f9fc;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-blur: 10px;
+  --radius: 16px;
+  --transition: all 0.3s ease;
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: var(--bg-color);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 2rem;
+  color: var(--text-dark);
+}
+
+/* Wrapper */
+.checkout-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
   align-items: flex-start;
-  max-width: 1100px;
-  margin: auto;
-  padding: 30px;
-  gap: 40px;
-  background-color: #f8f9fd;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Sticky Checkout Payment Section */
-.payment-container-1 {
-  position: sticky;
-  bottom: 20px;
-  width: 100%;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  margin-top: auto;
-}
-
-/* Order Form */
+/* Card Layout */
+.order-form-container,
 .order-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 25px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  max-height: 650px;
-  overflow-y: auto;
-  border-left: 6px solid #1069ce;
+  flex: 1 1 420px;
+  background: var(--glass-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--box-shadow);
 }
 
-/* Course Details */
-.course-details-container {
-  width: 50%;
-}
-
+/* Left Side */
 .course-details {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  border-left: 6px solid #1069ce;
+}
+
+.course-image {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.course-image:hover {
+  transform: scale(1.02);
+}
+
+.course-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.course-price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .course-order-heading {
-  text-transform: capitalize;
-  font-size: 20px;
+  margin-top: 2rem;
+}
+
+.course-order-heading h2 {
+  font-size: 1.2rem;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.course-feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.course-feature-list li {
+  padding: 0.4rem 0;
+  font-size: 1rem;
+}
+
+.course-guarantee p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
   color: #333;
-  font-weight: bold;
 }
 
-.course-order-heading-1 ul {
-  padding-left: 40px;
-  padding-right: 20px;
+/* Right Side (Form) */
+.Payment-container-1 h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.course-order-heading-1 ul li {
-  margin-bottom: 15px;
-  text-align: justify;
-  font-size: 15px;
-  color: #444;
-  font-weight: lighter;
-  line-height: 1.5;
-}
-
-/* Course Image */
-.course-image {
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 15px;
-}
-
-/* Course Name */
-.course-name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-/* Course Price */
-.course-price {
-  font-size: 18px;
-  color: #1069ce;
-  font-weight: bold;
-}
-
-/* Input Group */
 .input-group {
   display: flex;
-  gap: 15px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Input Fields */
-input {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  margin-bottom: 25px;
+.input-group input,
+.input-group select {
+  flex: 1 1 48%;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  background: #fff;
+  transition: var(--transition);
 }
 
-/* Focus Effect */
-input:focus {
-  border-color: #5b9aff;
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary-color);
   outline: none;
-  box-shadow: 0 0 8px rgba(91, 154, 255, 0.5);
-  transition: all 0.3s ease;
+  background: #fefefe;
 }
 
-/* Error Text */
 .error-text {
   color: red;
-  font-size: 14px;
-  margin-top: 5px;
-  padding: 5px;
+  font-size: 0.8rem;
+  flex-basis: 100%;
 }
 
-/* Checkout Button */
+/* Order Summary */
+.order-summary {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--box-shadow);
+}
+
+.order-summary h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.summary-item.total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+/* Button */
 .checkout-button {
-  padding: 14px;
-  background-color: #254c8b;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
   color: white;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   border: none;
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: var(--radius);
+  margin-top: 1.5rem;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: var(--transition);
 }
 
 .checkout-button:hover {
-  background-color: #254c8b;
-  transform: scale(1.05);
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
 }
 
-/* Hover Effects for Inputs */
-.input-group input:hover {
-  border-color: #5b9aff;
+/* Payment Info */
+.secure-payment-info {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: #555;
 }
 
-.input-country{
-  height: 35PX;
-  border: 1px solid #666;
-  border-radius: 2px;
-  outline: none;
-  width: fit-content;
+.secure-payment-info img {
+  margin-top: 0.5rem;
+  max-width: 160px;
+  opacity: 0.9;
 }
+
 /* Responsive Design */
-@media (max-width: 900px) {
-  .order-form-container {
+@media (max-width: 768px) {
+  .checkout-wrapper {
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
   }
 
-  .course-details {
-    width: 100%;
-    position: relative;
-  }
-
-  .input-group input {
-    width: 100%;
-  }
-
-  .course-name {
-    font-size: 18px;
-  }
-
-  .course-price {
-    font-size: 16px;
-  }
-
-  .course-order-heading {
-    font-size: 18px;
-  }
-
-  .course-order-heading-1 ul li {
-    font-size: 14px;
+  .input-group input,
+  .input-group select {
+    flex: 1 1 100%;
   }
 }

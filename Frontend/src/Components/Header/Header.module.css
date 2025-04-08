@@ -53,7 +53,7 @@
   gap: 40px;
 }
 
-.loginBtn {
+.LoginButton{
   background: white;
   display: flex;
   align-items: center;
@@ -65,9 +65,10 @@
   text-decoration: none;
   margin-top: 3px;
   transition: background 0.3s;
+  cursor: pointer;
 }
 
-.loginBtn:hover {
+.LoginButton  :hover {
   background: #58a6ff;
   color: white;
 }

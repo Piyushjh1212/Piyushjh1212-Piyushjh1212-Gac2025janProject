@@ -2,9 +2,9 @@ import adminUserModel from "../models/adminModel.js";
 // import userModel from "../models/userModel.js";
 
 export const createAdminUserController = async (req, res) => {
+  console.log(req.body);
   try {
     const { adminUserName, adminPassword, profilePicture } = req.body;
-    console.log(req.body);
 
     if (!adminPassword || !adminUserName || !profilePicture) {
       return res.status(505).send({

@@ -3,7 +3,11 @@ import { FaUser, FaEnvelope, FaComment } from "react-icons/fa"; // React Icons
 import styles from "./Contact.module.css"; // Import CSS Module
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -40,13 +44,42 @@ const Contact = () => {
     }
   };
 
+  const sendContactMessage = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:10011/api/v1/contact/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Message sent successfully:", data);
+        setIsSubmitted(true);
+      } else {
+        console.error("Error sending message:", data.message);
+        setErrors({ form: data.message });
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setErrors({ form: "Network error. Please try again later." });
+    }
+  };
+  // Handle form submission with async function
+
   return (
     <div className={styles.contactContainer} id="Contact-From">
       <div className={styles.contactContent}>
         {/* Left Column: Contact Form */}
         <div className={styles.contactFormContainer}>
           <h2 className="Contact-Heading">Contact Us</h2>
-          {isSubmitted && <p className={styles.successMessage}>Message sent successfully!</p>}
+          {isSubmitted && (
+            <p className={styles.successMessage}>Message sent successfully!</p>
+          )}
           <form className={styles.contactForm} onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="name">
@@ -60,7 +93,9 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              {errors.name && <p className={styles.errorMessage}>{errors.name}</p>}
+              {errors.name && (
+                <p className={styles.errorMessage}>{errors.name}</p>
+              )}
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="email">
@@ -74,7 +109,9 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
-              {errors.email && <p className={styles.errorMessage}>{errors.email}</p>}
+              {errors.email && (
+                <p className={styles.errorMessage}>{errors.email}</p>
+              )}
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="message">
@@ -87,9 +124,15 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
               ></textarea>
-              {errors.message && <p className={styles.errorMessage}>{errors.message}</p>}
+              {errors.message && (
+                <p className={styles.errorMessage}>{errors.message}</p>
+              )}
             </div>
-            <button type="submit" className={styles.sendMessageBtn}>
+            <button
+              type="submit"
+              className={styles.sendMessageBtn}
+              onClick={sendContactMessage}
+            >
               Send Message
             </button>
           </form>
@@ -97,7 +140,10 @@ const Contact = () => {
 
         {/* Right Column: Image */}
         <div className={styles.contactImageContainer}>
-          <img src="https://res.cloudinary.com/dieboinjz/image/upload/v1739719797/mern-uploads/dow2gro2sikhce2axxao.webp" alt="Contact Us Illustration" />
+          <img
+            src="https://res.cloudinary.com/dieboinjz/image/upload/v1739719797/mern-uploads/dow2gro2sikhce2axxao.webp"
+            alt="Contact Us Illustration"
+          />
         </div>
       </div>
     </div>

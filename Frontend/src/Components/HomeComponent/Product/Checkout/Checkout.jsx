@@ -177,6 +177,8 @@ const OrderForm = () => {
   };
 
   return (
+    <div className="checkout-wrapper">
+    {/* LEFT SECTION: Course Details */}
     <div className="order-form-container">
       <div className="course-details-container">
         <div className="course-details">
@@ -188,100 +190,127 @@ const OrderForm = () => {
           <p className="course-name">{product.name}</p>
           <p className="course-price">INR {product.price}</p>
         </div>
-
+  
         <div className="course-order-heading">
           <h2>What you get in this course</h2>
-        </div>
-        {/* course list for checkout */}
-
-        <div className="course-order-heading-1">
-          <ul>
+          <ul className="course-feature-list">
             {product.features?.map((feature, index) => (
-              <li key={index}>{feature}</li> // ✅ Display each feature dynamically
+              <li key={index}>✅ {feature}</li>
             ))}
           </ul>
         </div>
-      </div>
-      <div className="order-form">
-        <div className="Payment-container-1">
-          <div className="input-group">
-            <input
-              className="input-first-name"
-              value={data.firstName}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, firstName: e.target.value }))
-              }
-              placeholder="First name"
-              type="text"
-            />
-            {errors.firstName && (
-              <p className="error-text">{errors.firstName}</p>
-            )}
-            <input
-              className="input-last-name"
-              value={data.lastName}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, lastName: e.target.value }))
-              }
-              placeholder="Last name"
-              type="text"
-            />
-            {errors.lastName && <p className="error-text">{errors.lastName}</p>}
-          </div>
-          <div className="input-group">
-            <input
-              className="input-email"
-              value={data.email}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, email: e.target.value }))
-              }
-              placeholder="Email"
-              type="email"
-            />
-            {errors.email && <p className="error-text">{errors.email}</p>}
-            <input
-              className="input-street"
-              value={data.street}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, street: e.target.value }))
-              }
-              placeholder="Street"
-              type="text"
-            />
-          </div>
-          <div className="input-group">
-            <select
-              value={data.country}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, country: e.target.value }))
-              }
-              className="input-country"
-            >
-              {countries.map((country) => (
-                <option key={country.code} value={country.code}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
-
-            <input
-              className="input-phone"
-              value={data.phone}
-              onChange={(e) =>
-                setData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-              placeholder="Contact number"
-              type="text"
-              maxLength={getPhoneLength()}
-            />
-            {errors.phone && <p className="error-text">{errors.phone}</p>}
-          </div>
-          <button onClick={handlePayment} className="checkout-button">
-            PAY NOW
-          </button>
+  
+        <div className="course-guarantee">
+          <p>🎯 One-time purchase</p>
+          <p>⏳ 5 years full access</p>
+          <p>📞 24/7 support</p>
+          <p>🔒 100% secure payment</p>
         </div>
       </div>
     </div>
+  
+    {/* RIGHT SECTION: Form */}
+    <div className="order-form">
+      <div className="Payment-container-1">
+        <h2>Checkout</h2>
+        <div className="input-group">
+          <input
+            placeholder="First name"
+            value={data.firstName}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, firstName: e.target.value }))
+            }
+          />
+          {errors.firstName && <p className="error-text">{errors.firstName}</p>}
+  
+          <input
+            placeholder="Last name"
+            value={data.lastName}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, lastName: e.target.value }))
+            }
+          />
+          {errors.lastName && <p className="error-text">{errors.lastName}</p>}
+        </div>
+  
+        <div className="input-group">
+          <input
+            placeholder="Email"
+            value={data.email}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, email: e.target.value }))
+            }
+            type="email"
+          />
+          {errors.email && <p className="error-text">{errors.email}</p>}
+  
+          <input
+            placeholder="Street"
+            value={data.street}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, street: e.target.value }))
+            }
+          />
+        </div>
+  
+        <div className="input-group">
+          <select
+            value={data.country}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, country: e.target.value }))
+            }
+          >
+            {countries.map((country) => (
+              <option key={country.code} value={country.code}>
+                {country.name}
+              </option>
+            ))}
+          </select>
+  
+          <input
+            placeholder="Contact number"
+            value={data.phone}
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, phone: e.target.value }))
+            }
+            maxLength={getPhoneLength()}
+          />
+          {errors.phone && <p className="error-text">{errors.phone}</p>}
+        </div>
+  
+        {/* Order Summary */}
+        <div className="order-summary">
+          <h3>Order Summary</h3>
+          <div className="summary-item">
+            <span>Subtotal</span>
+            <span>INR {product.price}</span>
+          </div>
+          <div className="summary-item">
+            <span>Tax</span>
+            <span>INR 0</span>
+          </div>
+          <div className="summary-item total">
+            <strong>Total</strong>
+            <strong>INR {product.price}</strong>
+          </div>
+        </div>
+  
+        {/* Payment Button */}
+        <button className="checkout-button" onClick={handlePayment}>
+          PAY NOW
+        </button>
+  
+        {/* Security and Payment Info */}
+        <div className="secure-payment-info">
+          <p>🔒 SSL secured transaction</p>
+          <p>💳 We accept Visa, MasterCard, UPI</p>
+          <img src="/images/payment-methods.png" alt="payment methods" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
   );
 };
 

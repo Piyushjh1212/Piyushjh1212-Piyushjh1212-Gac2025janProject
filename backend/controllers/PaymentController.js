@@ -30,8 +30,9 @@ export const createOrder = async (req, res) => {
 
     // Check if user already purchased the course
     const previousOrder = await Payment.findOne({ courseId, userId });
-
-    if (previousOrder) {
+    console.log("previousOrder", previousOrder);
+    console.log("success", previousOrder?.paymentStatus === "Success");
+    if (previousOrder && previousOrder.paymentStatus === "Success") {
       return res.status(400).json({
         success: false,
         message: "You have already purchased this course.",
@@ -121,3 +122,4 @@ export const verifyPayment = async (req, res) => {
     });
   }
 };
+ 

@@ -19,6 +19,7 @@ import VideoLecture from "../Vedio_Lectures/VideoLecture";
 import Product from "../Components/HomeComponent/Product/Product_here/Product";
 import VideoPreview from "../My_Course_List/Html$Css/Video/VideoPreview";
 import PrivacyPolicy from "../Components/HomeComponent/PrivacyPolicy/PrivacyPolicy";
+import About from "../Components/AboutPage/About/About";
 
 export default function Page() {
   return (
@@ -36,6 +37,7 @@ export default function Page() {
 
         {/* Profile and Product Pages */}
         <Route path="/my-profile" element={<Profile />} />
+        <Route path="/about" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Products" element={<ProductPage />} />
         <Route path="/progress" element={<ProgressCard />} />

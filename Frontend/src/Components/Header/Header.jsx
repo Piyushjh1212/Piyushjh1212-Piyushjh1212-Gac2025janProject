@@ -48,6 +48,10 @@ export default function Header() {
     setShowProfileMenu(false);
   }, [location]);
 
+  const LogoinHandlepage = () => {
+    window.location.href = "/login";
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -65,7 +69,7 @@ export default function Header() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/EditProfile">About</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
             <Link to="/Products">Courses</Link>
@@ -74,7 +78,12 @@ export default function Header() {
             <Link to="/contact">Contact</Link>
           </li>
           <li>
-            <Link to="/IIT-JEE">IIT-JEE</Link>
+          <a
+          href="https://www.google.com/"
+          rel="noopener noreferrer"
+        >
+          IIT/JEE
+        </a>
           </li>
         </ul>
       </nav>
@@ -93,9 +102,9 @@ export default function Header() {
               <img src="https://res.cloudinary.com/dieboinjz/image/upload/v1739719843/mern-uploads/atrbtbitbymngbjrldsn.webp" alt="Profile" width={50} height={50} />
             </div>
           ) : (
-            <Link to="/login">
-              <h1 className={styles.loginBtn}>Login</h1>
-            </Link>
+            
+              <h1 className={styles.LoginButton} onClick={LogoinHandlepage}>Login</h1>
+         
           )}
           {showProfileMenu && (
             <div className={`${styles.profileDropdown} ${styles.show}`} ref={profileDropdownRef}>

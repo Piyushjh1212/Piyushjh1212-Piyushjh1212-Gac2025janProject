@@ -1,0 +1,141 @@
+/* Container for the entire product page */
+.product-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+/* Left side container for form inputs */
+.product-container > div:first-child {
+  flex: 2;
+  min-width: 300px;
+  max-width: 600px;
+  margin-right: 20px;
+}
+
+.product-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* form Input Fields */
+.Product-container-form-add {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.Product-container-form-add label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.Product-container-form-add input,
+.Product-container-form-add textarea {
+  width: 94%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.Product-container-form-add textarea {
+  min-height: 100px;
+}
+
+.Product-container-form-add button {
+  padding: 10px;
+  background-color: #4c6ef5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.Product-container-form-add button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Right side container for image gallery */
+.gallery-images {
+  flex: 1.5;
+  min-width: 350px;
+}
+
+.gallery-images h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #4c6ef5;
+}
+
+.images-container {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.images-container img {
+  width: 65%;
+  object-fit: cover;
+}
+
+.images-container p {
+  color: #888;
+}
+
+/* Image uploader button styling */
+.image-uploader-container {
+  margin-top: 20px;
+}
+
+/* Mobile-first Responsive Design */
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-container > div:first-child {
+    margin-right: 0;
+  }
+
+  .gallery-images {
+    margin-top: 20px;
+  }
+
+  .Product-container-form-add {
+    width: 100%;
+  }
+
+  .images-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .Product-container-form-add label {
+    font-size: 0.9rem;
+  }
+
+  .Product-container-form-add input,
+  .Product-container-form-add textarea {
+    font-size: 0.9rem;
+  }
+
+  .Product-container-form-add button {
+    font-size: 1rem;
+  }
+}

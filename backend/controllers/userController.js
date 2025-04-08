@@ -126,9 +126,12 @@ export const updateProfilePicController = async (req, res) => {
 // Get all users
 export const getAllUserController = async (req, res) => {
   try {
+
     const allUsers = await userModel.find();
+    console.log(allUsers);
     res.status(200).json({ success: true, message: "Users fetched successfully", allUsers });
   } catch (error) {
-    res.status(500).json({ success: false, message: `Error fetching users: ${error.message}` });
+    console.error("Error fetching users:", error.name, error.message);
+    res.status(500).json({ success: false, message: `Error fetching users: ${error.message}`});
   }
 };

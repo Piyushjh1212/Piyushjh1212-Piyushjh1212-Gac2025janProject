@@ -13,37 +13,31 @@ export const fetchUserCourse = async (req, res) => {
       });
     }
 
-    // Fetch user courses based on the userId
-    const userCourses = await Payment.find({ userId });
+    // Fetch user payments that have a successful status
+    const userPayments = await Payment.find({ userId, paymentStatus: "Success" });
 
-    // If no courses are found, return an appropriate message
-    if (userCourses.length === 0) {
+    if (userPayments.length === 0) {
       return res.status(404).json({
         success: false,
-        message: "No courses found for this user.",
+        message: "No purchased courses found for this user.",
       });
     }
 
-    // Use Promise.all to fetch all course details in parallel
-    const userProductPromises = userCourses.map(async (item) => {
-      const courseId = item.courseId;
-      const courseData = await productModel.findById(courseId);
-      return courseData; // Return the course data
-    });
+    // Extract course IDs
+    const courseIds = userPayments.map((item) => item.courseId);
 
-    // Wait for all promises to resolve
-    const userProduct = await Promise.all(userProductPromises);
+    // Fetch course details in a single query
+    const userCourses = await productModel.find({ _id: { $in: courseIds } });
 
-    console.log(userProduct);
+    console.log(userCourses);
 
-    // Return the user courses data along with the course details
     return res.status(200).json({
       success: true,
       message: "User courses fetched successfully",
       data: userCourses,
-      userProduct,
     });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

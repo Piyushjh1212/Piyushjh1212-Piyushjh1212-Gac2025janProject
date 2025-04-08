@@ -4,6 +4,7 @@ import "./Profile.css";
 import ProgressCard from "../KeyTopics/M_Courses/ProgressCard";
 import Usersetting from "../KeyTopics/Settings/Usersetting";
 import Achivements from "../KeyTopics/Achivements/Achivements";
+import ProgressLayout from "../KeyTopics/Progress/Progress";
 
 export default function Profile() {
   const [user, setUser] = useState([]);
@@ -122,6 +123,7 @@ export default function Profile() {
             {activeOption === 'progress-bar' ? <ProgressCard/> : ""}
             {activeOption === 'Settings' ? <Usersetting/> : ""}
             {activeOption === 'Achivements here' ? <Achivements/> : ""}
+            {activeOption === 'Track your progress here!' ? <ProgressLayout/> : ""}
 
             </>
           </div>
