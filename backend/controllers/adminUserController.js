@@ -41,6 +41,7 @@ export const createAdminUserController = async (req, res) => {
   }
 };
 
+
 // loging controller
 
 export const loginAdminUserController = async (req, res) => {

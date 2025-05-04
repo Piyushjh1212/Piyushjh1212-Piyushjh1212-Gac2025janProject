@@ -17,6 +17,8 @@ import vRouter from "./routes/vUplRoutes.js";
 import courseVideoRouter from "./routes/courseVideoRouter.js";
 import videoRenderingRoute from "./routes/videoRenderingRoutes.js";
 import contactRouter from "./routes/contactRoute.js";
+import CoursesRouter from "./routes/CoursesRoutes.js";
+import courseItemRouter from "./routes/courseItemRouter.js";
 
 // Load environment variables
 dotenv.config();
@@ -58,11 +60,13 @@ app.use("/api/v1/payment", paymentRouter);
 app.use("/api/v1/courses", fetchcourseRouter);
 app.use("/api/v1/images", imageRouter);
 app.use("/api/v1/contact", contactRouter);
+app.use("/api/v1/courses", CoursesRouter);
 // VedioUpload Api
 
 app.use("/api/v1/video", vRouter);
 app.use("/api/v1/course-video", courseVideoRouter);
 app.use("/api/v1/course-render", videoRenderingRoute);
+app.use("/api/v1/course-item", courseItemRouter);
 
 app.get("/", (req, res) => {
   return res.status(201).send({

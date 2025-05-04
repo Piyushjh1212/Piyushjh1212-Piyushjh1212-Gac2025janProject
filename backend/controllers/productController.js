@@ -1,5 +1,6 @@
 // GET ALL PRODUCT CONTROLLER
 import cloudinary from 'cloudinary';
+import mongoose from 'mongoose'
 import productModel from "../models/productModel.js";
 // import userModel from "../models/userModel.js";
 import getDataUri from "../utils/features.js";

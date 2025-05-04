@@ -1,0 +1,104 @@
+.certificate-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #eef2f7;
+    padding: 20px;
+  }
+  
+  .certificate {
+    background: #ffffff;
+    padding: 40px;
+    border: 1px solid #04a3ff;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+  }
+  
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  
+  .subtitle-next {
+    text-align: justify;
+    margin: 20px 60px;
+    line-height: 1.8;
+    font-size: 17px;
+    color: #444;
+  }
+  
+  .recipient {
+    font-size: 26px;
+    font-weight: bold;
+    color: navy;
+    margin: 15px 0;
+    text-transform: uppercase;
+  }
+  
+  .course {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .date {
+    font-size: 17px;
+    color: #666;
+    margin-top: 14px;
+  }
+  
+  .signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 3px solid #04a3ff;
+    font-size: 16px;
+  }
+  
+  .label {
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .info, .signature-line {
+    color: #555;
+    font-size: 16px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .certificate {
+      width: 90%;
+      padding: 30px;
+    }
+  
+    .subtitle-next {
+      margin: 20px;
+      font-size: 16px;
+    }
+  
+    .signature-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .signature-section div {
+      margin-top: 10px;
+    }
+  }
+  

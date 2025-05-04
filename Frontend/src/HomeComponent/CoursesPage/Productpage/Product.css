@@ -1,0 +1,186 @@
+/* Product Section Styles */
+.product-section {
+    background: linear-gradient(to bottom, #f1f2f4, #6479be);
+    padding: 50px 20px;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .product-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .product-second-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: rgb(12, 149, 228);
+  }
+  
+  /* Product Grid */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 25px;
+    justify-content: center;
+  }
+  
+  /* Product Card */
+  .product-card {
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Product Image */
+  .product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Product Details */
+  .product-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin: 12px 0;
+    text-align: center;
+  }
+  
+  .price {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .real-price {
+    text-decoration: line-through;
+    color: #b91c1c;
+    margin-right: 8px;
+  }
+  
+  .Offer-price{
+    color: black;
+    margin-right: 8px;
+  }
+  
+  .Offer-Percentage{
+    margin-bottom: 5px;
+    color: green;
+    margin-left: 8px;
+  }
+  
+  .discounted-price {
+    font-size: 1.1rem;
+    color: #10b981;
+    font-weight: bold;
+  }
+  
+  /* Product Buttons */
+  .product-details {
+    display: flex;
+    flex-direction: row; /* Ensure buttons stay in a row by default */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    margin-top: auto; /* Push buttons to the bottom of the card */
+    gap: 10px; /* Space between buttons */
+  }
+  
+  /* Buttons */
+  .product-add-to-cart-btn-buy,
+  .product-add-to-cart-btn {
+    background-color: #109be65d;
+    color: #222;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%; /* Ensure buttons are responsive and take up equal width */
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+    text-decoration: none;
+  } 
+  
+  
+  
+  .product-add-to-cart-btn-buy:hover{
+    background-color: #109be65d;
+    
+  }
+  
+  .product-add-to-cart-btn {
+    border: 0.1px solid #ccbcbc;
+    background-color: #e7dede60;
+    color: #222;
+    margin-right: 0; /* Ensure no gap for the last button */
+  }
+  
+  .product-add-to-cart-btn:hover {
+    background-color: #fff;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+  
+    .product-details {
+      flex-direction: column; /* Stack buttons vertically on smaller screens */
+      align-items: stretch; /* Stretch buttons to take up full width */
+    }
+  
+    .add-to-cart-btn,
+    .add-to-cart-btn-buy-n {
+      width: 100%; /* Ensure buttons take full width on mobile */
+      margin-bottom: 10px; /* Space between stacked buttons */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .product-header {
+      font-size: 2rem;
+    }
+  
+    .product-second-header {
+      font-size: 1.3rem;
+    }
+  
+    .product-card h3 {
+      font-size: 1.15rem;
+    }
+  
+    .price {
+      font-size: 0.95rem;
+    }
+  }
+  

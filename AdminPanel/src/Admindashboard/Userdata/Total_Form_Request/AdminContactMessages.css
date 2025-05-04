@@ -1,0 +1,40 @@
+.admin-contact-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    font-family: sans-serif;
+  }
+  
+  .admin-contact-container h2 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .admin-contact-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .admin-contact-item {
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .admin-contact-item strong {
+    color: #2c3e50;
+  }
+  
+  .admin-contact-item p {
+    margin: 0.5rem 0 0 0;
+    color: #555;
+  }
+  

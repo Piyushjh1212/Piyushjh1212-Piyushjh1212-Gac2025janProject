@@ -1,13 +1,9 @@
-import './App.css'
-import Page from './Page/Page'
+import React from "react";
+import Page from "./Pages/Page";
 
 function App() {
+  return (<Page />
+)};
 
-  return (
-    <>
-      <Page />
-    </>
-  )
-}
+export default App;
 
-export default App
