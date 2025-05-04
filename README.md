@@ -26,7 +26,7 @@ Growall Coaching is a fullstack web application designed to provide a modern and
 
 | Frontend | Backend | Database | Other |
 |---------|---------|----------|-------|
-| React.js | Node.js + Express.js | MongoDB | JWT Auth, Cloudinary, Stripe, etc. |
+| React.js | Node.js + Express.js | MongoDB | JWT Auth, Cloudinary, Razorpay Payment Integration etc...|
 
 ---
 
