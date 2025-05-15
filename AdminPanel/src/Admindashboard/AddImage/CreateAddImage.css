@@ -91,3 +91,24 @@
     padding: 2rem;
   }
   
+  .form-field select {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    appearance: none; /* removes default OS styles */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'12'%20height%3D'8'%20viewBox%3D'0%200%2012%208'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M6%208L0%200h12L6%208z'%20fill%3D'%23666'%20/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-field select:focus {
+    border-color: #007bff;
+  }
+  

@@ -6,7 +6,7 @@ import cloudinary from "cloudinary";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
-import productRouter from "./routes/productRoutes.js";
+// import productRouter from "./routes/productRoutes.js";
 import categoryRouter from "./routes/categoryRoutes.js";
 import imageRouter from "./routes/imageRoutes.js";
 import adminUserRouter from "./routes/adminUserRoutes.js";
@@ -19,6 +19,7 @@ import videoRenderingRoute from "./routes/videoRenderingRoutes.js";
 import contactRouter from "./routes/contactRoute.js";
 import CoursesRouter from "./routes/CoursesRoutes.js";
 import courseItemRouter from "./routes/courseItemRouter.js";
+import DifferentCategoryRouter from "./routes/DifferentProductRoute.js";
 
 // Load environment variables
 dotenv.config();
@@ -52,15 +53,16 @@ connectDB(mongo_url);
 
 // Routes
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/product", productRouter);
+// app.use("/api/v1/product", productRouter);
 app.use("/api/v1/category", categoryRouter);
+app.use("/api/v1", DifferentCategoryRouter)
 app.use("/api/admin-user", adminUserRouter);
 app.use("/api", pdfRoutes);
 app.use("/api/v1/payment", paymentRouter);
 app.use("/api/v1/courses", fetchcourseRouter);
 app.use("/api/v1/images", imageRouter);
 app.use("/api/v1/contact", contactRouter);
-app.use("/api/v1/courses", CoursesRouter);
+app.use("/api/v1/course", CoursesRouter);
 // VedioUpload Api
 
 app.use("/api/v1/video", vRouter);

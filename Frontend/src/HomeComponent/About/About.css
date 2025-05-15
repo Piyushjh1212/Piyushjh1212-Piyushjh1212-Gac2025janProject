@@ -1,4 +1,4 @@
-/* ========== General Container Styles ========== */
+/* ========== General Container Styles ==========
 .about-container {
     padding: 50px 30px;
     background-color: #fff;
@@ -62,7 +62,7 @@
   
   .About_content-txt button:hover {
     background-color: #21548b;
-  }
+  } */
   
   /* ========== Mission Page ========== */
   .mission-container {
@@ -71,7 +71,7 @@
   }
   
   .mission-hero {
-    background-color: #677d95;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
     color: white;
     text-align: center;
     padding: 80px 20px;
@@ -84,6 +84,7 @@
   
   .mission-hero p {
     font-size: 18px;
+    color: #fff;
     max-width: 700px;
     margin: 0 auto;
   }

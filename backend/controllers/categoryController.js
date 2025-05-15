@@ -1,150 +1,149 @@
 import categoryModel from "../models/categoryModel.js";
-import productModel from "../models/productModel.js"
+import { ProductDb1, ProductDb2, ProductDb3 } from "../models/ProductDbmodle.js";
 
-// create category
+// Utility to get all product models
+const allProductDbs = [ProductDb1, ProductDb2, ProductDb3];
+
+// CREATE CATEGORY
 export const createCategoryController = async (req, res) => {
     try {
         const { category } = req.body;
-        console.log(category)
         if (!category) {
-            return res.status(500).send({
+            return res.status(400).send({
                 success: false,
                 message: 'Category is required'
             });
         }
 
         await categoryModel.create({ category });
+
         res.status(201).send({
             success: true,
-            message: `${category} category Created Successfully!`
+            message: `${category} category created successfully!`
         });
 
     } catch (error) {
         console.error('Error creating category:', error.message);
         return res.status(500).send({
             success: false,
-            message: 'Problem in category API'
+            message: 'Error in create category API'
         });
     }
+};
 
-}
-
-// get all category controller 
-
+// GET ALL CATEGORIES
 export const getAllcategoryController = async (req, res) => {
     try {
         const categories = await categoryModel.find({});
-
-        if (!categories) {
+        if (!categories.length) {
             return res.status(404).send({
                 success: false,
-                message: "Categories not found"
-            })
+                message: "No categories found"
+            });
         }
 
         res.status(200).send({
             success: true,
-            message: "All Category Fetched Successfully",
+            message: "All categories fetched successfully",
             totalCategories: categories.length,
             categories
-        })
-        // const cat = categories;
+        });
     } catch (error) {
-        console.log(error)
+        console.error(error);
         return res.status(500).send({
             success: false,
-            message: 'problem in get all category api'
-        })
+            message: 'Error in get all category API'
+        });
     }
-}
+};
 
-// delete category router
-
+// DELETE CATEGORY
 export const deleteCategoryController = async (req, res) => {
     try {
-        // find category
         const category = await categoryModel.findById(req.params.id);
         if (!category) {
             return res.status(404).send({
                 success: false,
                 message: 'Category not found'
-            })
+            });
         }
 
-        // fond product with this id
-        const products = await productModel.find({ category: category._id });
-        // update product category
-        for (let i = 0; i < products.length; i++) {
-            const product = products[i];
-            products.category = undefined;
-            await products.save();
+        for (const db of allProductDbs) {
+            const products = await db.find({ Category: category._id });
+            for (const product of products) {
+                product.Category = undefined;
+                await product.save();
+            }
         }
 
         await category.deleteOne();
+
         res.status(200).send({
             success: true,
-            message: 'category deleted successfully'
-        })
+            message: 'Category deleted successfully'
+        });
+
     } catch (error) {
-        console.log(error);
+        console.error(error);
         if (error.name === 'CastError') {
-            return res.status(500).send({
+            return res.status(400).send({
                 success: false,
-                message: 'Invalid id'
-            })
+                message: 'Invalid category ID'
+            });
         }
         return res.status(500).send({
             success: false,
-            message: "error in get delete product image api"
-        })
+            message: 'Error in delete category API'
+        });
     }
-}
+};
 
-// update
-
+// UPDATE CATEGORY
 export const updateCategoryController = async (req, res) => {
     try {
         const category = await categoryModel.findById(req.params.id);
-        // console.log(category)
         if (!category) {
             return res.status(404).send({
                 success: false,
                 message: 'Category not found'
-            })
+            });
         }
 
-        // fond product with this id
-        const products = await productModel.find({ category: category._id });
-        // console.log(products);
-        
-        // update product category
         const { updateCategory } = req.body;
-        console.log(updateCategory)
-        for (let i = 0; i < products.length; i++) {
-            const product = products[i];
-            product.Category = updateCategory;
-            await product.save();
+        if (!updateCategory) {
+            return res.status(400).send({
+                success: false,
+                message: 'Updated category name is required'
+            });
         }
 
-        if(updateCategory) category.category = updateCategory;
-        console.log(updateCategory);
+        for (const db of allProductDbs) {
+            const products = await db.find({ Category: category._id });
+            for (const product of products) {
+                product.Category = category._id;
+                await product.save();
+            }
+        }
 
-        await category.save({category: updateCategory});
+        category.category = updateCategory;
+        await category.save();
+
         res.status(200).send({
             success: true,
-            message: 'category updated successfully'
-        })
+            message: 'Category updated successfully'
+        });
+
     } catch (error) {
-        console.log(error);
+        console.error(error);
         if (error.name === 'CastError') {
-            return res.status(500).send({
+            return res.status(400).send({
                 success: false,
-                message: 'Invalid id'
-            })
+                message: 'Invalid category ID'
+            });
         }
         return res.status(500).send({
             success: false,
-            message: "error in update product image API"
-        })
+            message: 'Error in update category API'
+        });
     }
-}
+};

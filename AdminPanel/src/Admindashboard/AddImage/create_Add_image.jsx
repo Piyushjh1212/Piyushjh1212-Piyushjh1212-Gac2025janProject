@@ -13,6 +13,7 @@ const Create_Add_Image = () => {
     NewPrice: "",
     category: "",
     discounted: "",
+    dbCategory: "db1", // default dropdown selection
     images: selectedImages,
   });
 
@@ -64,6 +65,7 @@ const Create_Add_Image = () => {
           NewPrice: "",
           category: "",
           discounted: "",
+          dbCategory: "db1",
           images: [],
         });
         setSelectedImages([]);
@@ -114,6 +116,23 @@ const Create_Add_Image = () => {
                 )}
               </div>
             ))}
+
+            {/* 👇 New dropdown added here */}
+            <div className="form-field">
+              <label htmlFor="dbCategory">Select Product Type:</label>
+              <select
+                id="dbCategory"
+                name="dbCategory"
+                value={data.dbCategory}
+                onChange={handleChange}
+                required
+              >
+                <option value="db1">Product 1</option>
+                <option value="db2">Product 2</option>
+                <option value="db3">Product 3</option>
+              </select>
+            </div>
+
             <button type="submit" disabled={loading}>
               {loading ? "Creating Product..." : "Create Product"}
             </button>

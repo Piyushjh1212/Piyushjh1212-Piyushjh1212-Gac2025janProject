@@ -1,6 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import Payment from "../models/Paymentmodel.js";
-import productModel from "../models/productModel.js";
+import { ProductDb1, ProductDb2, ProductDb3 } from "../models/ProductDbmodle.js";
 
 export const fetchUserCourse = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ export const fetchUserCourse = async (req, res) => {
       });
     }
 
-    // Fetch user payments that have a successful status
+    // Get successful payments
     const userPayments = await Payment.find({ userId, paymentStatus: "Success" });
 
     if (userPayments.length === 0) {
@@ -24,20 +24,32 @@ export const fetchUserCourse = async (req, res) => {
     }
 
     // Extract course IDs
-    const courseIds = userPayments.map((item) => item.courseId);
+    const courseIds = userPayments.map((payment) => payment.courseId);
 
-    // Fetch course details in a single query
-    const userCourses = await productModel.find({ _id: { $in: courseIds } });
+    // Fetch courses from all product DBs
+    const [courses1, courses2, courses3] = await Promise.all([
+      ProductDb1.find({ _id: { $in: courseIds } }),
+      ProductDb2.find({ _id: { $in: courseIds } }),
+      ProductDb3.find({ _id: { $in: courseIds } }),
+    ]);
 
-    console.log(userCourses);
+    const userCourses = [...courses1, ...courses2, ...courses3];
+
+    if (userCourses.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Purchased course data not found in products.",
+      });
+    }
 
     return res.status(200).json({
       success: true,
       message: "User courses fetched successfully",
       data: userCourses,
     });
+
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching user courses:", error);
     return res.status(500).json({
       success: false,
       message: "Internal server error",

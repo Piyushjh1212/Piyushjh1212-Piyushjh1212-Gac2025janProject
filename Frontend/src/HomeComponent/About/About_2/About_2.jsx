@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import './about.css'
+import AboutSection from "../About";
+import Mission from "../Mision/Mission";
 
 export default function Aboutsecond() {
   useEffect(() => {
@@ -17,18 +19,20 @@ export default function Aboutsecond() {
       </div>
 
       {/* About Introduction */}
-      <div className="about-intro">
-        <h2>Who We Are</h2>
-        <p>
-          Growall Coaching is an EdTech company born out of a passion to educate and inspire. 
-          Our mission is simple – make quality tech education accessible, affordable, and engaging 
-          for every student, everywhere. From humble beginnings to a rapidly growing learning platform, 
-          our journey is built on dedication, innovation, and the trust of thousands of learners.
-        </p>
-      </div>
+        {/* <div className="about-intro">
+          <h2>Who We Are</h2>
+          <p>
+            Growall Coaching is an EdTech company born out of a passion to educate and inspire. 
+            Our mission is simple – make quality tech education accessible, affordable, and engaging 
+            for every student, everywhere. From humble beginnings to a rapidly growing learning platform, 
+            our journey is built on dedication, innovation, and the trust of thousands of learners.
+          </p>
+        </div> */}
+
+      <Mission/>
 
       {/* Our Mission */}
-      <div className="about-content">
+      {/* <div className="about-content">
         <div className="content-card">
           <div className="imageOurVision"></div>
           <div className="About_content-txt">
@@ -43,10 +47,10 @@ export default function Aboutsecond() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Our Goal */}
-      <div className="about-content">
+      {/* <div className="about-content">
         <div className="content-card reverse">
           <div className="About_content-txt">
             <h2>We Enhance the Skills of Future Engineers</h2>
@@ -62,7 +66,7 @@ export default function Aboutsecond() {
           <div className="imageOurVision"></div>
         </div>
         
-      </div>
+      </div> */}
       
 
       {/* Journey Timeline */}
@@ -99,6 +103,7 @@ export default function Aboutsecond() {
           <li>✅ Courses created by experienced developers</li>
         </ul>
       </div>
+      <AboutSection/>
     </>
   );
 }

@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./Coursesstyle.css";
+import ProductCard from "./ProductCard";
 
-const ProductPage = () => {
-  const [categories, setCategories] = useState([]);
+const HomeProductsPage = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch all products from the backend
   useEffect(() => {
-    window.scrollTo(0, 0);
-
-    const fetchCourses = async () => {
+    const fetchAllProducts = async () => {
       try {
-        const response = await fetch("http://localhost:10011/api/v1/courses/courses");
-        const data = await response.json();
-        setCategories(data);
-        console.log(response);
-      } catch (error) {
-        console.error("Failed to fetch courses:", error);
-      }
-    };
-
-    fetchCourses();
+    const res = await fetch("http://localhost:10011/api/v1/course/courses");
+    const data = await res.json();
+    setProducts(data);
+  } catch (error) {
+    console.error("Fetch error:", error);
+    setError("Something went wrong while fetching products. Please try again later.");
+  } finally {
+    setLoading(false);
+  }
+};
+    fetchAllProducts();
   }, []);
 
   return (
-    <section className="products-page">
-      <h2 className="products-header">Explore Our Courses</h2>
-      <div className="products-grid">
-        {categories.map((category) => (
-          <div key={category._id} className="products-card">
-            <div className="products-image">
-              <img src={category.image} alt={category.title} />
-            </div>
-            <h3 className="products-title">{category.title}</h3>
-            <p className="products-description">{category.description}</p>
-            <Link to={`/course/${category._id}`} className="products-explore-btn">Explore</Link>
+    <div className="products-container">
+      <h2>Explore Our Top Courses</h2>
 
-          </div>
-        ))}
-      </div>
-    </section>
+      {loading ? (
+        <p>Loading courses...</p>
+      ) : products.length === 0 ? (
+        <p>No courses available.</p>
+      ) : (
+        <div className="products-grid">
+          {products.map((product) => (
+            <ProductCard
+              key={product._id}
+              product={product}
+              dbCategory={product.category || "defaultCategory"}// Pass the default category here (can be dynamic as per requirement)
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
-export default ProductPage;
+export default HomeProductsPage;

@@ -8,6 +8,7 @@ import Addimage from './Admindashboard/AddImage/create_Add_image';
 import Users from './Admindashboard/Userdata/User_Data';
 import Creat_Add_Image from './Admindashboard/AddImage/create_Add_image';
 import FormRequest from './Admindashboard/Userdata/Total_Form_Request/FormRequest';
+import CreateProduct from './Admindashboard/AddImage/createProduct';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         {/* In user_data */}
 
         <Route path="/admin/FormDisplay" element={<FormRequest />} />
+        <Route path="/hello" element={<CreateProduct/>}/>
       </Routes>
     </Router>
   );

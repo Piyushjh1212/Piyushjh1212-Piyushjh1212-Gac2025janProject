@@ -1,5 +1,11 @@
+// models/productModel.js
 import mongoose from 'mongoose';
+
 const productSchema = new mongoose.Schema({
+    mainCourseId: {
+      type: String,
+      required: true
+    },
     name: {
         type: String,
         required: [true, 'product name is required']
@@ -16,13 +22,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, 'description is required']
     },
-
     description: {
         type: String,
         required: [true, 'description is required']
-    },   
+    },
     Category: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'category'
     },
     images: [
@@ -31,8 +36,11 @@ const productSchema = new mongoose.Schema({
             url: String,
         }
     ]
+}, { timestamps: true });
 
-}, {timestamps: true});
+// Exporting three separate models with the same schema
+const ProductDb1 = mongoose.models.ProductDb1 || mongoose.model("ProductDb1", productSchema, "productsDb1");
+const ProductDb2 = mongoose.models.ProductDb2 || mongoose.model("ProductDb2", productSchema, "productsDb2");
+const ProductDb3 = mongoose.models.ProductDb3 || mongoose.model("ProductDb3", productSchema, "productsDb3");
 
-const productModel = mongoose.models.Product || mongoose.model("Product", productSchema);
-export default productModel;
+export { ProductDb1, ProductDb2, ProductDb3 };

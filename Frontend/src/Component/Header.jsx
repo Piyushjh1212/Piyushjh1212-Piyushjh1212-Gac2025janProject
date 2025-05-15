@@ -8,6 +8,16 @@ export default function Header() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const togglemenu = () => setIsOpen(!isOpen);
 
@@ -21,9 +31,9 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    setToken(null);              // Optional: state reset
-    navigate("/");          // Go to login page
-    window.location.reload();    // Reset the UI
+    setToken(null); // Optional: state reset
+    navigate("/"); // Go to login page
+    window.location.reload(); // Reset the UI
   };
 
   useEffect(() => {
@@ -60,9 +70,8 @@ export default function Header() {
     window.location.href = "/login";
   };
 
-
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.logo}>
         <img
           src="https://res.cloudinary.com/dieboinjz/image/upload/v1739719838/mern-uploads/ejrkwcxdmqfjdxwyieo9.jpg"
@@ -71,8 +80,6 @@ export default function Header() {
           height={50}
         />
       </div>
-
-      
 
       {/* Nav Links */}
       <nav className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
@@ -138,9 +145,9 @@ export default function Header() {
           )}
 
           {/* Hamburger Icon */}
-      <div className={styles.menuIcon} onClick={togglemenu}>
-        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-      </div>
+          <div className={styles.menuIcon} onClick={togglemenu}>
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </div>
         </div>
       </div>
     </header>

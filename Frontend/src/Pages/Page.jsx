@@ -15,13 +15,17 @@ import Profile from "../My_profile/Main_profile/Profile";
 import MainProduct from "../HomeComponent/CoursesPage/Productpage/Product";
 import CourseOutline from "../My_profile/Purchased_Course/CoursesOutline";
 import ProductDetailPage from "../HomeComponent/CoursesPage/Productpage/product2";
+import ScrollToTop from "../Component/ScrollTotop";
+import ProductDetailPages from "../HomeComponent/CoursesPage/Productpage/Productdetail"
+
 
 
 
 function Page() {
   return (
     <BrowserRouter>
-    <Header/>
+    <ScrollToTop/>
+        <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/About" element={<Aboutsecond />} />
@@ -40,6 +44,8 @@ function Page() {
         {/* courses */}
         <Route path="/course/:id" element={<MainProduct />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/product/:dbCategory/:id" element={<ProductDetailPages />} />
+
 
 
         {/* profilehere */}

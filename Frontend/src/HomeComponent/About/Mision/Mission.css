@@ -1,0 +1,113 @@
+/* Mission.css */
+
+.mission-section {
+  padding: 80px 20px;
+  background-color: #fff;
+  font-family: 'Georgia', serif;
+}
+
+.mission-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mission-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mission-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4b2e2e;
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background-color: #a97442;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+
+.mission-subtitle {
+  font-size: 1.1rem;
+  color: #5c4438;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.mission-subheading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3b2a23;
+  margin-bottom: 16px;
+}
+
+.mission-text p {
+  color: #5c4438;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.mission-image-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mission-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Animations */
+.invisible {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in.delay {
+  transition-delay: 0.4s;
+}
+
+.hidden-left {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-in-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hidden-right {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-in-right {
+  opacity: 1;
+  transform: translateX(0);
+}
