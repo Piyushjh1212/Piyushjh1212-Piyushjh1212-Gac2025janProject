@@ -61,9 +61,7 @@ export const getAllProductController = async (req, res) => {
 export const getSingleProductController = async (req, res) => {
   try {
     let { dbCategory, id } = req.params;
-    // console.log(dbCategory, id)
 
-    // Get the model dynamically
     const ProductModel = getProductModelByCategory(dbCategory);
     if (!ProductModel) {
       return res.status(400).json({
@@ -72,7 +70,6 @@ export const getSingleProductController = async (req, res) => {
       });
     }
 
-    // Validate ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
@@ -80,33 +77,31 @@ export const getSingleProductController = async (req, res) => {
       });
     }
 
-    // Find product by id in the selected collection
-    // const product = await ProductDb1.findById({mainCourseId : id});
-    const product = await ProductDb1.findOne({ mainCourseId: id });
+    // Fetch multiple products with same mainCourseId
+    const products = await ProductModel.find({ mainCourseId: id });
 
-    // console.log(product);
-
-    if (!product) {
+    if (!products || products.length === 0) {
       return res.status(404).json({
         success: false,
-        message: "Product not found",
+        message: "No products found",
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: "Product fetched successfully",
-      product,
+      message: "Products fetched successfully",
+      products, // 👈 note: plural
     });
   } catch (error) {
     console.error("Error fetching product:", error);
     return res.status(500).json({
       success: false,
-      message: "Server error while fetching product",
+      message: "Server error while fetching products",
       error: error.message,
     });
   }
 };
+
 
 // CREATE PRODUCT CONTROLLER
 export const createProductController = async (req, res) => {
