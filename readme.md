@@ -65,6 +65,19 @@ CLOUDINARY_CLOUD_NAME=your_name
 CLOUDINARY_API_KEY=your_key
 CLOUDINARY_API_SECRET=your_secret
 
+## Module 
+
+
+| Module          | Description                                      |
+| --------------- | ------------------------------------------------ |
+| `User Auth`     | Signup, Login, Session-based access              |
+| `Course Access` | Paid content access control                      |
+| `Checkout`      | One-time payment flow (Razorpay/Stripe/UPI)      |
+| `Contact`       | Support form for user queries                    |
+| `Dashboard`     | View course progress and certificate eligibility |
+| `Admin Panel`   | View users, course sales (optional)              |
+
+
 ## Architecture Diagram
 
 | Layer / Component               | Description                                                                                         |
@@ -75,3 +88,16 @@ CLOUDINARY_API_SECRET=your_secret
 | **Database (MongoDB)**          | - Stores users, courses, orders/payments<br>- Hosted on MongoDB Atlas                               |
 | **Third-party Services**        | - **Razorpay**: Payment gateway integration (₹799 course)<br>- **Cloudinary**: Media upload/storage |
 | **Deployment (Optional)**       | - Frontend: Vercel / Netlify<br>- Backend: Render / Railway<br>- DB: MongoDB Atlas                  |
+
+
+
+##  Contact
+
+Created by Piyush Jhariya
+Founder, Growall Coaching
+
+Email - piyushjhariya65@gmial.com
+
+website avaiable -
+
+https://growallcoaching.in (update if available)
