@@ -35,24 +35,25 @@ Add your deployed URL once available
 | React.js | Node.js, Express.js | MongoDB  | JWT Auth, Cloudinary (file upload), Razorpay (payments) |
 
 ## Project Structure
+### 📁 Project Structure
 
-growall-coaching/
-│
-├── backend/              # Node.js + Express backend
-│   ├── controllers/      # API logic (auth, course, admin, etc.)
-│   ├── models/           # Mongoose schemas
-│   ├── routes/           # API routes
-│   ├── utils/            # JWT, payment, etc.
-│   └── server.js         # Entry point
-│
-├── frontend/             # React client
-│   ├── components/       # Reusable components
-│   ├── pages/            # Login, Dashboard, Course, etc.
-│   ├── App.js            # App entry
-│   └── index.js          # ReactDOM render
-│
-├── README.md
-└── requirements.txt      # [Optional] for Python, if used for any utility
+| Folder / File           | Description                                      |
+|-------------------------|--------------------------------------------------|
+| `backend/`              | Node.js + Express backend                        |
+| ├── `controllers/`      | API logic (auth, course, admin, etc.)            |
+| ├── `models/`           | Mongoose schemas for MongoDB                     |
+| ├── `routes/`           | Express API routes                               |
+| ├── `utils/`            | Utilities like JWT, payment integrations         |
+| └── `server.js`         | Backend entry point                              |
+|                         |                                                  |
+| `frontend/`             | React.js frontend                                |
+| ├── `components/`       | Reusable React components                        |
+| ├── `pages/`            | Pages like Login, Dashboard, Course, etc.        |
+| ├── `App.js`            | Main application component                       |
+| └── `index.js`          | React DOM render entry point                     |
+|                         |                                                  |
+| `README.md`             | Project documentation                            |
+
 
 ## Environment Variable
 
