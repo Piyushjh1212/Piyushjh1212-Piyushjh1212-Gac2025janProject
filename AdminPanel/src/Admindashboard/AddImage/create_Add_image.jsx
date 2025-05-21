@@ -127,9 +127,8 @@ const Create_Add_Image = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="db1">Product 1</option>
-                <option value="db2">Product 2</option>
-                <option value="db3">Product 3</option>
+                <option value="db1">Database1</option>
+            
               </select>
             </div>
 
