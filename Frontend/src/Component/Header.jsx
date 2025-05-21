@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, matchPath, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./Header.module.css"; // CSS Module
 
@@ -9,6 +9,8 @@ export default function Header() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,15 @@ export default function Header() {
   const profileIconRef = useRef(null);
 
   const location = useLocation();
+
+ const isContactPage =
+  location.pathname === "/checkout" ||
+  location.pathname === "/contact" ||
+  location.pathname === "/Courses" ||
+  matchPath("/product/:dbCategory/:id", location.pathname) !== null;
+  
+
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -82,8 +93,8 @@ export default function Header() {
       </div>
 
       {/* Nav Links */}
-      <nav className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
-        <ul>
+      <nav className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""} ${isContactPage ? "navbar-contact" : "navbar-default"}`}>
+        <ul className={isContactPage ? styles.checkoutUl : ""}>
           <li>
             <Link to="/">Home</Link>
           </li>

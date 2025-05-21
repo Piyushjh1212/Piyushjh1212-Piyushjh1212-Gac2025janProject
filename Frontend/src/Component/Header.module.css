@@ -184,3 +184,16 @@
 
 
 
+
+/* Checkout page ul links color */
+.checkoutUl li a {
+  color: #222 !important;
+}
+
+.checkoutUl li a:hover {
+  color: #e64a19;
+}
+
+.scrolled .checkoutUl li a {
+  color: white !important;
+}
