@@ -35,7 +35,7 @@ Add your deployed URL once available
 | React.js | Node.js, Express.js | MongoDB  | JWT Auth, Cloudinary (file upload), Razorpay (payments) |
 
 ## Project Structure
-### 📁 Project Structure
+###  Project Structure
 
 | Folder / File           | Description                                      |
 |-------------------------|--------------------------------------------------|
