@@ -4,21 +4,3 @@
   box-sizing: border-box;
 }
 
-:root {
-  --main-color: #6D5BBA;
-  --main-Hover-color: #5A4DA1;
-  --main-Text-color: #333;
-  --main-Background-color: #f9f9f9;
-  --main-Input-Background-color: #fff;
-  --main-Input-Border-color: #ccc;
-  --main-Input-Hover-Border-color: #6D5BBA;
-}
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: var(--main-Background-color);
-  color: var(--main-Text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
