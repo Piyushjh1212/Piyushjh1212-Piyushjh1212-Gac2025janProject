@@ -14,18 +14,22 @@ const ProductCard = ({ product, dbCategory }) => {
 
   return (
     <div className="product-card">
-      {product.images?.[0]?.url ? (
-        <img src={product.images[0].url} alt={product.name || "Product image"} />
+      {product?.image ? (
+        <img src={product.image} alt={product.name || "Product image"} />
       ) : (
         <div className="image-placeholder">No Image Available</div>
       )}
 
       <h3>{product.name}</h3>
 
-      <p>{product.description ? `${product.description.slice(0, 80)}...` : "No description available."}</p>
+      <p>
+        {product.description
+          ? `${product.description.slice(0, 80)}...`
+          : "No description available."}
+      </p>
 
       <Link to={`/product/${dbCategory}/${product._id}`}>
-        <button>Enroll Now</button>
+        <button>Explore Now</button>
       </Link>
     </div>
   );

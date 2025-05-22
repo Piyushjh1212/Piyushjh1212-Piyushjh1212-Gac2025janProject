@@ -3,7 +3,7 @@
 .products-container {
   padding: 40px 20px;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: white;
 }
 
 .products-container h2 {
@@ -12,12 +12,20 @@
   color: #333;
 }
 
+.products-grid-wrapper{
+    max-width: 1200px;
+  margin: 0 auto;
+
+}
+
 .products-grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  gap: 20px;
+  padding: 2rem;
 }
+
+
 
 /* Product Card */
 .product-card {
@@ -66,15 +74,15 @@
 .product-card button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #2563eb;
+  background-color: #243B55;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: lighter;
   transition: background-color 0.3s ease;
 }
 
 .product-card button:hover {
-  background-color: #1e40af;
+  background-color: #324356c4;;
 }

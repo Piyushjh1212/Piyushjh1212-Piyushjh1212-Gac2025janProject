@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Coursesstyle.css";
 import ProductCard from "./ProductCard";
 
-const HomeProductsPage = () => {
+const CoursesPage = ({innerRef}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,8 +23,13 @@ const HomeProductsPage = () => {
     fetchAllProducts();
   }, []);
 
+ useEffect(() => {
+    window.scrollTo(0,0); // 👈 Scrolls to top on mount
+  }, []);
+
+
   return (
-    <div className="products-container">
+    <div ref={innerRef} className="products-container">
       <h2>Explore Our Top Courses</h2>
 
       {loading ? (
@@ -32,6 +37,7 @@ const HomeProductsPage = () => {
       ) : products.length === 0 ? (
         <p>No courses available.</p>
       ) : (
+        <div className="products-grid-wrapper">
         <div className="products-grid">
           {products.map((product) => (
             <ProductCard
@@ -41,9 +47,10 @@ const HomeProductsPage = () => {
             />
           ))}
         </div>
+        </div>
       )}
     </div>
   );
 };
 
-export default HomeProductsPage;
+export default CoursesPage;
