@@ -34,6 +34,8 @@ export default function Header() {
   location.pathname === "/checkout" ||
   location.pathname === "/contact" ||
   location.pathname === "/Courses" ||
+  location.pathname === "/My_Profile"||
+  location.pathname === "/MyCourse"||
   matchPath("/product/:dbCategory/:id", location.pathname) !== null;
   
 
