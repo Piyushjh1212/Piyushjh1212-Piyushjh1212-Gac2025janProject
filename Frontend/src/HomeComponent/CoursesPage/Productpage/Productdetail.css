@@ -1,84 +1,100 @@
 /* Productdetail.css */
 
 .product-detail-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
   padding: 2rem;
-  background-color: #f8f9fa;
+  margin-top: 100px;
 }
 
 .product-detail-card {
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .product-detail-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
 }
 
 .product-image {
   width: 100%;
-  max-height: 220px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
 }
 
 .image-placeholder {
   width: 100%;
-  height: 220px;
-  background-color: #dee2e6;
-  border-radius: 8px;
+  height: 200px;
+  background-color: #e0e0e0;
+  color: #555;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #6c757d;
+  align-items: center;
   font-size: 1rem;
+}
+
+.product-info {
+  padding: 1rem;
+}
+
+.product-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-description {
+  font-size: 1rem;
+  color: #444;
   margin-bottom: 1rem;
 }
 
-h1 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #343a40;
-  margin-bottom: 0.5rem;
-  text-align: center;
+.price-section_courses {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
 }
 
-p {
-  font-size: 0.95rem;
-  color: #495057;
-  margin: 0.25rem 0;
-  text-align: center;
+.new-price {
+  font-size: 1.2rem;
+  color: #27ae60;
+  font-weight: bold;
 }
 
-strong {
-  color: #212529;
+.old-price {
+  text-decoration: line-through;
+  color: #555;
+}
+
+.discount {
+  color: #e74c3c;
+  font-weight: bold;
 }
 
 .enroll-button {
-  margin-top: 1rem;
-  padding: 0.7rem 1.5rem;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #2ecc71;
+  color: white;
+  padding: 0.6rem;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
 .enroll-button:hover {
-  background-color: #0056b3;
+  background-color: #27ae60;
 }
+
 
 .error {
   color: red;

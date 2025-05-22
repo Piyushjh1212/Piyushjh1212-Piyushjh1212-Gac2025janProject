@@ -29,41 +29,52 @@ const ProductDetailPage = () => {
     fetchProduct();
   }, [dbCategory, id]);
 
-    const Handleclick = () => {
-    navigate("/products/checkout"); // ✅ Correct way to navigate
+    const HandleClick = (product) => {
+     navigate("/checkout", { state: { product } });
   };
 
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p className="error">Error: {error}</p>;
   if (!products || products.length === 0) return <p>No products found</p>;
 
-   
-
   return (
-    <section className="product-detail-container">
-      {products.map((product) => (
-        <div key={product._id} className="product-detail-card">
-          <h1>{product.name || "Unnamed Product"}</h1>
+ <section className="product-detail-container">
+  {products.map((product) => (
+    <div key={product._id} className="product-detail-card">
+      {/* Product Image */}
+      {product.images[0].url? (
+        <img
+          src={product.images[0].url}
+          alt={product.name || "Product image"}
+          className="product-image"
+          loading="lazy"
+        />
+      ) : (
+        <div className="image-placeholder">No Image Available</div>
+      )}
 
-          {product.images && product.images.length > 0 ? (
-            <img
-              src={product.images[0].url}
-              alt={product.name || "Product image"}
-              className="product-image"
-              loading="lazy"
-            />
-          ) : (
-            <div className="image-placeholder">No Image Available</div>
-          )}
-
-          <p>{product.description || "No description available."}</p>
-          <p><strong>Price:</strong> ₹{product.price ?? "N/A"}</p>
-          <p><strong>Discounted Price:</strong> ₹{product.NewPrice ?? "N/A"}</p>
-          <p><strong>Discount:</strong> {product.discounted ?? "N/A"}</p>
-          <button className="enroll-button" onClick={Handleclick}>Enroll Now</button>
+      {/* Product Info */}
+      <div className="product-info">
+        <h2 className="product-title">{product.name || "Unnamed Product"}</h2>
+        {/* Pricing */}
+        <div className="price-section_courses">
+          <p className="old-price">₹{product.price ?? "N/A"}</p>
+          <p className="new-price">₹{product.NewPrice ?? "N/A"}</p>
+          <p className="discount">{product.discounted ?? "N/A"}% off</p>
         </div>
-      ))}
-    </section>
+
+        {/* CTA Button */}
+        <button
+          className="enroll-button"
+          onClick={() => HandleClick(product)}
+        >
+          Enroll Now
+        </button>
+      </div>
+    </div>
+  ))}
+</section>
+
   );
 };
 
