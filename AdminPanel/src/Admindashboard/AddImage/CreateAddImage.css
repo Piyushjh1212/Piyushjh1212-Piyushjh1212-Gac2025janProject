@@ -1,5 +1,5 @@
 .create-product-container {
-    margin-top: 40rem; /* 👈 This adds space from top */
+    margin-top: 1rem; /* 👈 This adds space from top */
     display: flex;
     gap: 2rem;
     padding: 2rem;
@@ -13,7 +13,7 @@
   }
   
   .form-section {
-    flex: 1;
+    flex: 0.9;
     min-width: 300px;
   }
   
