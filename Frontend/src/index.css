@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 *{
     margin: 0;
     padding: 0;
@@ -27,3 +29,6 @@ html,Body{
     --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   }
 
+.checkout-ul li {
+  color: #ff5722;  /* Example: orange color */
+}

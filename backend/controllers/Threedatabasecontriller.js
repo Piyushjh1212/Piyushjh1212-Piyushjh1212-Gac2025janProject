@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import {
   ProductDb1,
-  ProductDb2,
-  ProductDb3,
 } from "../models/ProductDbmodle.js";
 import cloudinary from "cloudinary";
 import getDataUri from "../utils/features.js";
@@ -25,10 +23,6 @@ const getProductModelByCategory = (dbCategory) => {
     case "db1":
     case "defaultCategory": // You mentioned 'defaultCategory' points to 'db1'
       return ProductDb1;
-    case "db2":
-      return ProductDb2;
-    case "db3":
-      return ProductDb3;
     default:
       console.warn(`Invalid dbCategory '${dbCategory}' provided.`);
       return null;
@@ -40,16 +34,12 @@ export const getAllProductController = async (req, res) => {
   try {
     const [db1Products, db2Products, db3Products] = await Promise.all([
       ProductDb1.find({}),
-      ProductDb2.find({}),
-      ProductDb3.find({}),
     ]);
 
     res.status(200).send({
       success: true,
       message: "All products from all DBs fetched successfully",
       db1: db1Products,
-      db2: db2Products,
-      db3: db3Products,
     });
   } catch (error) {
     return handleError(res, "Error in get all products API", error);
