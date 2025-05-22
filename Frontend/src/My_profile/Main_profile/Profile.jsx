@@ -81,13 +81,11 @@ export default function Profile() {
                 <div className="profile_icon">
                   <img src={user.profilePic.url} alt="" />
                 </div>
-                <Link to={"/edit-profile"}>
-                  <button>Edit Your Profile</button>
-                </Link>
-                <p>
+                  <button className="profile_udate_button">Edit Your Profile</button>
+                <p >
                   Email: <span>{user.email}</span>
                 </p>
-                <p>
+                <p className="profile_para">
                   Enroll Id: <span>{user._id}</span>
                 </p>
               </div>
