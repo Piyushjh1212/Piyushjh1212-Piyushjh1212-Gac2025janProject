@@ -10,6 +10,7 @@ export default function AdminDashboard() {
         <Link to="/admin/User-data" style={styles.link}> User-Data</Link>
         <Link to="/admin/add-Product-image" style={styles.link}> Add Image</Link>
         <Link to="/admin/add-Vedio" style={styles.link}> Add Vedio</Link>
+        <Link to="/admin/manage-settings" style={styles.link}>Our Produts</Link>
         <Link to="/admin/manage-settings" style={styles.link}>settings</Link>
       </div>
     </div>
