@@ -92,29 +92,32 @@ CLOUDINARY_API_SECRET=your_secret
 
 ## Project Dependencies
 
-| Package         | Version         | Description                               |
-| --------------- | --------------- | ----------------------------------------- |
-| `express`       | ^4.21.2         | Web framework for Node.js                 |
-| `mongoose`      | ^8.9.6          | MongoDB ODM for Node.js                   |
-| `dotenv`        | ^16.4.7         | Load environment variables                |
-| `cors`          | ^2.8.5          | Enable Cross-Origin Resource Sharing      |
-| `cookie-parser` | ^1.4.7          | Parse cookies in requests                 |
-| `jsonwebtoken`  | ^9.0.2          | For authentication with JWTs              |
-| `bcrypt`        | ^5.1.1          | Password hashing                          |
-| `bcryptjs`      | ^2.4.3          | Alternative password hashing library      |
-| `cloudinary`    | ^2.5.1          | Cloud image & video storage               |
-| `multer`        | ^1.4.5-lts.1    | File upload handling                      |
-| `datauri`       | ^4.1.0          | Converts buffer/stream into Data URI      |
-| `streamifier`   | ^0.1.1          | Converts streams into buffer              |
-| `validator`     | ^13.15.0        | String validation and sanitization        |
-| `sanitize-html` | ^2.16.0         | Prevents HTML injection                   |
-| `pdfkit`        | ^0.16.0         | Generate PDFs programmatically            |
-| `razorpay`      | ^2.9.5          | Razorpay payment integration              |
-| `nodemailer`    | ^6.10.1         | Send emails from backend                  |
-| `body-parser`   | ^1.20.3         | Middleware to parse incoming request body |
-| `morgan`        | ^1.10.0         | HTTP request logger                       |
-| `fs`            | ^0.0.1-security | File system handling (legacy import)      |
-| `crypto`        | ^1.0.1          | Cryptographic functions                   |
+| Package                   | Description                                                    |
+| ------------------------- | -------------------------------------------------------------- |
+| `mongoose`                | MongoDB ODM for Node.js                                        |
+| `dotenv`                  | Loads environment variables from a `.env` file                 |
+| `cors`                    | Enable Cross-Origin Resource Sharing                           |
+| `cookie-parser`           | Parse cookies attached to the client request object            |
+| `jsonwebtoken`            | Generate and verify JSON Web Tokens (JWT)                      |
+| `bcrypt`                  | Library to hash and compare passwords securely                 |
+| `bcryptjs`                | Pure JavaScript version of bcrypt for password hashing         |
+| `cloudinary`              | Upload and manage images/videos via Cloudinary                 |
+| `multer`                  | Middleware for handling file uploads (`multipart/form-data`)   |
+| `datauri`                 | Converts files/buffers/streams to data URI                     |
+| `streamifier`             | Converts streams into buffers, useful for file uploads         |
+| `validator`               | Validate and sanitize strings (emails, URLs, etc.)             |
+| `sanitize-html`           | Prevent XSS by sanitizing HTML input                           |
+| `pdfkit`                  | Generate PDF documents in Node.js                              |
+| `razorpay`                | Integrate Razorpay payment gateway                             |
+| `nodemailer`              | Send emails using SMTP or third-party services                 |
+| `body-parser`             | Parse incoming request bodies in middleware                    |
+| `morgan`                  | HTTP request logger middleware for Node.js                     |
+| `fs`                      | File System API (built-in in Node.js, handles file operations) |
+| `crypto`                  | Provides cryptographic functionalities like hashing            |
+| `passport`                | Authentication middleware for Node.js                          |
+| `passport-google-oauth20` | Google OAuth 2.0 authentication strategy for Passport          |
+| `express-session`         | Middleware to manage user sessions                             |
+
 
 
 
