@@ -90,6 +90,33 @@ CLOUDINARY_API_SECRET=your_secret
 | **Deployment (Optional)**       | - Frontend: Vercel / Netlify<br>- Backend: Render / Railway<br>- DB: MongoDB Atlas                  |
 
 
+## Project Dependencies
+
+| Package         | Version         | Description                               |
+| --------------- | --------------- | ----------------------------------------- |
+| `express`       | ^4.21.2         | Web framework for Node.js                 |
+| `mongoose`      | ^8.9.6          | MongoDB ODM for Node.js                   |
+| `dotenv`        | ^16.4.7         | Load environment variables                |
+| `cors`          | ^2.8.5          | Enable Cross-Origin Resource Sharing      |
+| `cookie-parser` | ^1.4.7          | Parse cookies in requests                 |
+| `jsonwebtoken`  | ^9.0.2          | For authentication with JWTs              |
+| `bcrypt`        | ^5.1.1          | Password hashing                          |
+| `bcryptjs`      | ^2.4.3          | Alternative password hashing library      |
+| `cloudinary`    | ^2.5.1          | Cloud image & video storage               |
+| `multer`        | ^1.4.5-lts.1    | File upload handling                      |
+| `datauri`       | ^4.1.0          | Converts buffer/stream into Data URI      |
+| `streamifier`   | ^0.1.1          | Converts streams into buffer              |
+| `validator`     | ^13.15.0        | String validation and sanitization        |
+| `sanitize-html` | ^2.16.0         | Prevents HTML injection                   |
+| `pdfkit`        | ^0.16.0         | Generate PDFs programmatically            |
+| `razorpay`      | ^2.9.5          | Razorpay payment integration              |
+| `nodemailer`    | ^6.10.1         | Send emails from backend                  |
+| `body-parser`   | ^1.20.3         | Middleware to parse incoming request body |
+| `morgan`        | ^1.10.0         | HTTP request logger                       |
+| `fs`            | ^0.0.1-security | File system handling (legacy import)      |
+| `crypto`        | ^1.0.1          | Cryptographic functions                   |
+
+
 
 ##  Contact
 
