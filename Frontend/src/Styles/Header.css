@@ -1,0 +1,53 @@
+.Top_Header{
+    background: var(--website-main-color_1);
+    height:80px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.Second_Top_Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /* Ensure full height of parent */
+    padding: 0 20px;
+
+}
+
+.menu_list{
+    display: flex;
+    align-items: center;
+}
+
+.menu_list li {
+    margin-left: 20px;
+    color: var(--website-main-color_5);
+    cursor: pointer;
+}
+
+.Login_button {
+  padding: 10px 24px;
+  font-size: var(--font-size-1);
+  background-color: var(--website-main-color_5);
+  color: balck;
+  border: none;
+  border-radius: 6px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.Login_button:hover {
+  background-color: var(--website-main-color_5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.Login_button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+

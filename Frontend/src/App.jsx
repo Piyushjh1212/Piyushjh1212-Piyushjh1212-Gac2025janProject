@@ -1,9 +1,9 @@
-import React from "react";
-import Page from "./Pages/Page";
+import React from 'react'
+import RoutesPage from './Routers/Routes'
 
-function App() {
-  return (<Page />
-)};
 
-export default App;
-
+export default function App() {
+  return (
+    <RoutesPage/>  
+  )
+}

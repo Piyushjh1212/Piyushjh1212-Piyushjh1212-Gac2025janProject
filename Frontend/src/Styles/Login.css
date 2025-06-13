@@ -1,0 +1,40 @@
+/* src/components/Login.css */
+.vh-100 {
+  height: 100vh;
+}
+
+.h-custom {
+  height: calc(100% - 73px);
+}
+
+.form-outline {
+  position: relative;
+}
+
+.form-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: white;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.mb-0 a{
+    cursor: pointer;
+}

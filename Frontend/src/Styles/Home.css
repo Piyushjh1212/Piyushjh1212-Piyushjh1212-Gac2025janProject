@@ -1,0 +1,14 @@
+.Home_section {
+  width: 100%; /* Force full width */
+  min-height: 100vh; /* Full screen height */
+  background-image: url("https://res.cloudinary.com/dieboinjz/image/upload/v1739722075/mern-uploads/wkj6vvqeex2io8pisxr7.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
