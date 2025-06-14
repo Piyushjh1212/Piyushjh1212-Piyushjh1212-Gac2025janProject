@@ -1,11 +1,14 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import connectDB from "./dbConfig/Db.config.js";
 import UserRoutes from "./Routes/UserRoutes.js";
 import CoursesRoutes from "./Routes/ContactRoutes.js";
-import rateLimit from "express-rate-limit";
-import helmet from "helmet";
+import My_Products_Routes from "./Routes/My_ProductsRoutes.js";
+
+
 
 dotenv.config();
 const app = express();
@@ -29,7 +32,7 @@ app.use(limiter);
 
 app.use("/api/v1/users", UserRoutes);
 app.use("/api/v1/Courses", CoursesRoutes);
-// app.use("/api/v1/My%@Courses__DatabaseModel/"); // Testing backend route
+app.use("/api/v1/My%@Courses__DatabaseModel", My_Products_Routes); 
 
 app.get("/test", (req, res) => {
   res.json({

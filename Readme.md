@@ -139,8 +139,8 @@ CLOUDINARY_API_SECRET=your_secret
 Created by Piyush Jhariya
 Founder, Growall Coaching
 
-Email - piyushjhariya65@gmial.com
+Email - piyushjhariya65@gmail.com
 
 website avaiable -
 
-https://growallcoaching.in (update if available)
+https://growallcoaching.in (update soon)
