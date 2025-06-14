@@ -1,6 +1,7 @@
 ## Project Title - Growall Coaching ~~ An Edtech platform
 
-Growall Coaching is an edtech platform.
+**Growall Coaching** is a full-stack EdTech platform built with the MERN stack, offering lifetime access to premium HTML & CSS courses, secure payments, and personalized learning dashboards.
+
 
 
 ## Fullstack EdTech Platform
