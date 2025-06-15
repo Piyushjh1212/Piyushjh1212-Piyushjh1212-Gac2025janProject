@@ -1,0 +1,15 @@
+ul {
+    list-style: none;
+    text-decoration: none;
+}
+
+li{
+    margin-top: 30px;
+    text-align: center;
+    border-bottom: 2px solid white;
+    cursor: pointer;
+}
+
+.Li_link{
+    color: #fff;
+}

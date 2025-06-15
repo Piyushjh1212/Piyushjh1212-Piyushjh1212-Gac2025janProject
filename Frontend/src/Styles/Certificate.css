@@ -11,6 +11,7 @@
     background: #ffffff;
     padding: 40px;
     border: 1px solid #04a3ff;
+    height: 580px;
     width: 80%;
     max-width: 900px;
     text-align: center;
@@ -78,6 +79,16 @@
   .info, .signature-line {
     color: #555;
     font-size: 16px;
+  }
+
+  .image_signature{
+    position: relative;
+    top: -18px;
+  }
+
+  .signature-line{
+    position: relative;
+    top: -37px
   }
   
   /* Responsive Design */

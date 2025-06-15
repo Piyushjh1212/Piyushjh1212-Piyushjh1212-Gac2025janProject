@@ -27,7 +27,8 @@ const Certificate = ({ name, course, date }) => {
             </div>
             <div>
               <p className="label">CEO's signature</p>
-              <p className="signature-line">__________________</p>
+              <img className="image_signature" src="./Signature.png" alt="" height={40} width={100} />
+              <p className="signature-line">______________</p>
             </div>
           </div>
         </div>
