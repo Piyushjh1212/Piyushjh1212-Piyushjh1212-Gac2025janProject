@@ -3,84 +3,62 @@ import mongoose from "mongoose";
 // import cloudinary from "cloudinary";
 // import getDataUri from "../utils/features.js";
 import My_Products from "../Modals/My_CoursesModals.js";
+import My_ProductsModel from "../Modals/My_CoursesModals.js";
 
 // CREATE PRODUCT CONTROLLER
 export const createProductController = async (req, res) => {
-  console.log("Received Product Data:", req.body);
+  console.log(req.body);
+  console.log("hello");
 
   try {
-    const {
-      name,
-      price,
-      NewPrice,
-      discounted,
-      description,
-      Category,
-      images,
-      mainProductId,
-      dbCategory,
-    } = req.body;
+    const { name, price, NewPrice, description, images, mainProductId } =
+      req.body;
 
-    // Validate dbCategory
-    const ProductModel = getProductModelByCategory(dbCategory);
-    if (!ProductModel) {
-      return res.status(400).send({
-        success: false,
-        message: `Invalid dbCategory '${dbCategory}' provided.`,
-      });
-    }
-
-    // Validate required fields
     if (
       !name ||
-      price === undefined ||
-      NewPrice === undefined ||
-      discounted === undefined ||
+      !price ||
+      !NewPrice ||
       !description ||
-      !Category ||
-      !images
+      !images ||
+      !mainProductId
     ) {
-      return res.status(400).send({
+      return res.status(300).json({
         success: false,
-        message: "Please provide all required product fields.",
+        message: `All fields are required`,
       });
     }
 
-    if (isNaN(price) || isNaN(NewPrice)) {
-      return res.status(400).send({
+    if (
+      isNaN(Number(price)) ||
+      price <= 0 ||
+      isNaN(Number(NewPrice)) ||
+      NewPrice <= 0
+    ) {
+      return res.status(400).json({
         success: false,
-        message: "Price and NewPrice should be numeric values.",
+        message: "Price should be a number greater than 0",
       });
     }
 
-    if (!Array.isArray(images) || images.length === 0) {
-      return res.status(400).send({
-        success: false,
-        message: "Please provide at least one product image.",
-      });
-    }
-
-    // Create new product in the selected database
-    const newProduct = await ProductModel.create({
+    const newProduct = await My_ProductsModel.create({
       name,
-      description,
-      discounted,
       price,
       NewPrice,
-      Category,
-      mainCourseId: mainProductId,
-      images: images.map((img) => ({
-        public_id: "", // Optional if not using Cloudinary upload here
-        url: img.url || img,
-      })),
+      description,
+      images,
+      mainProductId,
     });
 
-    console.log(" Product Created:", newProduct);
+    if (!newProduct) {
+      return res.status(500).json({
+        success: false,
+        message: `Product not saved please try again`,
+      });
+    }
 
-    return res.status(201).send({
+    return res.status(200).json({
       success: true,
-      message: "Product created successfully.",
-      product: newProduct,
+      message: `Product saved successfully`,
     });
   } catch (error) {
     console.error(" Error creating product:", error);
@@ -92,7 +70,6 @@ export const createProductController = async (req, res) => {
   }
 };
 
-
 // Error Handler Function
 const handleError = (res, message, error = null, status = 500) => {
   console.error(`[${new Date().toISOString()}] ${message}:`, error);
@@ -103,72 +80,27 @@ const handleError = (res, message, error = null, status = 500) => {
   });
 };
 
-// Dynamically choose the correct model based on the dbCategory
-const getProductModelByCategory = (dbCategory) => {
-  console.log("dbCategory in getProductModelByCategory:", `"${dbCategory}"`);
-
-  switch (dbCategory) {
-    case "db1":
-    case "defaultCategory": // You mentioned 'defaultCategory' points to 'db1'
-      return My_Products;
-    default:
-      console.warn(`Invalid dbCategory '${dbCategory}' provided.`);
-      return null;
-  }
-};
-
-// GET ALL PRODUCTS CONTROLLER (all DBs)
-export const getAllProductController = async (req, res) => {
-  try {
-    const [db1Products] = await Promise.all([
-      My_Products.find({}),
-    ]);
-
-    res.status(200).send({
-      success: true,
-      message: "All products from all DBs fetched successfully",
-      db1: db1Products,
-    });
-  } catch (error) {
-    return handleError(res, "Error in get all products API", error);
-  }
-};
-
-// GET SINGLE PRODUCT CONTROLLER
-
 export const getSingleProductController = async (req, res) => {
   try {
     let { dbCategory, id } = req.params;
+    console.log(id);
 
-    const ProductModel = getProductModelByCategory(dbCategory);
-    if (!ProductModel) {
-      return res.status(400).json({
+    const getSingleProduct = await My_ProductsModel.find({
+      mainProductId: id,
+    });
+    console.log(getSingleProduct);
+
+    if (!getSingleProduct) {
+      res.status(404).json({
         success: false,
-        message: `Invalid dbCategory '${dbCategory}' provided.`,
-      });
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid product ID",
-      });
-    }
-
-    // Fetch multiple products with same mainCourseId
-    const products = await ProductModel.find({ mainCourseId: id });
-
-    if (!products || products.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "No products found",
+        message: `Product with ${id} not found`,
       });
     }
 
     return res.status(200).json({
       success: true,
       message: "Products fetched successfully",
-      products, // 👈 note: plural
+      data: getSingleProduct,
     });
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -179,8 +111,6 @@ export const getSingleProductController = async (req, res) => {
     });
   }
 };
-
-
 
 // UPDATE PRODUCT CONTROLLER
 export const updateProductController = async (req, res) => {
@@ -232,7 +162,6 @@ export const updateProductController = async (req, res) => {
     return handleError(res, "Error in update product API", error);
   }
 };
-
 
 // UPDATE PRODUCT IMAGE CONTROLLER
 export const updateProductImageController = async (req, res) => {
@@ -290,7 +219,6 @@ export const updateProductImageController = async (req, res) => {
     return handleError(res, "Error in update product image API", error);
   }
 };
-
 
 // DELETE PRODUCT IMAGE CONTROLLER
 export const deleteProductImageController = async (req, res) => {

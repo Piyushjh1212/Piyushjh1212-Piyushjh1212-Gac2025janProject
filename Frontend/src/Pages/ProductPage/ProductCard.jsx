@@ -28,7 +28,7 @@ const ProductCard = ({ product, dbCategory }) => {
           : "No description available."}
       </p>
 
-      <Link to={`/product/${dbCategory}/${product._id}`}>
+      <Link to={`/product/${product._id}`}>
         <button>Explore Now</button>
       </Link>
     </div>

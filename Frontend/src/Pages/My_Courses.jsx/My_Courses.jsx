@@ -14,12 +14,13 @@ const My_Courses = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:10011/api/v1/My%@Courses__DatabaseModel/${dbCategory}/${id}`);
+        const res = await fetch(`http://localhost:5000/api/v1/mycourses/My_Products/${id}`);
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
         const data = await res.json();
-        setProducts(data.products);  // 👈 Update to "products"
+        console.log(data)
+        setProducts(data.data); 
       } catch (err) {
         setError(err.message || "Something went wrong");
       } finally {
@@ -42,9 +43,9 @@ const My_Courses = () => {
   {products.map((product) => (
     <div key={product._id} className="product-detail-card">
       {/* Product Image */}
-      {product.images[0].url? (
+      {product.images[0]? (
         <img
-          src={product.images[0].url}
+          src={product.images[0]}
           alt={product.name || "Product image"}
           className="product-image"
           loading="lazy"

@@ -38,7 +38,7 @@ const CreateProduct = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/Different_Database_Modle/create",
+        "http://localhost:5000/api/v1/mycourses/create",
         {
           method: "POST",
           headers: {

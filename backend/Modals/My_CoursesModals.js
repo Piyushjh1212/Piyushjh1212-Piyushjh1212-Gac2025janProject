@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    mainCourseId: {
+    mainProductId: {
       type: String,
       required: true,
     },
@@ -19,26 +19,21 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "stock is required"],
     },
-    discounted: {
-      type: Number,
-    },
     description: {
       type: String,
       required: [true, "description is required"],
     },
-    images: [
-      {
-        public_id: String,
-        url: String,
-      },
-    ],
+    images: [{
+      type: String,
+      required: true,
+    }],
   },
   { timestamps: true }
 );
 
 // Exporting three separate models with the same schema
-const My_Products =
+const My_ProductsModel =
   mongoose.models.My_Products ||
   mongoose.model("My_Products", productSchema, "My_Products");
 
-export default My_Products;
+export default My_ProductsModel;

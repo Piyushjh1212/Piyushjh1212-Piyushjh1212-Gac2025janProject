@@ -2,7 +2,6 @@ import CourseItem from "../Modals/CoursesModals.js";
 
 // POST: /api/course-item
 export const AddCourses = async (req, res) => {
-  console.log(req.body);
   try {
     const { title, description, image } = req.body;
 
@@ -12,7 +11,7 @@ export const AddCourses = async (req, res) => {
     }
 
     // Set a default CourseId (manually or dynamically)
-    const defaultCourseId = "6645a1cba91bd12d18d7b941"; // replace with actual ObjectId
+    // const defaultCourseId = "6645a1cba91bd12d18d7b941"; // replace with actual ObjectId
 
     const newItem = new CourseItem({
       CourseId: defaultCourseId,
@@ -25,7 +24,6 @@ export const AddCourses = async (req, res) => {
 
     res.status(201).json({ message: "Course item created", data: newItem });
   } catch (error) {
-    console.error("Error creating course item:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -33,8 +31,6 @@ export const AddCourses = async (req, res) => {
 export const getMyCourses = async (req, res) => {
   try {
     const courses = await CourseItem.find();
-    console.log(courses);
-
     if (!courses) {
       return res.json({
         success: false,

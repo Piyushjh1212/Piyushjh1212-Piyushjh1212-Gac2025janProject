@@ -22,12 +22,11 @@ export default function RoutesPage() {
         <Route path="/Courses" element={<Courses />} />
         <Route path="/Contact" element={<Contact />} />
 
-        <Route path="/product/:dbCategory/:id" element={<My_Courses />} />
+        <Route path="/product/:id" element={<My_Courses />} />
 
-        <Route path="/Login" element={< Login/>} />
-        <Route path="/Signup" element={<SignupForm/>}/>
-        <Route path="/Privacy_policy" element={<PrivacyPolicy/>}/>
-        
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<SignupForm />} />
+        <Route path="/Privacy_policy" element={<PrivacyPolicy />} />
       </Routes>
 
       <Footer />

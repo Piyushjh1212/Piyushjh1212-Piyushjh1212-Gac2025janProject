@@ -32,7 +32,7 @@ app.use(limiter);
 
 app.use("/api/v1/users", UserRoutes);
 app.use("/api/v1/Courses", CoursesRoutes);
-app.use("/api/v1/My%@Courses__DatabaseModel", My_Products_Routes); 
+app.use("/api/v1/mycourses", My_Products_Routes); 
 
 app.get("/test", (req, res) => {
   res.json({
