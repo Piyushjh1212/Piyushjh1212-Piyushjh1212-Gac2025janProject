@@ -132,6 +132,18 @@ CLOUDINARY_API_SECRET=your_secret
 | `express-session`         | Middleware to manage user sessions                             |
 
 
+## Frontend Project Dependencies
+
+| Package Name                    | Version   | Description                           |
+| ------------------------------- | --------- | ------------------------------------- |
+| `@fortawesome/fontawesome-free` | `^6.7.2`  | Font Awesome icons library            |
+| `@react-oauth/google`           | `^0.12.2` | Google OAuth authentication for React |
+| `bootstrap`                     | `^5.3.6`  | Responsive UI framework               |
+| `react`                         | `^19.1.0` | Core React library                    |
+| `react-dom`                     | `^19.1.0` | DOM-specific methods for React        |
+| `react-helmet`                  | `^6.1.0`  | Manage document head in React         |
+| `react-router-dom`              | `^7.6.2`  | Declarative routing for React apps    |
+
 
 
 ##  Contact

@@ -45,59 +45,83 @@ function CheckoutPage() {
     return total.toFixed(2);
   };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      try {
-        const OrderResponse = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/razorpay/create-order`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          }
-        );
-
-        if (!OrderResponse.ok) throw new Error("Something went wrong");
-
-        const data = await OrderResponse.json();
-        if (!data.success) {
-          alert(data.message);
-          return;
+    try {
+      const OrderResponse = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/razorpay/create-order`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include",
         }
+      );
 
-        const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-          amount: data.order.amount,
-          currency: "INR",
-          name: "Growall Coaching",
-          description: "Course Purchase",
-          order_id: data.order.id,
-          handler: function (response) {
-            alert(
-              "Payment Successful! Razorpay Payment ID: " +
-                response.razorpay_payment_id
-            );
-          },
-          prefill: {
-            name: formData.name,
-            email: formData.email,
-            contact: formData.phone,
-          },
-          theme: {
-            color: "#3399cc",
-          },
-        };
+      if (!OrderResponse.ok) throw new Error("Something went wrong");
 
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-      } catch (error) {
-        console.error("Payment failed", error);
-        alert("Payment initiation failed. Try again.");
+      const data = await OrderResponse.json();
+      if (!data.success) {
+        alert(data.message);
+        return;
       }
-    };
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        amount: data.order.amount,
+        currency: "INR",
+        name: "Growall Coaching",
+        description: "Course Purchase",
+        order_id: data.order.id,
+        handler: async function (response) {
+          try {
+            const verifyRes = await fetch(
+              `${import.meta.env.VITE_BACKEND_URL}/api/v1/razorpay/verify-order`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature,
+                }),
+              }
+            );
+
+            const verifyData = await verifyRes.json();
+            if (verifyData.success) {
+              alert("✅ Payment Verified & Order Completed!");
+            } else {
+              alert("❌ Payment verification failed: " + verifyData.message);
+            }
+          } catch (err) {
+            console.error("Verification error", err);
+            alert("Error verifying payment");
+          }
+        },
+
+        prefill: {
+          name: formData.name,
+          email: formData.email,
+          contact: formData.phone,
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.error("Payment failed", error);
+      alert("Payment initiation failed. Try again.");
+    }
+  };
 
   useEffect(() => {
     console.log(formData);

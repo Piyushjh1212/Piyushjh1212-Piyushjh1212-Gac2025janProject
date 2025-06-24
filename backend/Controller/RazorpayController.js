@@ -112,46 +112,64 @@ export const CreateRazorPayOrder = async (req, res) => {
   }
 };
 
-
-// Verify Razorpay Payment
-export const verifyRazorPayOrderController = async (req, res) => {
+// Razorpay order
+export const verifyRazorPayOrder = async (req, res) => {
   try {
-    const { order_id, payment_id, signature } = req.body;
-    if (!order_id || !payment_id || !signature)
-      return res
-        .status(400)
-        .json({ success: false, message: "Missing required fields" });
+    const {
+      razorpay_payment_id,
+      razorpay_order_id,
+      razorpay_signature,
+    } = req.body;
 
-    const order = await orderModel.findOne({ "razorpayOrder.id": order_id });
+    if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields",
+      });
+    }
+
+    // Find order in DB
+    const order = await orderModel.findOne({
+      razorpayOrderId: razorpay_order_id,
+    });
+
     if (!order) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Order not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
     }
 
     if (order.payment) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Payment already verified" });
+      return res.status(400).json({
+        success: false,
+        message: "Payment already verified",
+      });
     }
 
-    // Generate the expected signature
-    const hmac = crypto.createHmac("sha256", razorPayKeySecret);
-    hmac.update(`${order_id}|${payment_id}`);
-    const expectedSignature = hmac.digest("hex");
+    // Create expected signature using Razorpay secret
+    const hmac = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET);
+    hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+    const generated_signature = hmac.digest("hex");
 
-    if (expectedSignature === signature) {
+    if (generated_signature === razorpay_signature) {
       order.payment = true;
+      order.razorpayPaymentId = razorpay_payment_id;
+      order.razorpaySignature = razorpay_signature;
       await order.save();
-      return res
-        .status(200)
-        .json({ success: true, message: "Payment verified successfully" });
+
+      return res.status(200).json({
+        success: true,
+        message: "Payment verified successfully",
+      });
     } else {
-      return res
-        .status(400)
-        .json({ success: false, message: "Payment verification failed" });
+      return res.status(400).json({
+        success: false,
+        message: "Payment verification failed: Signature mismatch",
+      });
     }
   } catch (error) {
+    console.error("Payment Verification Error:", error);
     res.status(500).json({
       success: false,
       message: "Internal Server Error",
@@ -159,6 +177,7 @@ export const verifyRazorPayOrderController = async (req, res) => {
     });
   }
 };
+
 
 // User Orders
 export const userOrder = async (req, res) => {
