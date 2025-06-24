@@ -46,23 +46,17 @@ export default function SignupForm() {
 
       const res = await fetch(`http://localhost:5000/api/v1/users/sign-up`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // ✅ needed for cookie-based auth
+        body: JSON.stringify({ name, email, password }), // ✅ only send needed fields
       });
 
       const data = await res.json();
 
-      if (!res.ok) {
+      if (!res.ok || !data.success) {
         throw new Error(data.message || "Signup failed");
-      }
-
-      if (!data.success) {
-        setMessage({
-          status: true,
-          type: "error",
-          text: data.message || "Signup successful!",
-        });
-        return;
       }
 
       setMessage({

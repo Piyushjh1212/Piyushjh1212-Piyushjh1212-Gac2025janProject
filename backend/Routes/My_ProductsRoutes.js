@@ -1,5 +1,5 @@
 import express from "express";
-import { createProductController, getSingleProductController } from "../Controller/My_CoursesControllers.js";
+import {  createProductController, getSingleProductController } from "../Controller/My_CoursesControllers.js";
 
 // import { singleUpload } from "../middlewares/multer.js";
 
@@ -13,7 +13,7 @@ My_Products_Routes.get("/My_Products/:id", getSingleProductController);
 
 
 // Create product (NO isAuth)
-My_Products_Routes.post("/create", createProductController);
+My_Products_Routes.post("/Create", createProductController);
 
 // // Update product
 // DifferentCategoryRouter.put("/update/:dbCategory/:id", updateProductController);

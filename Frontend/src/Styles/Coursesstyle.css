@@ -4,7 +4,7 @@
   padding: 40px 20px;
   text-align: center;
   background-color: white;
-  margin-top: 50px;
+  padding-top: 120px;
 }
 
 .products-container h2 {
@@ -30,7 +30,7 @@
 
 /* Product Card */
 .product-card {
-  width: 300px;
+  width: 400px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background-color: #fff;

@@ -11,7 +11,7 @@ const CoursesPage = ({innerRef}) => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try { 
-    const res = await fetch("http://localhost:5000/api/v1/courses/get_My_courses");
+    const res = await fetch("http://localhost:5000/api/v1/course/getMyCourses");
     const data = await res.json();
     setProducts(data.data);
   } catch (error) {

@@ -1,17 +1,19 @@
 import CourseItem from "../Modals/CoursesModals.js";
 
+
 // POST: /api/course-item
-export const AddCourses = async (req, res) => {
+export const Addcourses = async (req, res) => {
   try {
     const { title, description, image } = req.body;
 
+    console.log(req.body)
     // Optional: Validate required fields
     if (!title || !description || !image) {
       return res.status(400).json({ error: "All fields are required." });
     }
 
     // Set a default CourseId (manually or dynamically)
-    // const defaultCourseId = "6645a1cba91bd12d18d7b941"; // replace with actual ObjectId
+   const defaultCourseId = "6645a1cba91bd12d18d7b941"; // replace with actual ObjectId
 
     const newItem = new CourseItem({
       CourseId: defaultCourseId,

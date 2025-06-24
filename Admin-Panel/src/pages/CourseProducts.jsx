@@ -38,7 +38,7 @@ const CreateProduct = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/mycourses/create",
+        "http://localhost:5000/api/v1/my_courses/Create",
         {
           method: "POST",
           headers: {
@@ -64,7 +64,7 @@ const CreateProduct = () => {
     const fetchAllProducts = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/v1/courses/get_My_courses"
+          "http://localhost:5000/api/V1/Course/getMyCourses"
         );
         const data = await res.json();
         setData(data.data);

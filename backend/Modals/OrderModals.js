@@ -13,8 +13,7 @@ const orderSchema = new mongoose.Schema({
       state: String,
       zipcode: String,
       country: String,
-      phone: String,
-      amount: Number
+      phone: String
     },
     status: { type: String, default: "Pending" },
     payment: { type: Boolean, default: false },
@@ -23,8 +22,7 @@ const orderSchema = new mongoose.Schema({
       currency: String,
       amount: Number,
     },
-    date: { type: Date, default: Date.now },
-  });
+  }, {timestamps: true});
   
   
   const orderModel = mongoose.models.order || mongoose.model("order", orderSchema);

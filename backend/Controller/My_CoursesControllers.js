@@ -11,7 +11,7 @@ export const createProductController = async (req, res) => {
   console.log("hello");
 
   try {
-    const { name, price, NewPrice, description, images, mainProductId } =
+    const { name, price, NewPrice, description, images, mainProductId, CourseDuration, Lessons } =
       req.body;
 
     if (
@@ -20,7 +20,9 @@ export const createProductController = async (req, res) => {
       !NewPrice ||
       !description ||
       !images ||
-      !mainProductId
+      !mainProductId ||
+      !CourseDuration ||
+      !Lessons
     ) {
       return res.status(300).json({
         success: false,
@@ -47,6 +49,8 @@ export const createProductController = async (req, res) => {
       description,
       images,
       mainProductId,
+      CourseDuration,
+      Lessons
     });
 
     if (!newProduct) {

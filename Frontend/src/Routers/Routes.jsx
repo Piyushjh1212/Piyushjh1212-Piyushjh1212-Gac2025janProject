@@ -10,6 +10,7 @@ import Login from "../Component/Login_Page/Login";
 import SignupForm from "../Component/Login_Page/Signup";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import My_Courses from "../Pages/My_Courses.jsx/My_Courses";
+import CheckoutPage from "../Pages/My_Courses.jsx/CheckoutPage";
 
 export default function RoutesPage() {
   return (
@@ -23,6 +24,7 @@ export default function RoutesPage() {
         <Route path="/Contact" element={<Contact />} />
 
         <Route path="/product/:id" element={<My_Courses />} />
+        <Route path="/Checkout" element={<CheckoutPage />} />
 
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<SignupForm />} />

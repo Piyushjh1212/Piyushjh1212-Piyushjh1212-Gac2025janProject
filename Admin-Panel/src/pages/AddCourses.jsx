@@ -8,6 +8,7 @@ const Add_Courses = () => {
     image: "",
   });
 
+
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -33,9 +34,8 @@ const Add_Courses = () => {
 
     try {
       console.log(import.meta.env.VITE_API_BASE_URL);
-      console.log(formData);
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/My_courses`,
+        `${import.meta.env.VITE_API_BASE_URL}/Courses`,
         {
           method: "POST",
           headers: {

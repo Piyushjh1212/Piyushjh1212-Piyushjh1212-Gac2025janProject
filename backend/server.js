@@ -5,9 +5,10 @@ import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import connectDB from "./dbConfig/Db.config.js";
 import UserRoutes from "./Routes/UserRoutes.js";
-import CoursesRoutes from "./Routes/ContactRoutes.js";
 import My_Products_Routes from "./Routes/My_ProductsRoutes.js";
-
+import CoursesRoutes from "./Routes/CoursesRoutes.js";
+import cookieParser from "cookie-parser";
+import razorPayRouter from "./Routes/RazorpayRoutes.js";
 
 
 dotenv.config();
@@ -26,13 +27,20 @@ const limiter = rateLimit({
 
 connectDB();
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
+app.use(cookieParser()); 
 app.use(limiter);
 
 app.use("/api/v1/users", UserRoutes);
-app.use("/api/v1/Courses", CoursesRoutes);
-app.use("/api/v1/mycourses", My_Products_Routes); 
+app.use("/api/V1/Course", CoursesRoutes);
+app.use("/api/v1/my_courses", My_Products_Routes);
+app.use("/api/v1/razorpay", razorPayRouter);
 
 app.get("/test", (req, res) => {
   res.json({

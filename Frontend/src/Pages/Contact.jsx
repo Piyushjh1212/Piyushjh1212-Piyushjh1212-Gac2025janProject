@@ -17,7 +17,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/contact/send`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL_1}/api/v1/contact/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

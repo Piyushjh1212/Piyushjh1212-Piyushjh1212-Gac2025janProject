@@ -35,22 +35,35 @@ export const userSignUp = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = UserModel.create({
+    const newUser = await UserModel.create({
       name,
       email,
       password: hashedPassword,
     });
 
+    console.log(newUser);
+
     if (!newUser) {
       return res.status(400).json({
         success: false,
-        messaeg: `Signup failed please try again`,
+        message: `Signup failed please try again`,
       });
     }
+
+    console.log(newUser._id);
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
+
+    // console.log(token);
+
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: `Token not created`,
+      });
+    }
 
     return res
       .status(200)
@@ -86,4 +99,39 @@ export const logOut = async () => {
 export const forgotPassword = async () => {
   try {
   } catch (error) {}
+};
+
+export const getUserData = async (req, res) => {
+  console.log(req.user);
+  try {
+    const { id } = req.user;
+    if (!id) {
+      return res.status(404).json({
+        success: false,
+        message: `User not authenticated`,
+      });
+    }
+
+    const user = await UserModel.findById(id);
+    user.password = undefined;
+    console.log(user);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: `User not found`,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: `Data fetched successfully`,
+      data: user,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: `Api error ${error.name} : ${error.message}`,
+    });
+  }
 };
