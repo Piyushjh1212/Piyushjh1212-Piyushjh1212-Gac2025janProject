@@ -9,6 +9,7 @@ import My_Products_Routes from "./Routes/My_ProductsRoutes.js";
 import CoursesRoutes from "./Routes/CoursesRoutes.js";
 import cookieParser from "cookie-parser";
 import razorPayRouter from "./Routes/RazorpayRoutes.js";
+import PurchasedCourseRoutes from "./Routes/PurchasedCoursesRoutes.js";
 
 
 dotenv.config();
@@ -40,7 +41,11 @@ app.use(limiter);
 app.use("/api/v1/users", UserRoutes);
 app.use("/api/V1/Course", CoursesRoutes);
 app.use("/api/v1/my_courses", My_Products_Routes);
+
+// Payment and Course update
 app.use("/api/v1/razorpay", razorPayRouter);
+app.use("/api/v1/Purchased-Courses", PurchasedCourseRoutes)
+
 
 app.get("/test", (req, res) => {
   res.json({
