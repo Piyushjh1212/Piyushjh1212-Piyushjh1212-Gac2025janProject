@@ -56,8 +56,12 @@ function CheckoutPage() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
           credentials: "include",
+          body: JSON.stringify({
+            ...formData,
+            productId: product._id, // ✅ send productId here
+            PromoCode: promoCode,
+          }),
         }
       );
 
@@ -79,12 +83,15 @@ function CheckoutPage() {
         handler: async function (response) {
           try {
             const verifyRes = await fetch(
-              `${import.meta.env.VITE_BACKEND_URL}/api/v1/razorpay/verify-order`,
+              `${
+                import.meta.env.VITE_BACKEND_URL
+              }/api/v1/razorpay/verify-order`,
               {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify({
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_order_id: response.razorpay_order_id,

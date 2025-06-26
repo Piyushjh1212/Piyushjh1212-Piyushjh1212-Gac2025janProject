@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 export const isAuth = (req, res, next) => {
   try {
     const token = req.cookies.token;
+    console.log(token)
     // If no token found, deny access
     if (!token) {
       return res

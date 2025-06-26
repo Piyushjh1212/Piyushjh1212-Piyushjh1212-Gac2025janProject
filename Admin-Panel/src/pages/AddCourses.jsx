@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./Styles/AddCourse.css";
 
 const Add_Courses = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    image: "",
-  });
+    const [formData, setFormData] = useState({
+      title: "",
+      description: "",
+      image: "",
+    });
 
 
   const [errors, setErrors] = useState({});

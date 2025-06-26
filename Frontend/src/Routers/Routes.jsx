@@ -11,6 +11,7 @@ import SignupForm from "../Component/Login_Page/Signup";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import My_Courses from "../Pages/My_Courses.jsx/My_Courses";
 import CheckoutPage from "../Pages/My_Courses.jsx/CheckoutPage";
+import MyCourses from "../Pages/My_Courses.jsx/CoursePurchased";
 
 export default function RoutesPage() {
   return (
@@ -22,6 +23,8 @@ export default function RoutesPage() {
         <Route path="/About" element={<About />} />
         <Route path="/Courses" element={<Courses />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/My_Courses" element = {<MyCourses/>}/>
+        {/* <Route path="/My_Courses_Leacture" = {<MyCourses/>}/>0 */}
 
         <Route path="/product/:id" element={<My_Courses />} />
         <Route path="/Checkout" element={<CheckoutPage />} />

@@ -1,8 +1,8 @@
 import crypto from "crypto";
 import orderModel from "../Modals/OrderModals.js";
 import userModel from "../Modals/userModals.js";
-import { createRazorpayInstance } from "../DbConfig/Razorpay.Config.js";
 import Razorpay from "razorpay";
+import My_ProductsModel from "../Modals/My_CoursesModals.js";
 
 // const frontend_url = process.env.FRONTEND_URL;
 // const razorPayKeyId = process.env.RAZORPAY_KEY_ID;
@@ -56,13 +56,14 @@ import Razorpay from "razorpay";
 export const CreateRazorPayOrder = async (req, res) => {
   try {
     const userId = req.user?.id;
+
     if (!userId)
       return res
         .status(401)
         .json({ success: false, message: "User not Authenticated" });
 
     const { productId, PromoCode } = req.body;
-    const Product = await ProductModle.findById(productId);
+    const Product = await My_ProductsModel.findById(productId);
     if (!Product)
       return res
         .status(404)
@@ -76,7 +77,7 @@ export const CreateRazorPayOrder = async (req, res) => {
 
     const options = {
       amount: Math.round(amount * 100),
-      currency: INR,
+      currency: "INR",
       receipt: `receipt_order_${Date.now()}`,
     };
 
@@ -85,16 +86,17 @@ export const CreateRazorPayOrder = async (req, res) => {
       key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
 
+
     const order = await razorpay.orders.create(options);
     if (!order)
-      return res
+      return res 
         .status(500)
         .json({ success: false, message: "Razorpay order creation failed" });
 
     // Save to DB for later verification
     await orderModel.create({
-      user: userId,
-      product: Product.id,
+      userId: userId,
+      courseId: Product._id,
       razorpayOrderId: order.id,
       amount,
     });
@@ -112,14 +114,13 @@ export const CreateRazorPayOrder = async (req, res) => {
   }
 };
 
-// Razorpay order
+// VerifyRazorpay Order
 export const verifyRazorPayOrder = async (req, res) => {
   try {
-    const {
-      razorpay_payment_id,
-      razorpay_order_id,
-      razorpay_signature,
-    } = req.body;
+    const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+      req.body;
+
+      console.log("correct",req.body);
 
     if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
       return res.status(400).json({
@@ -128,12 +129,13 @@ export const verifyRazorPayOrder = async (req, res) => {
       });
     }
 
-    // Find order in DB
+    // Find order in Database
     const order = await orderModel.findOne({
       razorpayOrderId: razorpay_order_id,
     });
-
+    
     if (!order) {
+      console.log(razorpay_order_id)
       return res.status(404).json({
         success: false,
         message: "Order not found",
@@ -177,7 +179,6 @@ export const verifyRazorPayOrder = async (req, res) => {
     });
   }
 };
-
 
 // User Orders
 export const userOrder = async (req, res) => {
@@ -228,7 +229,7 @@ export const listOrders = async (req, res) => {
 };
 
 // Update Order Status
-export const updateStatus = async (req, res) => {
+export const UpdateStatus = async (req, res) => {
   try {
     const { orderId, status } = req.body;
     if (!orderId || !status)
@@ -236,12 +237,12 @@ export const updateStatus = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Order ID and status are required" });
 
-    const updatedOrder = await orderModel.findByIdAndUpdate(
+    const UpdatedOrder = await orderModel.findByIdAndUpdate(
       orderId,
       { status },
       { new: true }
     );
-    if (!updatedOrder)
+    if (!UpdatedOrder)
       return res
         .status(404)
         .json({ success: false, message: "Order not found" });
@@ -249,7 +250,7 @@ export const updateStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Order status updated successfully",
-      order: updatedOrder,
+      order: UpdatedOrder,
     });
   } catch (error) {
     res.status(500).json({
@@ -260,7 +261,8 @@ export const updateStatus = async (req, res) => {
   }
 };
 
-// Delete Order
+
+// Delete the Payment Order
 export const deleteOrder = async (req, res) => {
   try {
     const { orderId } = req.body;

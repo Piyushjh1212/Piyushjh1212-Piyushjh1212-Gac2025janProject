@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import "../Styles/Header.css";
 import { GacContext } from "../Pages/GacContext/GacContext";
+import { useState } from "react";
+import { useRef } from "react";
 
 export default function Header() {
   const { user } = useContext(GacContext);
+   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const HandleRedirect = (path) => {
     window.location.href = path;
   };
+
+  const profileIconRef = useRef(null);
 
   const HandleLogin = () => {
     window.location.href = "/Login";
@@ -40,9 +45,21 @@ export default function Header() {
             Login
           </button>
         ) : (
-          <button className="Login_button" onClick={HandleLogin}>
-            Welcome {user.data.name}
-          </button>
+              <div
+              className="Header_ProfileIcon"
+              role="button"
+              aria-label="Toggle profile menu"
+              aria-expanded={showProfileMenu}
+              onClick={() => setShowProfileMenu((prev) => !prev)}
+              ref={profileIconRef}
+            >
+              <img
+                src="https://res.cloudinary.com/dieboinjz/image/upload/v1739719843/mern-uploads/atrbtbitbymngbjrldsn.webp"
+                alt="Profile"
+                width={50}
+                height={50}
+              />
+            </div>
         )}
       </div>
     </header>
