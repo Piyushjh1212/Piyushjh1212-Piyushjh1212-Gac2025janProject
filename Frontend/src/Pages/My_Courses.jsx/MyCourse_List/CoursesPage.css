@@ -1,0 +1,76 @@
+.courses-page {  
+  background: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+  color: white;
+  width: 100%;
+  height: fit-content;
+}
+
+.courses-main {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 350px;
+}
+
+.content-area.full-width {
+  margin-left: 0;
+}
+
+.video-section {
+  flex: 1;
+  min-height: 60%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.lesson-details {
+  flex: 1;
+  padding: 2rem;
+  height: fit-content;
+  background: rgb(2, 16, 51);
+  backdrop-filter: blur(10px);
+  border-radius: 20px 20px 0 0;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .content-area {
+    margin-left: 0;
+  }
+  
+  .courses-main {
+    flex-direction: column;
+  }
+  
+  .video-section {
+    min-height: 50vh;
+  }
+  
+  .lesson-details {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-section {
+    min-height: 40vh;
+    border-radius: 0;
+  }
+  
+  .lesson-details {
+    padding: 1rem;
+    border-radius: 20px 20px 0 0;
+    margin-top: -15px;
+  }
+}
