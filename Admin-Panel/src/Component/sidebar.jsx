@@ -17,16 +17,34 @@ const Sidebar = () => {
       <nav>
         <ul>
           <li>
-            <Link className="Li_link" to="/">Dashboard</Link>
+            <Link className="Li_link" to="/">
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link className="Li_link" to="/users">Users</Link>
+            <Link className="Li_link" to="/users">
+              Users
+            </Link>
           </li>
           <li>
-            <Link className="Li_link" to="/courses">Add_courses</Link>
+            <Link className="Li_link" to="/courses">
+              Add_courses
+            </Link>
           </li>
           <li>
-            <Link className="Li_link" to="/My_Courses">Add_My_products</Link>
+            <Link className="Li_link" to="/My_Courses">
+              Add_My_products
+            </Link>
+          </li>
+           <li>
+            <Link className="Li_link" to="/Add_My_Courses_Content">
+              Add_Courses_content
+            </Link>
+          </li>
+          <li>
+            <Link className="Li_link" to="/Payment-Orders">
+              PaymentOrders
+            </Link>
           </li>
         </ul>
       </nav>

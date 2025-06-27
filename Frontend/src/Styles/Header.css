@@ -1,7 +1,7 @@
 .Top_Header{
     background: var(--website-main-color_1);
     height:80px;
-    position: fixed;
+    /* position: absolute; */
     width: 100%;
     z-index: 999;
 }

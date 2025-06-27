@@ -134,5 +134,42 @@ export const verifyRazorPayOrder = async (req, res) => {
 };
 
 
+// Get Order Controller
+
+// Get All Orders Controller
+
+export const GetAllOrdersControllers = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated",
+      });
+    }
+
+    const orders = await orderModel
+      .find({ userId })
+      .populate("courseId", "CourseName price NewPrice") // populate course info
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.error("Error fetching user orders:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch orders",
+      error: error.message,
+    });
+  }
+};
+
+
+
+
 // ------------------------- /\ Completed /\ ----------------------------  
 //                           \/           \/

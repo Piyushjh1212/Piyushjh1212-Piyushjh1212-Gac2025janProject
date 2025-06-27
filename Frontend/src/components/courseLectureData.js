@@ -83,6 +83,8 @@ export const coursesData = [
         description: "Build dynamic user interfaces with React",
         lessons: [
           {
+
+            
             id: 4,
             title: "React Components & JSX",
             description: "Learn the building blocks of React applications. Understand components, JSX syntax, and component composition patterns.",

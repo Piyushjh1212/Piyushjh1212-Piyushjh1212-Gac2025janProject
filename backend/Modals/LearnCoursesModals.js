@@ -1,36 +1,62 @@
+// models/CourseVideo.model.js
 import mongoose from "mongoose";
 
-const LearnCourseModleSchema = new mongoose.Schema({
-    CourseId: {
-        Type: String,
-        requierd : [True, "Course_id Is required"]
-    },
-    CourseName: {
-        Type: String,
-    },
-    CourseLevel:{
-        Type:String
-    },
-    CourseRating: {
-        type: Number,
-        default: 0,
-    },
-    StudentsEnrolled: {
-        Type: Number
-    },
-    CourseTime: {
-        Type: Number
-    },
-    OverView: {
-        Type: String
-    },
-    Transcript: {
-        Type: String
-    }
+const courseVideoSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  duration: {
+    type: String, // e.g., "35:40"
+    required: true,
+  },
+  difficulty: {
+    type: String,
+    enum: ["Beginner", "Intermediate", "Advanced"],
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["Video", "Article", "Quiz"],
+    required: true,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
+  },
+  thumbnail: {
+    type: String,
+    required: true,
+  },
+  studentsCount: {
+    type: String, // Stored as string like "1.6k", or change to Number if needed
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5,
+    required: true,
+  },
+  estimatedTime: {
+    type: String, // e.g., "40 min"
+    required: true,
+  },
+  nextLesson: {
+    type: String,
+    required: true,
+  },
+  keyPoints: {
+    type: [String],
+    required: true,
+  },
+}, {
+  timestamps: true,
 });
 
-const My_LEARNCourseModle =
-
-    mongoose.models.My_LEARNCourseModle || mongoose.model("My_LEARNCourseModle", LearnCourseModleSchema, "My_LEARNCourseModle");
-
-export default My_LEARNCourseModle;
+const CourseVideo = mongoose.model("CourseVideo", courseVideoSchema);
+export default CourseVideo;

@@ -12,7 +12,9 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import My_Courses from "../Pages/My_Courses.jsx/My_Courses";
 import CheckoutPage from "../Pages/My_Courses.jsx/CheckoutPage";
 import MyCourses from "../Pages/My_Courses.jsx/CoursePurchased";
-import MyCourse_ListPage from "../Pages/My_Courses.jsx/MyCourse_List/My_CourseList";
+// import MyCourse_ListPage from "../Pages/My_Courses.jsx/MyCourse_List/My_CourseList";
+// import CoursesPage from "../Pages/Courses";
+import PurchaseLectureCourse from "../components/CoursesPage";
 
 export default function RoutesPage() {
   return (
@@ -25,10 +27,12 @@ export default function RoutesPage() {
         <Route path="/Courses" element={<Courses />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/My_Courses" element = {<MyCourses/>}/>
-        <Route path="/My_Courses_Leacture" element= {<MyCourse_ListPage/>}/>
+        {/* <Route path="/My_Courses_Leacture" element= {<MyCourse_ListPage/>}/> */}
 
         <Route path="/product/:id" element={<My_Courses />} />
         <Route path="/Checkout" element={<CheckoutPage />} />
+
+          <Route path="/my-purchased-course-list" element={<PurchaseLectureCourse />} />
 
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<SignupForm />} />
