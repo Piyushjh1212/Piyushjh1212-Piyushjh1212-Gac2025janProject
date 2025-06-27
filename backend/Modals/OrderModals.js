@@ -36,7 +36,7 @@ const orderSchema = new mongoose.Schema(
       default: false,
     },
    razorpayOrderId: {
-      type: String, // ✅ Just a string
+      type: String, // 
     },
     payment: {
       type: Boolean,

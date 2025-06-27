@@ -2,13 +2,12 @@ import mongoose from "mongoose";
 
 // import cloudinary from "cloudinary";
 // import getDataUri from "../utils/features.js";
-import My_Products from "../Modals/My_CoursesModals.js";
+
 import My_ProductsModel from "../Modals/My_CoursesModals.js";
 
 // CREATE PRODUCT CONTROLLER
 export const createProductController = async (req, res) => {
-  console.log(req.body);
-  console.log("hello");
+
 
   try {
     const { name, price, NewPrice, description, images, mainProductId, CourseDuration, Lessons } =
