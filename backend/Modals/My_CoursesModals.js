@@ -23,14 +23,6 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, "description is required"],
     },
-    CourseDuration: {
-      type : Number,
-      required : [true, "Courseduration is required"]
-    },
-    Lessons : {
-      type: String,
-      required : true
-    },
     images: [{
       type: String,
       required: true,

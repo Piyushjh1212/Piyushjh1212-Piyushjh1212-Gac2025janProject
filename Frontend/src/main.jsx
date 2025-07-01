@@ -4,12 +4,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./index.css";
 import App from "./App.jsx";
 import GacContextProvider from "./Pages/GacContext/GacContext.jsx";
-// import { BrowserRouter } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 
 createRoot(document.getElementById("root")).render(
-  // <BrowserRouter>
+
+  <GoogleOAuthProvider clientId="1026977444090-hnu0hl6758cd35crqodmn64i5gptdkb3.apps.googleusercontent.com">
     <GacContextProvider>
       <App />
     </GacContextProvider>
-  // </BrowserRouter>
+  </GoogleOAuthProvider>
 );

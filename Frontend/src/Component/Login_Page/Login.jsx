@@ -106,7 +106,6 @@ export default function Login() {
                 <p className="text-center fw-bold mx-3 mb-0">Or</p>
               </div>
               <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                <p className="lead fw-normal mb-0 me-3">Sign in with</p>
                 <LoginButton/>
                
                 <button

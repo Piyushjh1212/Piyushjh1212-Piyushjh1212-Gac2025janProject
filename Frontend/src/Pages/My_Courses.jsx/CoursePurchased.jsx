@@ -6,13 +6,19 @@ const MyCourses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const HandleSubmitContinueLearning = () =>{
+     window.location.href = "/my-purchased-course-list"
+  }
+
   useEffect(() => {
     const fetchCourses = async () => {
       try {
         const token = localStorage.getItem("token");
 
         const res = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/v1/Purchased-Courses/Get-Purchased-Course`,
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/v1/Purchased-Courses/Get-Purchased-Course`,
           {
             method: "GET",
             credentials: "include",
@@ -28,8 +34,7 @@ const MyCourses = () => {
         }
 
         // **Here is the key fix:**
-        // The backend returns { success, message, data: [courses] }
-        // So, extract courses from `data` property, not `courses`
+        
         const { success, data: courses } = await res.json();
 
         if (!success) {
@@ -65,8 +70,11 @@ const MyCourses = () => {
           <div className="courses-grid">
             {courses.map((course) => (
               <div className="course-card" key={course._id}>
+                <h1 className="Course-heading">{course.name}</h1>
+
                 <div className="course-image">
-                  <img src={course.image} alt={course.title} />
+                  <img src={course.Image} alt={course.title} />
+                  
                 </div>
 
                 <div className="course-content">
@@ -80,7 +88,7 @@ const MyCourses = () => {
                   </div>
                 </div>
                 <div className="button">
-                  <button className="continue-btn" >Continue Learning</button>
+                  <button className="continue-btn" onClick={HandleSubmitContinueLearning}>Continue Learning</button>
                 </div>
               </div>
             ))}

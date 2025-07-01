@@ -1,68 +1,83 @@
-.form-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
+.course-form-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100vh; /* Set full viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 20px;
+  background-color: #fafafa;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
-.form-container h2 {
+.course-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-.form-group {
-  margin-bottom: 16px;
+.course-form-group {
+  margin-bottom: 15px;
 }
 
-.form-group label {
+.course-form-label {
   display: block;
   margin-bottom: 6px;
-  font-weight: bold;
-  color: #444;
+  font-weight: 500;
+  color: #222;
 }
 
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.keypoint-input {
-  margin-bottom: 8px;
-}
-
-.add-keypoint-btn {
-  background-color: #007BFF;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 6px;
-}
-
-.add-keypoint-btn:hover {
-  background-color: #0056b3;
-}
-
-.submit-btn {
+.course-form-input,
+.course-form-select {
   width: 100%;
   padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.course-form-input:focus,
+.course-form-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.key-point-input {
+  display: block;
+  margin-bottom: 8px;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-key-point-btn {
   background-color: #28a745;
   color: white;
-  font-weight: bold;
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
-.submit-btn:hover {
+.add-key-point-btn:hover {
   background-color: #218838;
+}
+
+.course-form-submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.course-form-submit:hover {
+  background-color: #0056b3;
 }

@@ -1,36 +1,39 @@
 /* src/styles/ProductsPage.css */
 
+/* Container for the whole product section */
 .products-container {
-  padding: 40px 20px;
   text-align: center;
-  background-color: white;
-  padding-top: 120px;
+  padding-top: 30px;
+  background-color: #ffffff;
+  padding-bottom: 60px;
 }
 
+/* Section heading */
 .products-container h2 {
   font-size: 2rem;
   margin-bottom: 30px;
   color: #333;
 }
 
-.products-grid-wrapper{
-    max-width: 1200px;
-  margin: 0 auto;
-
+/* Wrapper to limit width and center the grid */
+.products-grid-wrapper {
+   margin: 0 auto;
+  padding: 0 1rem;
 }
 
+/* Flex grid layout for product cards */
 .products-grid {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
-
-
-/* Product Card */
+/* Product Card Styling */
 .product-card {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background-color: #fff;
@@ -44,6 +47,7 @@
   transform: translateY(-5px);
 }
 
+/* Product image */
 .product-card img {
   width: 100%;
   height: 180px;
@@ -52,26 +56,31 @@
   margin-bottom: 15px;
 }
 
+/* Product title */
 .product-card h3 {
   font-size: 1.25rem;
   color: #222;
   margin: 10px 0;
 }
 
+/* Product description / text */
 .product-card p {
   margin: 5px 0;
   color: #555;
 }
 
+/* Old price */
 .product-card del {
   color: #999;
 }
 
+/* Discount label or new price */
 .product-card .discount {
-  color: green;
+  color: #2ecc71;
   font-weight: bold;
 }
 
+/* Enroll or action button */
 .product-card button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -80,10 +89,46 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: lighter;
+  font-weight: 500;
   transition: background-color 0.3s ease;
 }
 
 .product-card button:hover {
-  background-color: #324356c4;;
+  background-color: #324356c4;
+}
+
+.product-card button:focus {
+  outline: 2px solid #324356;
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .products-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card img {
+    height: 150px;
+  }
+
+  .product-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .product-card p {
+    font-size: 0.95rem;
+  }
+
+  .product-card button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+  }
 }

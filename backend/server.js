@@ -10,6 +10,7 @@ import CoursesRoutes from "./Routes/CoursesRoutes.js";
 import cookieParser from "cookie-parser";
 import razorPayRouter from "./Routes/RazorpayRoutes.js";
 import PurchasedCourseRoutes from "./Routes/PurchasedCoursesRoutes.js";
+import LearnCoursesRoutes from "./Routes/LearnCoursesRoutes.js";
 
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use("/api/v1/my_courses", My_Products_Routes);
 // Payment and Course update
 app.use("/api/v1/razorpay", razorPayRouter);
 app.use("/api/v1/Purchased-Courses", PurchasedCourseRoutes)
+app.use("/api/v1/learn", LearnCoursesRoutes)
 
 
 app.get("/test", (req, res) => {

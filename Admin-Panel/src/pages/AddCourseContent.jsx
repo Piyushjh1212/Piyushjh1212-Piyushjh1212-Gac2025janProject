@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Styles/Add_CourseContent.css"
+import "./Styles/Add_CourseContent.css";
 
 const CourseVideoForm = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +20,6 @@ const CourseVideoForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Special handling for keyPoints array
     if (name.startsWith("keyPoints")) {
       const index = parseInt(name.split("-")[1]);
       const updatedKeyPoints = [...formData.keyPoints];
@@ -40,15 +39,11 @@ const CourseVideoForm = () => {
     try {
       const response = await fetch("/api/course-videos", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to save course video");
-      }
+      if (!response.ok) throw new Error("Failed to save course video");
 
       alert("Course video submitted successfully!");
       setFormData({
@@ -72,7 +67,7 @@ const CourseVideoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: "600px", margin: "0 auto" }}>
+    <form onSubmit={handleSubmit} className="course-form-container">
       <h2>Add Course Video</h2>
 
       {[
@@ -85,38 +80,49 @@ const CourseVideoForm = () => {
         "estimatedTime",
         "nextLesson",
       ].map((field) => (
-        <div key={field} style={{ marginBottom: "12px" }}>
-          <label>{field}</label><br />
+        <div className="course-form-group" key={field}>
+          <label className="course-form-label">{field}</label>
           <input
             type="text"
             name={field}
             value={formData[field]}
             onChange={handleChange}
+            className="course-form-input"
             required
           />
         </div>
       ))}
 
-      <div style={{ marginBottom: "12px" }}>
-        <label>Difficulty</label><br />
-        <select name="difficulty" value={formData.difficulty} onChange={handleChange}>
+      <div className="course-form-group">
+        <label className="course-form-label">Difficulty</label>
+        <select
+          name="difficulty"
+          value={formData.difficulty}
+          onChange={handleChange}
+          className="course-form-select"
+        >
           <option value="Beginner">Beginner</option>
           <option value="Intermediate">Intermediate</option>
           <option value="Advanced">Advanced</option>
         </select>
       </div>
 
-      <div style={{ marginBottom: "12px" }}>
-        <label>Type</label><br />
-        <select name="type" value={formData.type} onChange={handleChange}>
+      <div className="course-form-group">
+        <label className="course-form-label">Type</label>
+        <select
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+          className="course-form-select"
+        >
           <option value="Video">Video</option>
           <option value="Article">Article</option>
           <option value="Quiz">Quiz</option>
         </select>
       </div>
 
-      <div style={{ marginBottom: "12px" }}>
-        <label>Rating</label><br />
+      <div className="course-form-group">
+        <label className="course-form-label">Rating</label>
         <input
           type="number"
           name="rating"
@@ -125,12 +131,13 @@ const CourseVideoForm = () => {
           min="0"
           max="5"
           step="0.1"
+          className="course-form-input"
           required
         />
       </div>
 
-      <div style={{ marginBottom: "12px" }}>
-        <label>Key Points</label><br />
+      <div className="course-form-group">
+        <label className="course-form-label">Key Points</label>
         {formData.keyPoints.map((point, index) => (
           <input
             key={index}
@@ -138,16 +145,20 @@ const CourseVideoForm = () => {
             name={`keyPoints-${index}`}
             value={point}
             onChange={handleChange}
+            className="key-point-input"
             required
-            style={{ display: "block", marginBottom: "8px" }}
           />
         ))}
-        <button type="button" onClick={addKeyPoint}>
+        <button
+          type="button"
+          onClick={addKeyPoint}
+          className="add-key-point-btn"
+        >
           + Add Key Point
         </button>
       </div>
 
-      <button type="submit" style={{ marginTop: "20px" }}>
+      <button type="submit" className="course-form-submit">
         Submit
       </button>
     </form>

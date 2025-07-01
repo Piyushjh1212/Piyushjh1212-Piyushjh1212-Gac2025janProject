@@ -33,7 +33,7 @@ const courseVideoSchema = new mongoose.Schema({
     required: true,
   },
   studentsCount: {
-    type: String, // Stored as string like "1.6k", or change to Number if needed
+    type: String, // e.g., "1.6k"
     required: true,
   },
   rating: {
@@ -43,7 +43,7 @@ const courseVideoSchema = new mongoose.Schema({
     required: true,
   },
   estimatedTime: {
-    type: String, // e.g., "40 min"
+    type: String,
     required: true,
   },
   nextLesson: {
@@ -54,6 +54,13 @@ const courseVideoSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+
+  // ✅ Link to course/product
+  courseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "My_Products", 
+    required: true,
+  }
 }, {
   timestamps: true,
 });

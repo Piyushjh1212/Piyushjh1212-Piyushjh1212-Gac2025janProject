@@ -35,15 +35,15 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-.courses-list {
+.My-courses-list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.course-item {
+.My-course-item {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(247, 243, 243, 0.863);
   border-radius: 12px;
   padding: 1rem;
   cursor: pointer;
@@ -53,12 +53,12 @@
   align-items: center;
 }
 
-.course-item:hover {
+.My-course-item:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
-.course-item.active {
+.My-course-item.active {
   background: linear-gradient(45deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
   border-color: rgba(99, 102, 241, 0.5);
 }
@@ -229,7 +229,7 @@
     padding: 1rem;
   }
   
-  .course-item {
+  .My-course-item {
     padding: 0.75rem;
   }
   

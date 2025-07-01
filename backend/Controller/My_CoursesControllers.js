@@ -10,7 +10,7 @@ export const createProductController = async (req, res) => {
 
 
   try {
-    const { name, price, NewPrice, description, images, mainProductId, CourseDuration, Lessons } =
+    const { name, price, NewPrice, description, images, mainProductId } =
       req.body;
 
     if (
@@ -19,10 +19,8 @@ export const createProductController = async (req, res) => {
       !NewPrice ||
       !description ||
       !images ||
-      !mainProductId ||
-      !CourseDuration ||
-      !Lessons
-    ) {
+      !mainProductId 
+        ) {
       return res.status(300).json({
         success: false,
         message: `All fields are required`,
@@ -48,8 +46,6 @@ export const createProductController = async (req, res) => {
       description,
       images,
       mainProductId,
-      CourseDuration,
-      Lessons
     });
 
     if (!newProduct) {
